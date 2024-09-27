@@ -1,0 +1,4 @@
+baseURL = 'https://codeskraps.com/'
+languageCode = 'en-us'
+title = 'codeskraps'
+theme = 'hugo-theme-flat'
