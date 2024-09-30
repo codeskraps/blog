@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1">
+
+
+
+
+<title>MVI Architecture Helper | codeskraps</title>
+<link rel="canonical" href="http://localhost:1313/posts/mvi_architecture/">
+<meta name="description" content="Something smart to talk about this helper class
+interface StateReceiver&lt;STATE&gt; {
+    suspend fun updateState(transform: suspend (STATE) -&gt; STATE)
+    suspend fun withState(block: suspend (STATE) -&gt; Unit)
+}
+
+suspend inline fun &lt;reified TYPE : STATE, STATE&gt; StateReceiver&lt;STATE&gt;.withType(crossinline block: suspend (TYPE) -&gt; Unit) {
+    withState { state -&gt;
+        if (state is TYPE) {
+            block(state)
+        }
+    }
+}
+
+suspend inline fun &lt;reified TYPE : STATE, STATE&gt; StateReceiver&lt;STATE&gt;.updateWithType(crossinline transform: suspend (TYPE) -&gt; TYPE) {
+    withType&lt;TYPE, STATE&gt; { state -&gt; updateState { transform(state) } }
+}
+
+interface StateProvider&lt;STATE&gt; {
+    val state: StateFlow&lt;STATE&gt;
+}
+
+interface IntentReceiver&lt;INTENT&gt; {
+    fun handleIntent(intent: INTENT)
+}
+
+interface ActionProvider&lt;ACTION&gt; {
+    val action: Flow&lt;ACTION&gt;
+}
+
+interface ActionReceiver&lt;ACTION&gt; {
+    suspend fun sendAction(block: suspend () -&gt; ACTION)
+}
+
+interface StateModule&lt;STATE&gt; : StateReceiver&lt;STATE&gt;, StateProvider&lt;STATE&gt;
+interface IntentModule&lt;INTENT&gt; : IntentReceiver&lt;INTENT&gt;
+interface ActionModule&lt;ACTION&gt; : ActionReceiver&lt;ACTION&gt;, ActionProvider&lt;ACTION&gt;
+
+interface MVIViewModel&lt;STATE, INTENT, ACTION&gt; :
+    StateModule&lt;STATE&gt;,
+    IntentModule&lt;INTENT&gt;,
+    ActionModule&lt;ACTION&gt;
+
+class MVIViewModelDelegate&lt;STATE, INTENT, ACTION&gt;(
+    initial: STATE
+) : MVIViewModel&lt;STATE, INTENT, ACTION&gt; {
+
+    private val _state = MutableStateFlow(initial)
+    override val state: StateFlow&lt;STATE&gt; = _state.asStateFlow()
+
+    private val _action = Channel&lt;ACTION&gt;()
+    override val action: Flow&lt;ACTION&gt; = _action.receiveAsFlow()
+
+    override suspend fun updateState(transform: suspend (STATE) -&gt; STATE) {
+        _state.update { transform(it) }
+    }
+
+    override suspend fun withState(block: suspend (STATE) -&gt; Unit) {
+        block(_state.value)
+    }
+
+    override suspend fun sendAction(block: suspend () -&gt; ACTION) {
+        _action.trySend(block())
+    }
+
+    override fun handleIntent(intent: INTENT) {
+        throw NotImplementedError()
+    }
+}" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="MVI Architecture Helper | codeskraps" />
+<meta property="og:url" content="http://localhost:1313/posts/mvi_architecture/" />
+<meta property="og:description" content="Something smart to talk about this helper class
+interface StateReceiver&lt;STATE&gt; {
+    suspend fun updateState(transform: suspend (STATE) -&gt; STATE)
+    suspend fun withState(block: suspend (STATE) -&gt; Unit)
+}
+
+suspend inline fun &lt;reified TYPE : STATE, STATE&gt; StateReceiver&lt;STATE&gt;.withType(crossinline block: suspend (TYPE) -&gt; Unit) {
+    withState { state -&gt;
+        if (state is TYPE) {
+            block(state)
+        }
+    }
+}
+
+suspend inline fun &lt;reified TYPE : STATE, STATE&gt; StateReceiver&lt;STATE&gt;.updateWithType(crossinline transform: suspend (TYPE) -&gt; TYPE) {
+    withType&lt;TYPE, STATE&gt; { state -&gt; updateState { transform(state) } }
+}
+
+interface StateProvider&lt;STATE&gt; {
+    val state: StateFlow&lt;STATE&gt;
+}
+
+interface IntentReceiver&lt;INTENT&gt; {
+    fun handleIntent(intent: INTENT)
+}
+
+interface ActionProvider&lt;ACTION&gt; {
+    val action: Flow&lt;ACTION&gt;
+}
+
+interface ActionReceiver&lt;ACTION&gt; {
+    suspend fun sendAction(block: suspend () -&gt; ACTION)
+}
+
+interface StateModule&lt;STATE&gt; : StateReceiver&lt;STATE&gt;, StateProvider&lt;STATE&gt;
+interface IntentModule&lt;INTENT&gt; : IntentReceiver&lt;INTENT&gt;
+interface ActionModule&lt;ACTION&gt; : ActionReceiver&lt;ACTION&gt;, ActionProvider&lt;ACTION&gt;
+
+interface MVIViewModel&lt;STATE, INTENT, ACTION&gt; :
+    StateModule&lt;STATE&gt;,
+    IntentModule&lt;INTENT&gt;,
+    ActionModule&lt;ACTION&gt;
+
+class MVIViewModelDelegate&lt;STATE, INTENT, ACTION&gt;(
+    initial: STATE
+) : MVIViewModel&lt;STATE, INTENT, ACTION&gt; {
+
+    private val _state = MutableStateFlow(initial)
+    override val state: StateFlow&lt;STATE&gt; = _state.asStateFlow()
+
+    private val _action = Channel&lt;ACTION&gt;()
+    override val action: Flow&lt;ACTION&gt; = _action.receiveAsFlow()
+
+    override suspend fun updateState(transform: suspend (STATE) -&gt; STATE) {
+        _state.update { transform(it) }
+    }
+
+    override suspend fun withState(block: suspend (STATE) -&gt; Unit) {
+        block(_state.value)
+    }
+
+    override suspend fun sendAction(block: suspend () -&gt; ACTION) {
+        _action.trySend(block())
+    }
+
+    override fun handleIntent(intent: INTENT) {
+        throw NotImplementedError()
+    }
+}" />
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/icofont/icofont.min.css" />
+<link rel="stylesheet" href="/css/syntax.css" />
+<link rel="stylesheet" href="/css/style.css" />
+<script src="/js/copy-code-block.js"></script>
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+
+    </head>
+
+    <body>
+        <header class="header-wrapper">
+    <div class="header">
+        <a class="site-title" href="http://localhost:1313/">codeskraps</a>
+
+        <nav class="menu">
+            
+                <div class="menu-item">
+                    
+                        <a href="/about/">About</a>
+                    
+                </div>
+            
+                <div class="menu-item">
+                    
+                        <a href="/posts/">Posts</a>
+                    
+                </div>
+            
+        </nav>
+    </div>
+</header>
+
+        <main class="main-wrapper">
+            <div class="main">
+                
+
+<section class="single">
+    <h1 class="title">MVI Architecture Helper</h1>
+
+    <div class="tip">
+        <time datetime="2024-09-27 13:45:09 &#43;0200 CEST">2024/09/27</time>
+        <span class="split">·</span>
+        <span> 213 words </span>
+        <span class="split">·</span>
+        <span>
+            1 minutes to read
+        </span>
+    </div>
+
+    <div class="taxonomies">
+        
+
+        
+    </div>
+
+    <hr />
+
+    <div class="content">
+        <p>Something smart to talk about this helper class</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">StateReceiver</span>&lt;STATE&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">suspend</span> <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">updateState</span>(transform: <span style="color:#66d9ef">suspend</span> (STATE) <span style="color:#f92672">-&gt;</span> STATE)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">suspend</span> <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">withState</span>(block: <span style="color:#66d9ef">suspend</span> (STATE) <span style="color:#f92672">-&gt;</span> Unit)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">suspend</span> <span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">fun</span> &lt;<span style="color:#66d9ef">reified</span> <span style="color:#a6e22e">TYPE</span> : <span style="color:#a6e22e">STATE</span>, <span style="color:#a6e22e">STATE</span>&gt; <span style="color:#a6e22e">StateReceiver</span>&lt;STATE&gt;.withType(<span style="color:#66d9ef">crossinline</span> block: <span style="color:#66d9ef">suspend</span> (TYPE) <span style="color:#f92672">-&gt;</span> Unit) {
+</span></span><span style="display:flex;"><span>    withState { state <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (state <span style="color:#66d9ef">is</span> TYPE) {
+</span></span><span style="display:flex;"><span>            block(state)
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">suspend</span> <span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">fun</span> &lt;<span style="color:#66d9ef">reified</span> <span style="color:#a6e22e">TYPE</span> : <span style="color:#a6e22e">STATE</span>, <span style="color:#a6e22e">STATE</span>&gt; <span style="color:#a6e22e">StateReceiver</span>&lt;STATE&gt;.updateWithType(<span style="color:#66d9ef">crossinline</span> transform: <span style="color:#66d9ef">suspend</span> (TYPE) <span style="color:#f92672">-&gt;</span> TYPE) {
+</span></span><span style="display:flex;"><span>    withType&lt;TYPE, STATE&gt; { state <span style="color:#f92672">-&gt;</span> updateState { transform(state) } }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">StateProvider</span>&lt;STATE&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">val</span> state: StateFlow&lt;STATE&gt;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">IntentReceiver</span>&lt;INTENT&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">handleIntent</span>(intent: INTENT)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">ActionProvider</span>&lt;ACTION&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">val</span> action: Flow&lt;ACTION&gt;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">ActionReceiver</span>&lt;ACTION&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">suspend</span> <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">sendAction</span>(block: <span style="color:#66d9ef">suspend</span> () <span style="color:#f92672">-&gt;</span> ACTION)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">StateModule</span>&lt;STATE&gt; : StateReceiver&lt;STATE&gt;, StateProvider&lt;STATE&gt;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">IntentModule</span>&lt;INTENT&gt; : IntentReceiver&lt;INTENT&gt;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">ActionModule</span>&lt;ACTION&gt; : ActionReceiver&lt;ACTION&gt;, ActionProvider&lt;ACTION&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">MVIViewModel</span>&lt;STATE, INTENT, ACTION&gt; :
+</span></span><span style="display:flex;"><span>    StateModule&lt;STATE&gt;,
+</span></span><span style="display:flex;"><span>    IntentModule&lt;INTENT&gt;,
+</span></span><span style="display:flex;"><span>    ActionModule&lt;ACTION&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MVIViewModelDelegate</span>&lt;STATE, INTENT, ACTION&gt;(
+</span></span><span style="display:flex;"><span>    initial: STATE
+</span></span><span style="display:flex;"><span>) : MVIViewModel&lt;STATE, INTENT, ACTION&gt; {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">val</span> _state = MutableStateFlow(initial)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">val</span> state: StateFlow&lt;STATE&gt; = _state.asStateFlow()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">val</span> _action = Channel&lt;ACTION&gt;()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">val</span> action: Flow&lt;ACTION&gt; = _action.receiveAsFlow()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">suspend</span> <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">updateState</span>(transform: <span style="color:#66d9ef">suspend</span> (STATE) <span style="color:#f92672">-&gt;</span> STATE) {
+</span></span><span style="display:flex;"><span>        _state.update { transform(<span style="color:#66d9ef">it</span>) }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">suspend</span> <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">withState</span>(block: <span style="color:#66d9ef">suspend</span> (STATE) <span style="color:#f92672">-&gt;</span> Unit) {
+</span></span><span style="display:flex;"><span>        block(_state.<span style="color:#66d9ef">value</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">suspend</span> <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">sendAction</span>(block: <span style="color:#66d9ef">suspend</span> () <span style="color:#f92672">-&gt;</span> ACTION) {
+</span></span><span style="display:flex;"><span>        _action.trySend(block())
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">handleIntent</span>(intent: INTENT) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">throw</span> NotImplementedError()
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+
+    </div>
+
+    
+</section>
+
+
+            </div>
+            <div class="side">
+                
+                    <div class="side-recent">
+    <h2 class="side-title">
+        <a href="/posts/">Recent Posts</a>
+    </h2>
+    <hr />
+
+    <ul>
+        
+            <li>
+                <a href="/posts/mvi_architecture/">MVI Architecture Helper</a>
+            </li>
+        
+            <li>
+                <a href="/posts/my-first-post/">My First Post</a>
+            </li>
+        
+    </ul>
+</div>
+
+                
+                <div class="side-categories">
+    <h2>Categories</h2>
+    <hr />
+
+    <ul>
+        
+    </ul>
+</div>
+
+                <div class="side-tags">
+    <h2>Tags</h2>
+    <hr />
+
+    <ul>
+        
+    </ul>
+</div>
+
+            </div>
+        </main>
+        <footer class="footer">
+    <div class="footer-row">
+        
+            
+            
+                <a class="footer-item" href="http://localhost:1313/posts/index.xml">
+                    Feed of Posts
+                    <i class="icofont-rss"></i>
+                </a>
+            
+        
+
+        
+            
+            
+        
+    </div>
+
+    
+</footer>
+
+    </body>
+</html>
