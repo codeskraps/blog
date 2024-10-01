@@ -1,6 +1,7 @@
 +++
 title = 'MVI Architecture Helper'
 date = 2024-09-27T13:45:09+02:00
+tags = ['kotlin', 'kmp', 'android', 'mvi']
 draft = true
 +++
 Something smart to talk about this helper class

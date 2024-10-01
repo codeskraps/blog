@@ -1,5 +1,63 @@
 baseURL = 'https://codeskraps.com/'
 languageCode = 'en-us'
 title = 'codeskraps'
-theme = 'hugo-theme-flat'
-sectionPagesMenu = 'main'
+theme = 'nightfall'
+
+[module]
+  [[module.imports]]
+    path = 'github.com/hugomods/images'
+
+[menu]
+   [[menu.header]]
+        name = "posts"
+        url = "/posts/"
+        weight = 0
+    [[menu.header]]
+        name = "projects"
+	url = "/projects/"
+        weight = 1
+    [[menu.header]]
+        name = "about"
+        url = "/about/"
+        weight = 2
+
+[params]
+user = "me"
+hostname = "codeskraps.com"
+sitedescription = 'Your website description'
+readingTime = true
+published = true
+footerHtml = 'CC-0, Built with <a href="https://gohugo.io" class="footerLink">Hugo</a> and <a href="https://github.com/LordMathis/hugo-theme-nightfall" class="footerLink">Nightfall</a> theme'
+
+    [params.author]
+        name = "codeskraps"
+        email = "me@codeskraps.com"
+
+    [params.styles]
+        color = "orange"
+
+[[params.social]]
+key = 0
+name = "github"
+url = "https://github.com/codeskraps"
+target = "_blank"
+aria = "GitHub Profile"
+
+[[params.social]]
+key = 1
+name = "google play"
+url = "https://play.google.com/store/apps/developer?id=Codeskraps"
+aria = "Google Play"
+
+[[params.social]]
+key = 2
+name = "linkedin"
+url = "https://www.linkedin.com/in/carles-sentis-4a072130"
+aria = "LinkedIn Profile"
+
+[[params.social]]
+key = 3
+name = "email"
+url = "mailto:me@codeskraps.com"
+aria = "Email me"
+

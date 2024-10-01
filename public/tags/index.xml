@@ -2,9 +2,41 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on codeskraps</title>
-    <link>https://codeskraps.com/tags/</link>
+    <link>http://localhost:49905/tags/</link>
     <description>Recent content in Tags on codeskraps</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://codeskraps.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <managingEditor>me@codeskraps.com (codeskraps)</managingEditor>
+    <webMaster>me@codeskraps.com (codeskraps)</webMaster>
+    <lastBuildDate>Fri, 27 Sep 2024 13:45:09 +0200</lastBuildDate>
+    <atom:link href="http://localhost:49905/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Android</title>
+      <link>http://localhost:49905/tags/android/</link>
+      <pubDate>Fri, 27 Sep 2024 13:45:09 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
+      <guid>http://localhost:49905/tags/android/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kmp</title>
+      <link>http://localhost:49905/tags/kmp/</link>
+      <pubDate>Fri, 27 Sep 2024 13:45:09 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
+      <guid>http://localhost:49905/tags/kmp/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kotlin</title>
+      <link>http://localhost:49905/tags/kotlin/</link>
+      <pubDate>Fri, 27 Sep 2024 13:45:09 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
+      <guid>http://localhost:49905/tags/kotlin/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mvi</title>
+      <link>http://localhost:49905/tags/mvi/</link>
+      <pubDate>Fri, 27 Sep 2024 13:45:09 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
+      <guid>http://localhost:49905/tags/mvi/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>
