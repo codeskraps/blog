@@ -2,16 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://codeskraps.com/</loc>
+    <loc>http://localhost:49905/about/</loc>
+  </url><url>
+    <loc>http://localhost:49905/tags/android/</loc>
     <lastmod>2024-09-27T13:45:09+02:00</lastmod>
   </url><url>
-    <loc>https://codeskraps.com/posts/</loc>
+    <loc>http://localhost:49905/</loc>
     <lastmod>2024-09-27T13:45:09+02:00</lastmod>
   </url><url>
-    <loc>https://codeskraps.com/about/</loc>
+    <loc>http://localhost:49905/tags/kmp/</loc>
+    <lastmod>2024-09-27T13:45:09+02:00</lastmod>
   </url><url>
-    <loc>https://codeskraps.com/categories/</loc>
+    <loc>http://localhost:49905/tags/kotlin/</loc>
+    <lastmod>2024-09-27T13:45:09+02:00</lastmod>
   </url><url>
-    <loc>https://codeskraps.com/tags/</loc>
+    <loc>http://localhost:49905/tags/mvi/</loc>
+    <lastmod>2024-09-27T13:45:09+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:49905/posts/mvi_architecture/</loc>
+    <lastmod>2024-09-27T13:45:09+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:49905/posts/</loc>
+    <lastmod>2024-09-27T13:45:09+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:49905/tags/</loc>
+    <lastmod>2024-09-27T13:45:09+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:49905/posts/my-first-post/</loc>
+    <lastmod>2024-09-27T11:59:03+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:49905/categories/</loc>
+  </url><url>
+    <loc>http://localhost:49905/projects/</loc>
   </url>
 </urlset>
