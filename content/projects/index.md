@@ -2,11 +2,9 @@
 title = 'Projects'
 type = 'about'
 +++
-![logo](/imagesweekly_weather_logo.webp)
+![logo](/images/weekly_weather_logo.webp)
 
-![logo2](https://github.com/codeskraps/Weekly-Weather/blob/main/app/src/main/web_hi_res_512.png)
-
-# Weekly-Weather
+# [Weekly-Weather](https://github.com/codeskraps/Weekly-Weather)
 
 A quick view of your weekly weather
 
