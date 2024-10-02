@@ -15,7 +15,7 @@
       <link>https://codeskraps.com/posts/git_ssh_command/</link>
       <pubDate>Wed, 02 Oct 2024 16:55:53 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
       <guid>https://codeskraps.com/posts/git_ssh_command/</guid>
-      <description>&lt;p&gt;When working with Git repositories, you often need to authenticate using SSH keys. While you can configure SSH settings globally, there are times when you need to use a specific SSH key for just one command. This is particularly useful when cloning a new repository or adding a submodule, where there isn&amp;rsquo;t yet a local &lt;code&gt;.git/config&lt;/code&gt; file to modify.&lt;/p&gt;&#xA;&lt;h2 id=&#34;the-problem&#34;&gt;The Problem&lt;/h2&gt;&#xA;&lt;p&gt;Imagine you&amp;rsquo;re working on a project that requires you to clone a repository using a specific SSH key. Normally, you might edit your SSH config file or the repository&amp;rsquo;s &lt;code&gt;.git/config&lt;/code&gt; file. But what if you&amp;rsquo;re just getting started and don&amp;rsquo;t have these files set up yet?&lt;/p&gt;</description>
+      <description>&lt;p&gt;When working with Git repositories, you often need to authenticate using SSH keys. While you can configure SSH settings globally, there are times when you need to use a specific SSH key for just one command. This is particularly useful when cloning a new repository or adding a submodule, where there isn&amp;rsquo;t yet a local &lt;code&gt;.git/config&lt;/code&gt; file to modify.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Simplifying MVI Architecture</title>

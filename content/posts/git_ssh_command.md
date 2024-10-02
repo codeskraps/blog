@@ -5,7 +5,7 @@ tags = ['git', 'ssh']
 draft = false
 +++
 When working with Git repositories, you often need to authenticate using SSH keys. While you can configure SSH settings globally, there are times when you need to use a specific SSH key for just one command. This is particularly useful when cloning a new repository or adding a submodule, where there isn't yet a local `.git/config` file to modify.
-
+<!--more-->
 ## The Problem
 
 Imagine you're working on a project that requires you to clone a repository using a specific SSH key. Normally, you might edit your SSH config file or the repository's `.git/config` file. But what if you're just getting started and don't have these files set up yet?
