@@ -2,6 +2,8 @@
 
 Welcome to the repository for my personal portfolio website and blog. This site serves as a comprehensive showcase of my professional journey, projects, and thoughts.
 
+📍 **Visit the live site: [codeskraps.com](https://codeskraps.com)**
+
 ## 🌐 Site Structure
 
 The website is organized into the following main sections:
