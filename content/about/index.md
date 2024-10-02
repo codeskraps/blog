@@ -3,7 +3,11 @@ title: 'About Me'
 type: about
 weight: 20
 ---
+![me](images/me_codeskraps.gif)
+
 I'm a passionate and highly motivated software engineer with a deep-rooted love for technology that dates back to my first computer, an Amstrad 8256. From those early days of programming as a hobby, I've turned my passion into a successful career, specializing in mobile development with a focus on Android.
+
+<br clear="left">
 
 ## Professional Journey
 
