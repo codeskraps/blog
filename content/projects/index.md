@@ -2,7 +2,7 @@
 title = 'Projects'
 type = 'about'
 +++
-![weekly_weather_logo](/images/weekly_weather_logo.webp)
+![weekly_weather_logo](images/weekly_weather_logo.webp)
 
 # [Weekly Weather](https://github.com/codeskraps/Weekly-Weather)
 
