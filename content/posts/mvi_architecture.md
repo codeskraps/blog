@@ -208,4 +208,4 @@ The MVI helper class we've explored simplifies the implementation of the MVI pat
 
 Remember that you can use either data classes or sealed interfaces for your State, Intent, and Action definitions, depending on your specific needs. This flexibility allows you to choose the most appropriate structure for each component of your MVI architecture.
 
-While this helper class provides a solid foundation, you may need to adapt it to fit the specific needs of your project. Happy coding! 
+While this helper class provides a solid foundation, you may need to adapt it to fit the specific needs of your project. 
