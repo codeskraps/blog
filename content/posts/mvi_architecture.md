@@ -1,5 +1,5 @@
 +++
-title = 'Simplifying MVI Architecture in Kotlin: A Powerful Helper Class'
+title = 'Simplifying MVI Architecture'
 date = 2024-09-27T13:45:09+02:00
 tags = ['kotlin', 'kmp', 'android', 'mvi', 'architecture', 'mvvm', 'viewmodel']
 draft = false
