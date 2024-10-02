@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=49193&amp;path=livereload" data-no-instant defer></script>
+<head>
     <title>
 Configuring SSH Keys for Individual Git Commands | codeskraps
 </title>
@@ -13,7 +13,7 @@ Configuring SSH Keys for Individual Git Commands | codeskraps
 <meta name="generator" content="Hugo 0.134.3">
 
 
-<link rel="canonical" href="http://localhost:49193/posts/git_ssh_command/" >
+<link rel="canonical" href="https://codeskraps.com/posts/git_ssh_command/" >
 
 
 
@@ -31,7 +31,7 @@ Configuring SSH Keys for Individual Git Commands | codeskraps
         <header class="headerWrapper">
     <div class="header">
         <div>
-            <a class="terminal" href="http://localhost:49193/">
+            <a class="terminal" href="https://codeskraps.com/">
                 <span>me@codeskraps.com ~ $</span>
             </a>
         </div>
@@ -41,17 +41,17 @@ Configuring SSH Keys for Individual Git Commands | codeskraps
             <ul>
                 
                 <li>
-                    <a href="http://localhost:49193/projects/" title="" >
+                    <a href="https://codeskraps.com/projects/" title="" >
                         ~/projects</a>
                 </li>
                 
                 <li>
-                    <a href="http://localhost:49193/about/" title="" >
+                    <a href="https://codeskraps.com/about/" title="" >
                         ~/about</a>
                 </li>
                 
                 <li>
-                    <a href="http://localhost:49193/posts/" title="" >
+                    <a href="https://codeskraps.com/posts/" title="" >
                         ~/posts</a>
                 </li>
                 
@@ -86,8 +86,7 @@ Configuring SSH Keys for Individual Git Commands | codeskraps
     </section>
     
     <div>
-        <h1 id="configuring-ssh-keys-for-individual-git-commands">Configuring SSH Keys for Individual Git Commands</h1>
-<p>When working with Git repositories, you often need to authenticate using SSH keys. While you can configure SSH settings globally, there are times when you need to use a specific SSH key for just one command. This is particularly useful when cloning a new repository or adding a submodule, where there isn&rsquo;t yet a local <code>.git/config</code> file to modify.</p>
+        <p>When working with Git repositories, you often need to authenticate using SSH keys. While you can configure SSH settings globally, there are times when you need to use a specific SSH key for just one command. This is particularly useful when cloning a new repository or adding a submodule, where there isn&rsquo;t yet a local <code>.git/config</code> file to modify.</p>
 <h2 id="the-problem">The Problem</h2>
 <p>Imagine you&rsquo;re working on a project that requires you to clone a repository using a specific SSH key. Normally, you might edit your SSH config file or the repository&rsquo;s <code>.git/config</code> file. But what if you&rsquo;re just getting started and don&rsquo;t have these files set up yet?</p>
 <h2 id="the-solution">The Solution</h2>
@@ -165,7 +164,6 @@ This command will show you all files in your SSH directory, including your key f
 <h2 id="conclusion">Conclusion</h2>
 <p>Using the <code>-c</code> flag with Git commands provides a flexible way to configure SSH settings on a per-command basis. This is especially useful when working with new repositories or in environments where you can&rsquo;t or don&rsquo;t want to modify global configurations. By mastering this technique, you can streamline your Git workflows and handle complex authentication scenarios with ease.</p>
 <p>Remember, while the <code>-c</code> flag method is convenient for one-off commands, for long-term projects, it&rsquo;s usually better to set up your SSH config file or the repository&rsquo;s <code>.git/config</code> for a more permanent solution.</p>
-<p>Happy coding!</p>
 
     </div>
 </div>

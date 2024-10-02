@@ -8,7 +8,7 @@
     <language>en-us</language>
     <managingEditor>me@codeskraps.com (codeskraps)</managingEditor>
     <webMaster>me@codeskraps.com (codeskraps)</webMaster>
-    <lastBuildDate>Fri, 27 Sep 2024 13:45:09 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 02 Oct 2024 16:55:53 +0200</lastBuildDate>
     <atom:link href="https://codeskraps.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About Me</title>
@@ -16,6 +16,13 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><author>me@codeskraps.com (codeskraps)</author>
       <guid>https://codeskraps.com/about/</guid>
       <description>&lt;p&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;  &#xA;  &#xA;  &#xA;      &#xA;      &#xA;  &lt;picture&gt;&#xA;  &lt;img class=&#34;img-fluid&#34; src=&#34;https://codeskraps.com/images/me_codeskraps.gif?v=9df9e0930034eb1e10990a99d3ef1056&#34; alt=&#34;me&#34; loading=&#34;lazy&#34; height=&#34;107&#34; width=&#34;150&#34; /&gt;&#xA;&lt;/picture&gt;&#xA;&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;m a passionate and highly motivated software engineer with a deep-rooted love for technology that dates back to my first computer, an Amstrad 8256. From those early days of programming as a hobby, I&amp;rsquo;ve turned my passion into a successful career, specializing in mobile development with a focus on Android.&lt;/p&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;h2 id=&#34;professional-journey&#34;&gt;Professional Journey&lt;/h2&gt;&#xA;&lt;p&gt;Currently, I&amp;rsquo;m leading the mobile team at Game Golf, where I oversee all aspects of our mobile app development. My experience spans various domains, including:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Configuring SSH Keys for Individual Git Commands</title>
+      <link>https://codeskraps.com/posts/git_ssh_command/</link>
+      <pubDate>Wed, 02 Oct 2024 16:55:53 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
+      <guid>https://codeskraps.com/posts/git_ssh_command/</guid>
+      <description>&lt;p&gt;When working with Git repositories, you often need to authenticate using SSH keys. While you can configure SSH settings globally, there are times when you need to use a specific SSH key for just one command. This is particularly useful when cloning a new repository or adding a submodule, where there isn&amp;rsquo;t yet a local &lt;code&gt;.git/config&lt;/code&gt; file to modify.&lt;/p&gt;&#xA;&lt;h2 id=&#34;the-problem&#34;&gt;The Problem&lt;/h2&gt;&#xA;&lt;p&gt;Imagine you&amp;rsquo;re working on a project that requires you to clone a repository using a specific SSH key. Normally, you might edit your SSH config file or the repository&amp;rsquo;s &lt;code&gt;.git/config&lt;/code&gt; file. But what if you&amp;rsquo;re just getting started and don&amp;rsquo;t have these files set up yet?&lt;/p&gt;</description>
     </item>
     <item>
       <title>Simplifying MVI Architecture</title>
