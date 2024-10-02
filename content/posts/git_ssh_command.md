@@ -1,6 +1,7 @@
 +++
 title = 'Configuring SSH Keys for Individual Git Commands'
 date = 2024-10-02T16:55:53+02:00
+tags = ['git', 'ssh']
 draft = false
 +++
 When working with Git repositories, you often need to authenticate using SSH keys. While you can configure SSH settings globally, there are times when you need to use a specific SSH key for just one command. This is particularly useful when cloning a new repository or adding a submodule, where there isn't yet a local `.git/config` file to modify.
