@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en-us">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=51237&amp;path=livereload" data-no-instant defer></script>
     <title>
-Git | codeskraps
+Posts | codeskraps
 </title>
 
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -13,9 +13,9 @@ Git | codeskraps
 <meta name="generator" content="Hugo 0.134.3">
 
 
-<link rel="canonical" href="https://codeskraps.com/tags/git/" >
-  <link href="https://codeskraps.com/tags/git/index.xml" rel="alternate" type="application/rss+xml" title="codeskraps" >
-  <link href="https://codeskraps.com/tags/git/index.xml" rel="feed" type="application/rss+xml" title="codeskraps" >
+<link rel="canonical" href="http://localhost:51237/post/" >
+  <link href="http://localhost:51237/post/index.xml" rel="alternate" type="application/rss+xml" title="codeskraps" >
+  <link href="http://localhost:51237/post/index.xml" rel="feed" type="application/rss+xml" title="codeskraps" >
 
 
 
@@ -33,7 +33,7 @@ Git | codeskraps
         <header class="headerWrapper">
     <div class="header">
         <div>
-            <a class="terminal" href="https://codeskraps.com/">
+            <a class="terminal" href="http://localhost:51237/">
                 <span>me@codeskraps.com ~ $</span>
             </a>
         </div>
@@ -43,17 +43,17 @@ Git | codeskraps
             <ul>
                 
                 <li>
-                    <a href="https://codeskraps.com/projects/" title="" >
+                    <a href="http://localhost:51237/projects/" title="" >
                         ~/projects</a>
                 </li>
                 
                 <li>
-                    <a href="https://codeskraps.com/about/" title="" >
+                    <a href="http://localhost:51237/about/" title="" >
                         ~/about</a>
                 </li>
                 
                 <li>
-                    <a href="https://codeskraps.com/posts/" title="" >
+                    <a href="http://localhost:51237/posts/" title="" >
                         ~/posts</a>
                 </li>
                 
@@ -69,7 +69,7 @@ Git | codeskraps
 
 <div>
     <div class="listHeader">
-        <h1>Git</h1>
+        <h1>Posts</h1>
     </div>
 
     
@@ -77,7 +77,7 @@ Git | codeskraps
     <div>
         
 
-        <a class="postListLink" href="https://codeskraps.com/posts/gitignore_not_working/">
+        <a class="postListLink" href="http://localhost:51237/post/gitignore_not_working/">
             
             <div class="postListItem" role="listitem">
                 <div class="postHeader">
@@ -86,24 +86,11 @@ Git | codeskraps
                     <time class="postDate" datetime="2024-10-02">October 2, 2024</time>
                 </div>
                 <div class="postExcerpt">
-                    <p><p>As developers, we&rsquo;ve all been there. You&rsquo;ve added a file or folder to your <code>.gitignore</code>, but Git keeps tracking it anyway. What gives? Let&rsquo;s dive into why this happens and how to fix it.</p></p>
-                </div>
-            </div>
-        </a>
-
-
-        
-
-        <a class="postListLink" href="https://codeskraps.com/posts/git_ssh_command/">
-            
-            <div class="postListItem" role="listitem">
-                <div class="postHeader">
-                    <span class="postTitle">Configuring SSH Keys for Individual Git Commands</span>
-                    
-                    <time class="postDate" datetime="2024-10-02">October 2, 2024</time>
-                </div>
-                <div class="postExcerpt">
-                    <p><p>When working with Git repositories, you often need to authenticate using SSH keys. While you can configure SSH settings globally, there are times when you need to use a specific SSH key for just one command. This is particularly useful when cloning a new repository or adding a submodule, where there isn&rsquo;t yet a local <code>.git/config</code> file to modify.</p></p>
+                    <p><p>As developers, we&rsquo;ve all been there. You&rsquo;ve added a file or folder to your <code>.gitignore</code>, but Git keeps tracking it anyway. What gives? Let&rsquo;s dive into why this happens and how to fix it.</p>
+<h2 id="the-problem">The Problem</h2>
+<p>You&rsquo;ve added a file or directory to your <code>.gitignore</code>, but Git still tracks it. You might be thinking, &ldquo;Hey Git, I told you to ignore this!&rdquo;</p>
+<h2 id="why-it-happens">Why It Happens</h2>
+<p>Here&rsquo;s the catch: the <code>.gitignore</code> file only prevents untracked files from being added to the set of tracked files. It doesn&rsquo;t magically remove files that are already being tracked by Git.</p></p>
                 </div>
             </div>
         </a>
