@@ -15,7 +15,7 @@ The website is organized into the following main sections:
 
 ## 🛠 Technologies Used
 
-This site is built using [Hugo static site generator](https://gohugo.io) with a [nightfall](https://github.com/LordMathis/hugo-theme-nightfall) theme".
+This site is built using [Hugo static site generator](https://gohugo.io) with [Nightfall](https://github.com/LordMathis/hugo-theme-nightfall) theme.
 
 ## 🚀 Getting Started
 
