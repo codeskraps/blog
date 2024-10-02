@@ -8,8 +8,22 @@
     <language>en-us</language>
     <managingEditor>me@codeskraps.com (codeskraps)</managingEditor>
     <webMaster>me@codeskraps.com (codeskraps)</webMaster>
-    <lastBuildDate>Fri, 27 Sep 2024 13:45:09 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 02 Oct 2024 16:55:53 +0200</lastBuildDate>
     <atom:link href="https://codeskraps.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git</title>
+      <link>https://codeskraps.com/tags/git/</link>
+      <pubDate>Wed, 02 Oct 2024 16:55:53 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
+      <guid>https://codeskraps.com/tags/git/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ssh</title>
+      <link>https://codeskraps.com/tags/ssh/</link>
+      <pubDate>Wed, 02 Oct 2024 16:55:53 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
+      <guid>https://codeskraps.com/tags/ssh/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Android</title>
       <link>https://codeskraps.com/tags/android/</link>
