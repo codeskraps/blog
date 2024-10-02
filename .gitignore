@@ -1,0 +1,5 @@
+# Temporary lock file while building
+/.hugo_build.lock
+
+# Stupid Mac file
+/.DS_Store
