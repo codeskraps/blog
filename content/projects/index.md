@@ -1,6 +1,6 @@
 +++
 title = 'Projects'
-type = 'about'
+type = 'projects'
 +++
 ![weekly_weather_logo](images/weekly_weather_logo.webp)
 
