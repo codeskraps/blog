@@ -28,7 +28,7 @@ hostname = "codeskraps.com"
 sitedescription = 'Your website description'
 readingTime = true
 published = true
-footerHtml = 'CC-0, Built with <a href="https://gohugo.io" class="footerLink">Hugo</a> and <a href="https://github.com/LordMathis/hugo-theme-nightfall" class="footerLink">Nightfall</a> theme'
+footerHtml = 'Built with <a href="https://gohugo.io" class="footerLink">Hugo</a> and <a href="https://github.com/LordMathis/hugo-theme-nightfall" class="footerLink">Nightfall</a> theme'
 
     [params.author]
         name = "codeskraps"
