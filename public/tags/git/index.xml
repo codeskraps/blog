@@ -8,12 +8,12 @@
     <language>en-us</language>
     <managingEditor>me@codeskraps.com (codeskraps)</managingEditor>
     <webMaster>me@codeskraps.com (codeskraps)</webMaster>
-    <lastBuildDate>Wed, 02 Oct 2024 16:55:53 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 02 Oct 2024 16:56:53 +0200</lastBuildDate>
     <atom:link href="https://codeskraps.com/tags/git/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Configuring SSH Keys for Individual Git Commands</title>
       <link>https://codeskraps.com/posts/git_ssh_command/</link>
-      <pubDate>Wed, 02 Oct 2024 16:55:53 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
+      <pubDate>Wed, 02 Oct 2024 16:56:53 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
       <guid>https://codeskraps.com/posts/git_ssh_command/</guid>
       <description>&lt;p&gt;When working with Git repositories, you often need to authenticate using SSH keys. While you can configure SSH settings globally, there are times when you need to use a specific SSH key for just one command. This is particularly useful when cloning a new repository or adding a submodule, where there isn&amp;rsquo;t yet a local &lt;code&gt;.git/config&lt;/code&gt; file to modify.&lt;/p&gt;</description>
     </item>
