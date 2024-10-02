@@ -8,7 +8,7 @@
     <language>en-us</language>
     <managingEditor>me@codeskraps.com (codeskraps)</managingEditor>
     <webMaster>me@codeskraps.com (codeskraps)</webMaster>
-    <lastBuildDate>Wed, 02 Oct 2024 16:56:53 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 02 Oct 2024 18:14:23 +0200</lastBuildDate>
     <atom:link href="https://codeskraps.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About Me</title>
@@ -16,6 +16,13 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><author>me@codeskraps.com (codeskraps)</author>
       <guid>https://codeskraps.com/about/</guid>
       <description>&lt;p&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;  &#xA;  &#xA;  &#xA;      &#xA;      &#xA;  &lt;picture&gt;&#xA;  &lt;img class=&#34;img-fluid&#34; src=&#34;https://codeskraps.com/images/me_codeskraps.gif?v=9df9e0930034eb1e10990a99d3ef1056&#34; alt=&#34;me&#34; loading=&#34;lazy&#34; height=&#34;107&#34; width=&#34;150&#34; /&gt;&#xA;&lt;/picture&gt;&#xA;&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;m a passionate and highly motivated software engineer with a deep-rooted love for technology that dates back to my first computer, an Amstrad 8256. From those early days of programming as a hobby, I&amp;rsquo;ve turned my passion into a successful career, specializing in mobile development with a focus on Android.&lt;/p&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;h2 id=&#34;professional-journey&#34;&gt;Professional Journey&lt;/h2&gt;&#xA;&lt;p&gt;Currently, I&amp;rsquo;m leading the mobile team at Game Golf, where I oversee all aspects of our mobile app development. My experience spans various domains, including:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>When .gitignore Doesnt Seem to Work: A Quick Fix</title>
+      <link>https://codeskraps.com/posts/gitignore_not_working/</link>
+      <pubDate>Wed, 02 Oct 2024 18:14:23 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
+      <guid>https://codeskraps.com/posts/gitignore_not_working/</guid>
+      <description>&lt;p&gt;As developers, we&amp;rsquo;ve all been there. You&amp;rsquo;ve added a file or folder to your &lt;code&gt;.gitignore&lt;/code&gt;, but Git keeps tracking it anyway. What gives? Let&amp;rsquo;s dive into why this happens and how to fix it.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Configuring SSH Keys for Individual Git Commands</title>

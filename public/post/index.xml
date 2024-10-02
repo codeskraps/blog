@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on codeskraps</title>
+    <link>http://localhost:51237/post/</link>
+    <description>Recent content in Posts on codeskraps</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <managingEditor>me@codeskraps.com (codeskraps)</managingEditor>
+    <webMaster>me@codeskraps.com (codeskraps)</webMaster>
+    <lastBuildDate>Wed, 02 Oct 2024 18:14:23 +0200</lastBuildDate>
+    <atom:link href="http://localhost:51237/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>When .gitignore Doesnt Seem to Work: A Quick Fix</title>
+      <link>http://localhost:51237/post/gitignore_not_working/</link>
+      <pubDate>Wed, 02 Oct 2024 18:14:23 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
+      <guid>http://localhost:51237/post/gitignore_not_working/</guid>
+      <description>&lt;p&gt;As developers, we&amp;rsquo;ve all been there. You&amp;rsquo;ve added a file or folder to your &lt;code&gt;.gitignore&lt;/code&gt;, but Git keeps tracking it anyway. What gives? Let&amp;rsquo;s dive into why this happens and how to fix it.&lt;/p&gt;&#xA;&lt;h2 id=&#34;the-problem&#34;&gt;The Problem&lt;/h2&gt;&#xA;&lt;p&gt;You&amp;rsquo;ve added a file or directory to your &lt;code&gt;.gitignore&lt;/code&gt;, but Git still tracks it. You might be thinking, &amp;ldquo;Hey Git, I told you to ignore this!&amp;rdquo;&lt;/p&gt;&#xA;&lt;h2 id=&#34;why-it-happens&#34;&gt;Why It Happens&lt;/h2&gt;&#xA;&lt;p&gt;Here&amp;rsquo;s the catch: the &lt;code&gt;.gitignore&lt;/code&gt; file only prevents untracked files from being added to the set of tracked files. It doesn&amp;rsquo;t magically remove files that are already being tracked by Git.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

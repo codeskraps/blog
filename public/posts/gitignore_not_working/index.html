@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <title>
+When .gitignore Doesnt Seem to Work: A Quick Fix | codeskraps
+</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Your website description">
+
+<meta name="generator" content="Hugo 0.134.3">
+
+
+<link rel="canonical" href="https://codeskraps.com/posts/gitignore_not_working/" >
+
+
+
+
+<link href="/css/style.min.ee0d47e4d4346c71a65a9e873108c81ffae54d60a2fc2338f6df394eb4b25a82.css" rel="stylesheet">
+
+
+
+
+</head>
+
+<body>
+
+    <div class="flexWrapper">
+        <header class="headerWrapper">
+    <div class="header">
+        <div>
+            <a class="terminal" href="https://codeskraps.com/">
+                <span>me@codeskraps.com ~ $</span>
+            </a>
+        </div>
+        <input class="side-menu" type="checkbox" id="side-menu">
+        <label class="hamb" for="side-menu"><span class="hamb-line"></span></label>
+        <nav class="headerLinks">
+            <ul>
+                
+                <li>
+                    <a href="https://codeskraps.com/projects/" title="" >
+                        ~/projects</a>
+                </li>
+                
+                <li>
+                    <a href="https://codeskraps.com/about/" title="" >
+                        ~/about</a>
+                </li>
+                
+                <li>
+                    <a href="https://codeskraps.com/posts/" title="" >
+                        ~/posts</a>
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="content">
+            <main class="main">
+                
+<div class="postWrapper">
+    <h1>When .gitignore Doesnt Seem to Work: A Quick Fix</h1>
+    
+    
+    <section class="postMetadata">
+        <dl>
+            
+                
+<dt>tags</dt>
+<dd><span></span>
+    <a href="/tags/git/">#Git</a></dd>
+            
+            
+            
+            
+                <dt>published</dt>
+                
+                <dd><time datetime="2024-10-02">October 2, 2024</time></dd>
+            
+            
+                <dt>reading time</dt>
+                <dd>2 minutes</dd>
+            
+        </dl>
+    </section>
+    
+    <div>
+        <p>As developers, we&rsquo;ve all been there. You&rsquo;ve added a file or folder to your <code>.gitignore</code>, but Git keeps tracking it anyway. What gives? Let&rsquo;s dive into why this happens and how to fix it.</p>
+<h2 id="the-problem">The Problem</h2>
+<p>You&rsquo;ve added a file or directory to your <code>.gitignore</code>, but Git still tracks it. You might be thinking, &ldquo;Hey Git, I told you to ignore this!&rdquo;</p>
+<h2 id="why-it-happens">Why It Happens</h2>
+<p>Here&rsquo;s the catch: the <code>.gitignore</code> file only prevents untracked files from being added to the set of tracked files. It doesn&rsquo;t magically remove files that are already being tracked by Git.</p>
+<p>In other words, if you&rsquo;ve previously committed a file and then add it to <code>.gitignore</code>, Git will continue to track changes to that file. It&rsquo;s like telling your dog to ignore the treat that&rsquo;s already in its mouth - it&rsquo;s too late!</p>
+<h2 id="the-solution">The Solution</h2>
+<p>Fear not! There&rsquo;s a simple (if somewhat counterintuitive) fix. Here&rsquo;s what you need to do:</p>
+<ol>
+<li>
+<p>First, <strong>commit all your current changes</strong>. This is important to avoid losing any work.</p>
+</li>
+<li>
+<p>Then, run these two commands:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git rm -rf --cached .
+</span></span><span style="display:flex;"><span>git add .</span></span></code></pre></div>
+</li>
+</ol>
+<p>Let&rsquo;s break down what these commands do:</p>
+<ul>
+<li><code>git rm -rf --cached .</code>: This removes all files from the Git repository (but not from your working directory).</li>
+<li><code>git add .</code>: This adds all the files back to the repository.</li>
+</ul>
+<p>The magic here is that when you add the files back, Git will respect your <code>.gitignore</code> rules.</p>
+<h2 id="a-word-of-caution">A Word of Caution</h2>
+<p>Remember, this process will un-track files that you&rsquo;ve told Git to ignore. If you want certain previously-tracked files to remain tracked, make sure they&rsquo;re not listed in your <code>.gitignore</code>.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Git&rsquo;s behavior with <code>.gitignore</code> can be a bit surprising at first, but it makes sense when you understand how Git tracks files. By following these steps, you can ensure that your <code>.gitignore</code> rules are applied retroactively to your repository.</p>
+    </div>
+</div>
+
+            </main>
+        </div>
+
+
+        <footer class="footer">
+    
+        <span>Built with <a href="https://gohugo.io" class="footerLink">Hugo</a> and <a href="https://github.com/LordMathis/hugo-theme-nightfall" class="footerLink">Nightfall</a> theme</span>
+    
+</footer>
+    </div>
+
+</body>
+
+</html>

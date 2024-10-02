@@ -8,8 +8,15 @@
     <language>en-us</language>
     <managingEditor>me@codeskraps.com (codeskraps)</managingEditor>
     <webMaster>me@codeskraps.com (codeskraps)</webMaster>
-    <lastBuildDate>Wed, 02 Oct 2024 16:56:53 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 02 Oct 2024 18:14:23 +0200</lastBuildDate>
     <atom:link href="https://codeskraps.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>When .gitignore Doesnt Seem to Work: A Quick Fix</title>
+      <link>https://codeskraps.com/posts/gitignore_not_working/</link>
+      <pubDate>Wed, 02 Oct 2024 18:14:23 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
+      <guid>https://codeskraps.com/posts/gitignore_not_working/</guid>
+      <description>&lt;p&gt;As developers, we&amp;rsquo;ve all been there. You&amp;rsquo;ve added a file or folder to your &lt;code&gt;.gitignore&lt;/code&gt;, but Git keeps tracking it anyway. What gives? Let&amp;rsquo;s dive into why this happens and how to fix it.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Configuring SSH Keys for Individual Git Commands</title>
       <link>https://codeskraps.com/posts/git_ssh_command/</link>
