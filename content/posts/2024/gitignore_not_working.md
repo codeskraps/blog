@@ -1,6 +1,6 @@
 +++
 title = 'When .gitignore Doesnt Seem to Work: A Quick Fix'
-date = 2024-10-02T18:14:23+02:00
+date = 2024-06-02T18:14:23+02:00
 tags = ['git']
 draft = false
 +++
