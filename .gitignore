@@ -2,4 +2,4 @@
 /.hugo_build.lock
 
 # Stupid Mac file
-/.DS_Store
+**/.DS_Store
