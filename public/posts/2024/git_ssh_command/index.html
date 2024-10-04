@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <title>
+Configuring SSH Keys for Individual Git Commands | codeskraps
+</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Your website description">
+
+<meta name="generator" content="Hugo 0.134.3">
+
+
+<link rel="canonical" href="https://codeskraps.com/posts/2024/git_ssh_command/" >
+
+
+
+
+<link href="/css/style.min.ee0d47e4d4346c71a65a9e873108c81ffae54d60a2fc2338f6df394eb4b25a82.css" rel="stylesheet">
+
+
+
+
+</head>
+
+<body>
+
+    <div class="flexWrapper">
+        <header class="headerWrapper">
+    <div class="header">
+        <div>
+            <a class="terminal" href="https://codeskraps.com/">
+                <span>me@codeskraps.com ~ $</span>
+            </a>
+        </div>
+        <input class="side-menu" type="checkbox" id="side-menu">
+        <label class="hamb" for="side-menu"><span class="hamb-line"></span></label>
+        <nav class="headerLinks">
+            <ul>
+                
+                <li>
+                    <a href="https://codeskraps.com/projects/" title="" >
+                        ~/projects</a>
+                </li>
+                
+                <li>
+                    <a href="https://codeskraps.com/about/" title="" >
+                        ~/about</a>
+                </li>
+                
+                <li>
+                    <a href="https://codeskraps.com/posts/" title="" >
+                        ~/posts</a>
+                </li>
+                
+            </ul>
+        </nav>
+    </divi>
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-YP8WK3KZF1"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-YP8WK3KZF1');
+        }
+      </script>
+</header>
+
+
+        <div class="content">
+            <main class="main">
+                
+<div class="postWrapper">
+    <h1>Configuring SSH Keys for Individual Git Commands</h1>
+    
+    
+    <section class="postMetadata">
+        <dl>
+            
+                
+<dt>tags</dt>
+<dd><span></span>
+    <a href="/tags/git/">#Git</a><span></span>
+    <a href="/tags/ssh/">#Ssh</a></dd>
+            
+            
+            
+            
+                <dt>published</dt>
+                
+                <dd><time datetime="2024-04-02">April 2, 2024</time></dd>
+            
+            
+                <dt>reading time</dt>
+                <dd>3 minutes</dd>
+            
+        </dl>
+    </section>
+    
+    <div>
+        <p>When working with Git repositories, you often need to authenticate using SSH keys. While you can configure SSH settings globally, there are times when you need to use a specific SSH key for just one command. This is particularly useful when cloning a new repository or adding a submodule, where there isn&rsquo;t yet a local <code>.git/config</code> file to modify.</p>
+<h2 id="the-problem">The Problem</h2>
+<p>Imagine you&rsquo;re working on a project that requires you to clone a repository using a specific SSH key. Normally, you might edit your SSH config file or the repository&rsquo;s <code>.git/config</code> file. But what if you&rsquo;re just getting started and don&rsquo;t have these files set up yet?</p>
+<h2 id="the-solution">The Solution</h2>
+<p>Git provides a handy way to set configuration options for a single command using the <code>-c</code> flag. This allows you to specify the SSH command to use, including the path to your private key file.</p>
+<p>Here&rsquo;s the syntax:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git -c core.sshCommand<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ssh -i /path/to/private_key_file&#34;</span> &lt;git command&gt;</span></span></code></pre></div>
+<h2 id="examples">Examples</h2>
+<h3 id="cloning-a-repository">Cloning a Repository</h3>
+<p>To clone a repository using a specific SSH key:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git -c core.sshCommand<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ssh -i /path/to/private_key_file&#34;</span> clone git@github.com:username/repo.git</span></span></code></pre></div>
+<h3 id="adding-a-submodule">Adding a Submodule</h3>
+<p>Similarly, when adding a submodule:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git -c core.sshCommand<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ssh -i /path/to/private_key_file&#34;</span> submodule add git@github.com:username/submodule.git</span></span></code></pre></div>
+<h2 id="making-ssh-keys-available">Making SSH Keys Available</h2>
+<p>Before using SSH keys with Git, it&rsquo;s important to check which keys are already available on your system:</p>
+<ol>
+<li>
+<p><strong>Check Available Keys</strong>: List the contents of your SSH directory:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ls -al ~/.ssh</span></span></code></pre></div>
+This command will show you all files in your SSH directory, including your key files (typically with extensions like .pub for public keys).</p>
+</li>
+<li>
+<p><strong>Common Key Names</strong>: Look for files like:</p>
+<ul>
+<li>id_rsa, id_rsa.pub</li>
+<li>id_ed25519, id_ed25519.pub</li>
+<li>id_ecdsa, id_ecdsa.pub</li>
+</ul>
+</li>
+<li>
+<p><strong>Add to SSH Agent</strong>: If you find the key you want to use, ensure it&rsquo;s added to your SSH agent:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>eval <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>ssh-agent -s<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>ssh-add ~/.ssh/your_private_key_file</span></span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Verify Key in Git Host</strong>: Make sure the corresponding public key (the .pub file) is added to your Git host (e.g., GitHub, GitLab) in the SSH keys section of your account settings.</p>
+</li>
+</ol>
+<p>If you don&rsquo;t find any suitable keys, you may need to generate a new one. However, for the purposes of this guide, we&rsquo;re assuming you&rsquo;re working with existing keys.</p>
+<h2 id="adding-sshcommand-to-gitconfig">Adding sshCommand to .git/config</h2>
+<p>After cloning a repository using the method described above, you might want to make this configuration permanent for the specific repository. Here&rsquo;s how to add the sshCommand to your local <code>.git/config</code> file:</p>
+<ol>
+<li>
+<p>Navigate to your repository&rsquo;s root directory.</p>
+</li>
+<li>
+<p>Open the <code>.git/config</code> file in a text editor.</p>
+</li>
+<li>
+<p>Add the following lines under the <code>[core]</code> section (or create it if it doesn&rsquo;t exist):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#66d9ef">[core]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">sshCommand</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">ssh -i /path/to/private_key_file</span></span></span></code></pre></div>
+</li>
+<li>
+<p>Save and close the file.</p>
+</li>
+</ol>
+<p>Now, all Git commands for this repository will use the specified SSH key without needing the <code>-c</code> flag.</p>
+<h2 id="why-this-matters">Why This Matters</h2>
+<p>This technique is invaluable in several scenarios:</p>
+<ol>
+<li>
+<p><strong>Multiple SSH Keys</strong>: If you work with different Git hosts or have multiple accounts on the same host, you may need to use different SSH keys for different repositories.</p>
+</li>
+<li>
+<p><strong>Temporary Access</strong>: When you need to grant someone temporary access to clone a repo without modifying global SSH settings.</p>
+</li>
+<li>
+<p><strong>Automation</strong>: In CI/CD pipelines or scripts where you need to clone repositories with different authentication methods.</p>
+</li>
+<li>
+<p><strong>Testing</strong>: When troubleshooting SSH issues, this allows you to test different keys without changing your global configuration.</p>
+</li>
+</ol>
+<h2 id="conclusion">Conclusion</h2>
+<p>Using the <code>-c</code> flag with Git commands provides a flexible way to configure SSH settings on a per-command basis. This is especially useful when working with new repositories or in environments where you can&rsquo;t or don&rsquo;t want to modify global configurations. By mastering this technique, you can streamline your Git workflows and handle complex authentication scenarios with ease.</p>
+<p>Remember, while the <code>-c</code> flag method is convenient for one-off commands, for long-term projects, it&rsquo;s usually better to set up your SSH config file or the repository&rsquo;s <code>.git/config</code> for a more permanent solution.</p>
+    </div>
+</div>
+
+            </main>
+        </div>
+
+
+        <footer class="footer">
+    
+        <span>CC 2024, Built with <a href="https://gohugo.io" class="footerLink">Hugo</a> and <a href="https://github.com/LordMathis/hugo-theme-nightfall" class="footerLink">Nightfall</a> theme</span>
+    
+</footer>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kmp on codeskraps</title>
+    <link>https://codeskraps.com/tags/kmp/</link>
+    <description>Recent content in Kmp on codeskraps</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <managingEditor>me@codeskraps.com (codeskraps)</managingEditor>
+    <webMaster>me@codeskraps.com (codeskraps)</webMaster>
+    <lastBuildDate>Thu, 03 Oct 2024 17:16:34 +0200</lastBuildDate>
+    <atom:link href="https://codeskraps.com/tags/kmp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>React Native vs Kotlin Multiplatform</title>
+      <link>https://codeskraps.com/posts/2024/react_vs_kmp/</link>
+      <pubDate>Thu, 03 Oct 2024 17:16:34 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
+      <guid>https://codeskraps.com/posts/2024/react_vs_kmp/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;In the ever-evolving world of mobile app development, choosing the right cross-platform framework can be a game-changer for businesses and developers alike. Two prominent contenders in this space are React Native and Kotlin Multiplatform (KMP). Both offer unique approaches to the challenge of writing code once and deploying it across multiple platforms. This article will dive deep into the strengths and considerations of each, helping you make an informed decision for your next project.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Simplifying MVI Architecture</title>
+      <link>https://codeskraps.com/posts/2024/mvi_architecture/</link>
+      <pubDate>Fri, 27 Sep 2024 13:45:09 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
+      <guid>https://codeskraps.com/posts/2024/mvi_architecture/</guid>
+      <description>&lt;p&gt;Model-View-Intent (MVI) is a powerful architectural pattern for building user interfaces, especially in Android development. In this post, we&amp;rsquo;ll explore a helper class that simplifies the implementation of MVI, making it easier to manage state, handle user intents, and emit actions in your application.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

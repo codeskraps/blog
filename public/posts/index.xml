@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on codeskraps</title>
+    <link>https://codeskraps.com/posts/</link>
+    <description>Recent content in Posts on codeskraps</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <managingEditor>me@codeskraps.com (codeskraps)</managingEditor>
+    <webMaster>me@codeskraps.com (codeskraps)</webMaster>
+    <lastBuildDate>Thu, 03 Oct 2024 17:16:34 +0200</lastBuildDate>
+    <atom:link href="https://codeskraps.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>React Native vs Kotlin Multiplatform</title>
+      <link>https://codeskraps.com/posts/2024/react_vs_kmp/</link>
+      <pubDate>Thu, 03 Oct 2024 17:16:34 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
+      <guid>https://codeskraps.com/posts/2024/react_vs_kmp/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;In the ever-evolving world of mobile app development, choosing the right cross-platform framework can be a game-changer for businesses and developers alike. Two prominent contenders in this space are React Native and Kotlin Multiplatform (KMP). Both offer unique approaches to the challenge of writing code once and deploying it across multiple platforms. This article will dive deep into the strengths and considerations of each, helping you make an informed decision for your next project.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Simplifying MVI Architecture</title>
+      <link>https://codeskraps.com/posts/2024/mvi_architecture/</link>
+      <pubDate>Fri, 27 Sep 2024 13:45:09 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
+      <guid>https://codeskraps.com/posts/2024/mvi_architecture/</guid>
+      <description>&lt;p&gt;Model-View-Intent (MVI) is a powerful architectural pattern for building user interfaces, especially in Android development. In this post, we&amp;rsquo;ll explore a helper class that simplifies the implementation of MVI, making it easier to manage state, handle user intents, and emit actions in your application.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>When .gitignore Doesnt Seem to Work: A Quick Fix</title>
+      <link>https://codeskraps.com/posts/2024/gitignore_not_working/</link>
+      <pubDate>Sun, 02 Jun 2024 18:14:23 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
+      <guid>https://codeskraps.com/posts/2024/gitignore_not_working/</guid>
+      <description>&lt;p&gt;As developers, we&amp;rsquo;ve all been there. You&amp;rsquo;ve added a file or folder to your &lt;code&gt;.gitignore&lt;/code&gt;, but Git keeps tracking it anyway. What gives? Let&amp;rsquo;s dive into why this happens and how to fix it.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Configuring SSH Keys for Individual Git Commands</title>
+      <link>https://codeskraps.com/posts/2024/git_ssh_command/</link>
+      <pubDate>Tue, 02 Apr 2024 16:56:53 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
+      <guid>https://codeskraps.com/posts/2024/git_ssh_command/</guid>
+      <description>&lt;p&gt;When working with Git repositories, you often need to authenticate using SSH keys. While you can configure SSH settings globally, there are times when you need to use a specific SSH key for just one command. This is particularly useful when cloning a new repository or adding a submodule, where there isn&amp;rsquo;t yet a local &lt;code&gt;.git/config&lt;/code&gt; file to modify.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
