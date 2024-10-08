@@ -41,4 +41,4 @@ As a multilingual professional fluent in English, Catalan, and Spanish, I bring 
 
 Whether it's developing innovative mobile applications, contributing to open-source projects, or sharing knowledge with aspiring developers, I'm always excited to take on new challenges in the ever-evolving world of technology.
 
-Feel free to check out my work on [GitHub](https://github.com/codeskraps) or my published apps on the [Google Play Store](https://play.google.com/store/apps/developer?id=Codeskraps).
+Feel free to check out my work on [Repo](https://repo.codeskraps.com/codeskraps) or my published apps on the [Google Play Store](https://play.google.com/store/apps/developer?id=Codeskraps).

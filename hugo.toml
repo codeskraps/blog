@@ -43,25 +43,32 @@ footerHtml = 'CC 2024, Built with <a href="https://gohugo.io" class="footerLink"
 
 [[params.social]]
 key = 0
+name = "repo"
+url = "https://repo.codeskraps.com/codeskraps"
+target = "_blank"
+aria = "Repo Profile"
+
+[[params.social]]
+key = 1
 name = "github"
 url = "https://github.com/codeskraps"
 target = "_blank"
 aria = "GitHub Profile"
 
 [[params.social]]
-key = 1
+key = 2
 name = "google play"
 url = "https://play.google.com/store/apps/developer?id=Codeskraps"
 aria = "Google Play"
 
 [[params.social]]
-key = 2
+key = 3
 name = "linkedin"
 url = "https://www.linkedin.com/in/carles-sentis-4a072130"
 aria = "LinkedIn Profile"
 
 [[params.social]]
-key = 3
+key = 4
 name = "email"
 url = "mailto:me@codeskraps.com"
 aria = "Email me"
