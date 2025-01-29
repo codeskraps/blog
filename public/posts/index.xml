@@ -8,8 +8,15 @@
     <language>en-us</language>
     <managingEditor>me@codeskraps.com (codeskraps)</managingEditor>
     <webMaster>me@codeskraps.com (codeskraps)</webMaster>
-    <lastBuildDate>Thu, 03 Oct 2024 17:16:34 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 29 Jan 2025 14:30:17 +0100</lastBuildDate>
     <atom:link href="https://codeskraps.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Move /home Folder</title>
+      <link>https://codeskraps.com/posts/2025/move_home_folder/</link>
+      <pubDate>Wed, 29 Jan 2025 14:30:17 +0100</pubDate><author>me@codeskraps.com (codeskraps)</author>
+      <guid>https://codeskraps.com/posts/2025/move_home_folder/</guid>
+      <description>&lt;p&gt;You can move the &lt;code&gt;/home&lt;/code&gt; folder on Ubuntu, but you must do it carefully to avoid breaking your system. Below are the steps to safely move &lt;code&gt;/home&lt;/code&gt; to a new location.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>React Native vs Kotlin Multiplatform</title>
       <link>https://codeskraps.com/posts/2024/react_vs_kmp/</link>

@@ -8,8 +8,15 @@
     <language>en-us</language>
     <managingEditor>me@codeskraps.com (codeskraps)</managingEditor>
     <webMaster>me@codeskraps.com (codeskraps)</webMaster>
-    <lastBuildDate>Thu, 03 Oct 2024 17:16:34 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 29 Jan 2025 14:30:17 +0100</lastBuildDate>
     <atom:link href="https://codeskraps.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux</title>
+      <link>https://codeskraps.com/tags/linux/</link>
+      <pubDate>Wed, 29 Jan 2025 14:30:17 +0100</pubDate><author>me@codeskraps.com (codeskraps)</author>
+      <guid>https://codeskraps.com/tags/linux/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Android</title>
       <link>https://codeskraps.com/tags/android/</link>
