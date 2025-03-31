@@ -14,6 +14,8 @@ A clean, intuitive interface for viewing weather forecasts. Weekly Weather provi
 - Available in 37 languages
 - Lightweight and battery-efficient
 
+{{< screenshots "/images/weekly_weather/screenshot1.svg" "/images/weekly_weather/screenshot2.svg" "/images/weekly_weather/screenshot3.svg" >}}
+
 Weather data provided by Open-Meteo with weather icons from Makin-Things.
 {{< /project >}}
 
