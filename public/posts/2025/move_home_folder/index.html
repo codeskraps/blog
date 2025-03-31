@@ -8,7 +8,7 @@ Move /home Folder | codeskraps
 
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Your website description">
+<meta name="description" content="Mobile development blog by Carles Sentis, sharing expertise in Android, iOS, and Kotlin Multiplatform development">
 
 <meta name="generator" content="Hugo 0.145.0">
 
@@ -41,6 +41,11 @@ Move /home Folder | codeskraps
             <ul>
                 
                 <li>
+                    <a href="https://codeskraps.com/posts/" title="" >
+                        ~/posts</a>
+                </li>
+                
+                <li>
                     <a href="https://codeskraps.com/projects/" title="" >
                         ~/projects</a>
                 </li>
@@ -48,11 +53,6 @@ Move /home Folder | codeskraps
                 <li>
                     <a href="https://codeskraps.com/about/" title="" >
                         ~/about</a>
-                </li>
-                
-                <li>
-                    <a href="https://codeskraps.com/posts/" title="" >
-                        ~/posts</a>
                 </li>
                 
             </ul>
@@ -110,41 +110,41 @@ Move /home Folder | codeskraps
 <hr>
 <h2 id="1-create-a-backup-recommended"><strong>1. Create a Backup (Recommended)</strong></h2>
 <p>Before proceeding, create a backup of your home folder in case anything goes wrong.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo tar -czvf /home_backup.tar.gz /home</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo tar -czvf /home_backup.tar.gz /home</span></span></code></pre></div>
 <h2 id="2-create-a-new-partition-or-mount-point-if-needed"><strong>2. Create a New Partition or Mount Point (If Needed)</strong></h2>
 <p>If you&rsquo;re moving /home to a different partition or disk, make sure it&rsquo;s properly formatted and mounted.</p>
 <p>For example, if you want to use a new disk (e.g., <code>/dev/sdb1</code>):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo mkfs.ext4 /dev/sdb1
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo mkfs.ext4 /dev/sdb1
 </span></span><span style="display:flex;"><span>sudo mkdir /mnt/newhome
 </span></span><span style="display:flex;"><span>sudo mount /dev/sdb1 /mnt/newhome</span></span></code></pre></div>
 <h2 id="3-copy-the-home-folder"><strong>3. Copy the Home Folder</strong></h2>
 <p>Copy all user data to the new location while preserving permissions:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo rsync -aXS /home/ /mnt/newhome/</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo rsync -aXS /home/ /mnt/newhome/</span></span></code></pre></div>
 <hr>
 <h2 id="4-update-fstab"><strong>4. Update fstab</strong></h2>
 <p>Edit /etc/fstab to mount the new home directory at boot.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo nano /etc/fstab</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo nano /etc/fstab</span></span></code></pre></div>
 <p>Add this line at the end (adjust the path accordingly):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/dev/sdb1  /home  ext4  defaults  <span style="color:#ae81ff">0</span>  <span style="color:#ae81ff">2</span></span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/dev/sdb1  /home  ext4  defaults  <span style="color:#bd93f9">0</span>  <span style="color:#bd93f9">2</span></span></span></code></pre></div>
 <p>If you prefer using the UUID, first find it:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo blkid</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo blkid</span></span></code></pre></div>
 <p>Then, add this line instead:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-arduino" data-lang="arduino"><span style="display:flex;"><span>UUID<span style="color:#f92672">=</span>your<span style="color:#f92672">-</span>uuid <span style="color:#f92672">/</span><span style="color:#a6e22e">home</span> ext4 defaults <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">2</span></span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-arduino" data-lang="arduino"><span style="display:flex;"><span>UUID<span style="color:#ff79c6">=</span>your<span style="color:#ff79c6">-</span>uuid <span style="color:#ff79c6">/</span><span style="color:#50fa7b">home</span> ext4 defaults <span style="color:#bd93f9">0</span> <span style="color:#bd93f9">2</span></span></span></code></pre></div>
 <hr>
 <h2 id="5-unmount-old-home-and-mount-new-one"><strong>5. Unmount Old Home and Mount New One</strong></h2>
 <p>Switch to a different session (e.g., TTY):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Ctrl + Alt + F3</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Ctrl + Alt + F3</span></span></code></pre></div>
 <p>Log in and stop processes using <code>/home</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl stop gdm  <span style="color:#75715e"># For GNOME (or use sddm/lightdm if applicable)</span></span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl stop gdm  <span style="color:#6272a4"># For GNOME (or use sddm/lightdm if applicable)</span></span></span></code></pre></div>
 <p>Unmount and remount:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo umount /home
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo umount /home
 </span></span><span style="display:flex;"><span>sudo mount /home</span></span></code></pre></div>
 <hr>
 <h2 id="6-verify-and-reboot"><strong>6. Verify and Reboot</strong></h2>
 <p>Check that everything is in place:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ls /home</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ls /home</span></span></code></pre></div>
 <p>If everything looks good, reboot:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo reboot</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo reboot</span></span></code></pre></div>
 <hr>
 <h1 id="things-to-keep-in-mind">Things to Keep in Mind</h1>
 <ul>
@@ -155,7 +155,7 @@ Move /home Folder | codeskraps
 <p>If you face permission issues, you might need to reapply ownership:</p>
 </li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo chown -R username:username /home/username</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo chown -R username:username /home/username</span></span></code></pre></div>
     </div>
 </div>
 

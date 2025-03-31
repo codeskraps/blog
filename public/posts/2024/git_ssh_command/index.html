@@ -8,7 +8,7 @@ Configuring SSH Keys for Individual Git Commands | codeskraps
 
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Your website description">
+<meta name="description" content="Mobile development blog by Carles Sentis, sharing expertise in Android, iOS, and Kotlin Multiplatform development">
 
 <meta name="generator" content="Hugo 0.145.0">
 
@@ -41,6 +41,11 @@ Configuring SSH Keys for Individual Git Commands | codeskraps
             <ul>
                 
                 <li>
+                    <a href="https://codeskraps.com/posts/" title="" >
+                        ~/posts</a>
+                </li>
+                
+                <li>
                     <a href="https://codeskraps.com/projects/" title="" >
                         ~/projects</a>
                 </li>
@@ -48,11 +53,6 @@ Configuring SSH Keys for Individual Git Commands | codeskraps
                 <li>
                     <a href="https://codeskraps.com/about/" title="" >
                         ~/about</a>
-                </li>
-                
-                <li>
-                    <a href="https://codeskraps.com/posts/" title="" >
-                        ~/posts</a>
                 </li>
                 
             </ul>
@@ -113,20 +113,20 @@ Configuring SSH Keys for Individual Git Commands | codeskraps
 <h2 id="the-solution">The Solution</h2>
 <p>Git provides a handy way to set configuration options for a single command using the <code>-c</code> flag. This allows you to specify the SSH command to use, including the path to your private key file.</p>
 <p>Here&rsquo;s the syntax:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git -c core.sshCommand<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ssh -i /path/to/private_key_file&#34;</span> &lt;git command&gt;</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git -c core.sshCommand<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;ssh -i /path/to/private_key_file&#34;</span> &lt;git command&gt;</span></span></code></pre></div>
 <h2 id="examples">Examples</h2>
 <h3 id="cloning-a-repository">Cloning a Repository</h3>
 <p>To clone a repository using a specific SSH key:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git -c core.sshCommand<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ssh -i /path/to/private_key_file&#34;</span> clone git@github.com:username/repo.git</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git -c core.sshCommand<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;ssh -i /path/to/private_key_file&#34;</span> clone git@github.com:username/repo.git</span></span></code></pre></div>
 <h3 id="adding-a-submodule">Adding a Submodule</h3>
 <p>Similarly, when adding a submodule:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git -c core.sshCommand<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ssh -i /path/to/private_key_file&#34;</span> submodule add git@github.com:username/submodule.git</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git -c core.sshCommand<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;ssh -i /path/to/private_key_file&#34;</span> submodule add git@github.com:username/submodule.git</span></span></code></pre></div>
 <h2 id="making-ssh-keys-available">Making SSH Keys Available</h2>
 <p>Before using SSH keys with Git, it&rsquo;s important to check which keys are already available on your system:</p>
 <ol>
 <li>
 <p><strong>Check Available Keys</strong>: List the contents of your SSH directory:
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ls -al ~/.ssh</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ls -al ~/.ssh</span></span></code></pre></div>
 This command will show you all files in your SSH directory, including your key files (typically with extensions like .pub for public keys).</p>
 </li>
 <li>
@@ -139,7 +139,7 @@ This command will show you all files in your SSH directory, including your key f
 </li>
 <li>
 <p><strong>Add to SSH Agent</strong>: If you find the key you want to use, ensure it&rsquo;s added to your SSH agent:
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>eval <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>ssh-agent -s<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">eval</span> <span style="color:#f1fa8c">&#34;</span><span style="color:#ff79c6">$(</span>ssh-agent -s<span style="color:#ff79c6">)</span><span style="color:#f1fa8c">&#34;</span>
 </span></span><span style="display:flex;"><span>ssh-add ~/.ssh/your_private_key_file</span></span></code></pre></div></p>
 </li>
 <li>
@@ -158,8 +158,8 @@ This command will show you all files in your SSH directory, including your key f
 </li>
 <li>
 <p>Add the following lines under the <code>[core]</code> section (or create it if it doesn&rsquo;t exist):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#66d9ef">[core]</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">sshCommand</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">ssh -i /path/to/private_key_file</span></span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#ff79c6">[core]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#50fa7b">sshCommand</span> <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">ssh -i /path/to/private_key_file</span></span></span></code></pre></div>
 </li>
 <li>
 <p>Save and close the file.</p>

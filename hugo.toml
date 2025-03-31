@@ -1,11 +1,17 @@
 baseURL = 'https://codeskraps.com/'
 languageCode = 'en-us'
 title = 'codeskraps'
+description = 'Mobile development blog focused on Android, iOS, and cross-platform solutions with Kotlin Multiplatform'
 
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    lineNos = false
+    style = 'dracula'
 
 [services]
     [services.googleAnalytics]
@@ -19,29 +25,36 @@ title = 'codeskraps'
 
 [menu]
    [[menu.header]]
+        identifier = "posts"
         name = "posts"
         url = "/posts/"
-        weight = 0
-    [[menu.header]]
-        name = "projects"
-        url = "/projects/"
         weight = 1
     [[menu.header]]
+        identifier = "projects"
+        name = "projects"
+        url = "/projects/"
+        weight = 2
+    [[menu.header]]
+        identifier = "about"
         name = "about"
         url = "/about/"
-        weight = 2
+        weight = 3
 
 [params]
 user = "me"
 hostname = "codeskraps.com"
-sitedescription = 'Your website description'
+sitedescription = 'Mobile development blog by Carles Sentis, sharing expertise in Android, iOS, and Kotlin Multiplatform development'
 readingTime = true
 published = true
 footerHtml = 'CC 2024, Built with <a href="https://gohugo.io" class="footerLink">Hugo</a> and <a href="https://github.com/LordMathis/hugo-theme-nightfall" class="footerLink">Nightfall</a> theme'
+enableOpenGraph = true
+enableTwitterCards = true
 
     [params.author]
         name = "codeskraps"
         email = "me@codeskraps.com"
+        headline = "Senior Mobile Engineer"
+        bio = "Mobile developer with extensive experience in Android, iOS, and cross-platform solutions"
 
     [params.styles]
         color = "orange"
@@ -64,12 +77,14 @@ aria = "GitHub Profile"
 key = 2
 name = "google play"
 url = "https://play.google.com/store/apps/developer?id=Codeskraps"
+target = "_blank"
 aria = "Google Play"
 
 [[params.social]]
 key = 3
 name = "linkedin"
 url = "https://www.linkedin.com/in/carles-sentis-4a072130"
+target = "_blank"
 aria = "LinkedIn Profile"
 
 [[params.social]]

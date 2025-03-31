@@ -8,7 +8,7 @@ Simplifying MVI Architecture | codeskraps
 
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Your website description">
+<meta name="description" content="Mobile development blog by Carles Sentis, sharing expertise in Android, iOS, and Kotlin Multiplatform development">
 
 <meta name="generator" content="Hugo 0.145.0">
 
@@ -41,6 +41,11 @@ Simplifying MVI Architecture | codeskraps
             <ul>
                 
                 <li>
+                    <a href="https://codeskraps.com/posts/" title="" >
+                        ~/posts</a>
+                </li>
+                
+                <li>
                     <a href="https://codeskraps.com/projects/" title="" >
                         ~/projects</a>
                 </li>
@@ -48,11 +53,6 @@ Simplifying MVI Architecture | codeskraps
                 <li>
                     <a href="https://codeskraps.com/about/" title="" >
                         ~/about</a>
-                </li>
-                
-                <li>
-                    <a href="https://codeskraps.com/posts/" title="" >
-                        ~/posts</a>
                 </li>
                 
             </ul>
@@ -115,74 +115,74 @@ Simplifying MVI Architecture | codeskraps
         <p>Model-View-Intent (MVI) is a powerful architectural pattern for building user interfaces, especially in Android development. In this post, we&rsquo;ll explore a helper class that simplifies the implementation of MVI, making it easier to manage state, handle user intents, and emit actions in your application.</p>
 <h2 id="the-mvi-helper-class">The MVI Helper Class</h2>
 <p>First, let&rsquo;s look at the complete helper class:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">StateReceiver</span>&lt;STATE&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">suspend</span> <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">updateState</span>(transform: <span style="color:#66d9ef">suspend</span> (STATE) <span style="color:#f92672">-&gt;</span> STATE)
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">suspend</span> <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">withState</span>(block: <span style="color:#66d9ef">suspend</span> (STATE) <span style="color:#f92672">-&gt;</span> Unit)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">interface</span> <span style="color:#50fa7b">StateReceiver</span>&lt;STATE&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">suspend</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">updateState</span>(transform: <span style="color:#ff79c6">suspend</span> (STATE) <span style="color:#ff79c6">-&gt;</span> STATE)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">suspend</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">withState</span>(block: <span style="color:#ff79c6">suspend</span> (STATE) <span style="color:#ff79c6">-&gt;</span> Unit)
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">suspend</span> <span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">fun</span> &lt;<span style="color:#66d9ef">reified</span> <span style="color:#a6e22e">TYPE</span> : <span style="color:#a6e22e">STATE</span>, <span style="color:#a6e22e">STATE</span>&gt; <span style="color:#a6e22e">StateReceiver</span>&lt;STATE&gt;.withType(
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">crossinline</span> block: <span style="color:#66d9ef">suspend</span> (TYPE) <span style="color:#f92672">-&gt;</span> Unit
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">suspend</span> <span style="color:#ff79c6">inline</span> <span style="color:#ff79c6">fun</span> &lt;<span style="color:#ff79c6">reified</span> <span style="color:#50fa7b">TYPE</span> : <span style="color:#50fa7b">STATE</span>, <span style="color:#50fa7b">STATE</span>&gt; <span style="color:#50fa7b">StateReceiver</span>&lt;STATE&gt;.withType(
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">crossinline</span> block: <span style="color:#ff79c6">suspend</span> (TYPE) <span style="color:#ff79c6">-&gt;</span> Unit
 </span></span><span style="display:flex;"><span>) {
-</span></span><span style="display:flex;"><span>    withState { state <span style="color:#f92672">-&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (state <span style="color:#66d9ef">is</span> TYPE) {
+</span></span><span style="display:flex;"><span>    withState { state <span style="color:#ff79c6">-&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (state <span style="color:#ff79c6">is</span> TYPE) {
 </span></span><span style="display:flex;"><span>            block(state)
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">suspend</span> <span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">fun</span> &lt;<span style="color:#66d9ef">reified</span> <span style="color:#a6e22e">TYPE</span> : <span style="color:#a6e22e">STATE</span>, <span style="color:#a6e22e">STATE</span>&gt; <span style="color:#a6e22e">StateReceiver</span>&lt;STATE&gt;.updateWithType(
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">crossinline</span> transform: <span style="color:#66d9ef">suspend</span> (TYPE) <span style="color:#f92672">-&gt;</span> TYPE
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">suspend</span> <span style="color:#ff79c6">inline</span> <span style="color:#ff79c6">fun</span> &lt;<span style="color:#ff79c6">reified</span> <span style="color:#50fa7b">TYPE</span> : <span style="color:#50fa7b">STATE</span>, <span style="color:#50fa7b">STATE</span>&gt; <span style="color:#50fa7b">StateReceiver</span>&lt;STATE&gt;.updateWithType(
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">crossinline</span> transform: <span style="color:#ff79c6">suspend</span> (TYPE) <span style="color:#ff79c6">-&gt;</span> TYPE
 </span></span><span style="display:flex;"><span>) {
-</span></span><span style="display:flex;"><span>    withType&lt;TYPE, STATE&gt; { state <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>    withType&lt;TYPE, STATE&gt; { state <span style="color:#ff79c6">-&gt;</span>
 </span></span><span style="display:flex;"><span>        updateState { transform(state) }
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">StateProvider</span>&lt;STATE&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">val</span> state: StateFlow&lt;STATE&gt;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">interface</span> <span style="color:#50fa7b">StateProvider</span>&lt;STATE&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">val</span> state: StateFlow&lt;STATE&gt;
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">IntentReceiver</span>&lt;INTENT&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">handleIntent</span>(intent: INTENT)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">interface</span> <span style="color:#50fa7b">IntentReceiver</span>&lt;INTENT&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">handleIntent</span>(intent: INTENT)
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">ActionProvider</span>&lt;ACTION&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">val</span> action: Flow&lt;ACTION&gt;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">interface</span> <span style="color:#50fa7b">ActionProvider</span>&lt;ACTION&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">val</span> action: Flow&lt;ACTION&gt;
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">ActionReceiver</span>&lt;ACTION&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">suspend</span> <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">sendAction</span>(block: <span style="color:#66d9ef">suspend</span> () <span style="color:#f92672">-&gt;</span> ACTION)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">interface</span> <span style="color:#50fa7b">ActionReceiver</span>&lt;ACTION&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">suspend</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">sendAction</span>(block: <span style="color:#ff79c6">suspend</span> () <span style="color:#ff79c6">-&gt;</span> ACTION)
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">StateModule</span>&lt;STATE&gt; : StateReceiver&lt;STATE&gt;, StateProvider&lt;STATE&gt;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">IntentModule</span>&lt;INTENT&gt; : IntentReceiver&lt;INTENT&gt;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">ActionModule</span>&lt;ACTION&gt; : ActionReceiver&lt;ACTION&gt;, ActionProvider&lt;ACTION&gt;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">interface</span> <span style="color:#50fa7b">StateModule</span>&lt;STATE&gt; : StateReceiver&lt;STATE&gt;, StateProvider&lt;STATE&gt;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">interface</span> <span style="color:#50fa7b">IntentModule</span>&lt;INTENT&gt; : IntentReceiver&lt;INTENT&gt;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">interface</span> <span style="color:#50fa7b">ActionModule</span>&lt;ACTION&gt; : ActionReceiver&lt;ACTION&gt;, ActionProvider&lt;ACTION&gt;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">MVIViewModel</span>&lt;STATE, INTENT, ACTION&gt; : StateModule&lt;STATE&gt;, IntentModule&lt;INTENT&gt;, ActionModule&lt;ACTION&gt;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">interface</span> <span style="color:#50fa7b">MVIViewModel</span>&lt;STATE, INTENT, ACTION&gt; : StateModule&lt;STATE&gt;, IntentModule&lt;INTENT&gt;, ActionModule&lt;ACTION&gt;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MVIViewModelDelegate</span>&lt;STATE, INTENT, ACTION&gt;(
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">MVIViewModelDelegate</span>&lt;STATE, INTENT, ACTION&gt;(
 </span></span><span style="display:flex;"><span>    initial: STATE
 </span></span><span style="display:flex;"><span>) : MVIViewModel&lt;STATE, INTENT, ACTION&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">val</span> _state = MutableStateFlow(initial)
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">val</span> state: StateFlow&lt;STATE&gt; = _state.asStateFlow()
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">private</span> <span style="color:#ff79c6">val</span> _state = MutableStateFlow(initial)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">override</span> <span style="color:#ff79c6">val</span> state: StateFlow&lt;STATE&gt; = _state.asStateFlow()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">val</span> _action = Channel&lt;ACTION&gt;()
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">val</span> action: Flow&lt;ACTION&gt; = _action.receiveAsFlow()
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">private</span> <span style="color:#ff79c6">val</span> _action = Channel&lt;ACTION&gt;()
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">override</span> <span style="color:#ff79c6">val</span> action: Flow&lt;ACTION&gt; = _action.receiveAsFlow()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">suspend</span> <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">updateState</span>(transform: <span style="color:#66d9ef">suspend</span> (STATE) <span style="color:#f92672">-&gt;</span> STATE) {
-</span></span><span style="display:flex;"><span>        _state.update { transform(<span style="color:#66d9ef">it</span>) }
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">override</span> <span style="color:#ff79c6">suspend</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">updateState</span>(transform: <span style="color:#ff79c6">suspend</span> (STATE) <span style="color:#ff79c6">-&gt;</span> STATE) {
+</span></span><span style="display:flex;"><span>        _state.update { transform(<span style="color:#ff79c6">it</span>) }
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">suspend</span> <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">withState</span>(block: <span style="color:#66d9ef">suspend</span> (STATE) <span style="color:#f92672">-&gt;</span> Unit) {
-</span></span><span style="display:flex;"><span>        block(_state.<span style="color:#66d9ef">value</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">override</span> <span style="color:#ff79c6">suspend</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">withState</span>(block: <span style="color:#ff79c6">suspend</span> (STATE) <span style="color:#ff79c6">-&gt;</span> Unit) {
+</span></span><span style="display:flex;"><span>        block(_state.<span style="color:#ff79c6">value</span>)
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">suspend</span> <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">sendAction</span>(block: <span style="color:#66d9ef">suspend</span> () <span style="color:#f92672">-&gt;</span> ACTION) {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">override</span> <span style="color:#ff79c6">suspend</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">sendAction</span>(block: <span style="color:#ff79c6">suspend</span> () <span style="color:#ff79c6">-&gt;</span> ACTION) {
 </span></span><span style="display:flex;"><span>        _action.trySend(block())
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">handleIntent</span>(intent: INTENT) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">throw</span> NotImplementedError()
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">override</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">handleIntent</span>(intent: INTENT) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">throw</span> NotImplementedError()
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 <h2 id="understanding-the-mvi-helper-class">Understanding the MVI Helper Class</h2>
@@ -211,37 +211,37 @@ Simplifying MVI Architecture | codeskraps
 <p>This class implements the <code>MVIViewModel</code> interface, providing a concrete implementation of the MVI pattern.</p>
 <h2 id="example-implementation">Example Implementation</h2>
 <p>Let&rsquo;s implement a simple counter application using our MVI helper class. Note that we can use either data classes or sealed interfaces for our State, Intent, and Action definitions:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#75715e">// Define our State, Intent, and Action
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">data</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CounterState</span>(<span style="color:#66d9ef">val</span> count: Int = <span style="color:#ae81ff">0</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#6272a4">// Define our State, Intent, and Action
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">data</span> <span style="color:#ff79c6">class</span> <span style="color:#50fa7b">CounterState</span>(<span style="color:#ff79c6">val</span> count: Int = <span style="color:#bd93f9">0</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CounterIntent</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">object</span> <span style="color:#a6e22e">Increment</span> : CounterIntent
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">object</span> <span style="color:#a6e22e">Decrement</span> : CounterIntent
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">sealed</span> <span style="color:#ff79c6">interface</span> <span style="color:#50fa7b">CounterIntent</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">object</span> <span style="color:#50fa7b">Increment</span> : CounterIntent
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">object</span> <span style="color:#50fa7b">Decrement</span> : CounterIntent
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CounterAction</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">data</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ShowToast</span>(<span style="color:#66d9ef">val</span> message: String) : CounterAction
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">sealed</span> <span style="color:#ff79c6">interface</span> <span style="color:#50fa7b">CounterAction</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">data</span> <span style="color:#ff79c6">class</span> <span style="color:#50fa7b">ShowToast</span>(<span style="color:#ff79c6">val</span> message: String) : CounterAction
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CounterViewModel</span> : MVIViewModel&lt;CounterState, CounterIntent, CounterAction&gt; <span style="color:#66d9ef">by</span> MVIViewModelDelegate(CounterState()) {
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">CounterViewModel</span> : MVIViewModel&lt;CounterState, CounterIntent, CounterAction&gt; <span style="color:#ff79c6">by</span> MVIViewModelDelegate(CounterState()) {
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">init</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">init</span> {
 </span></span><span style="display:flex;"><span>        handleIntent()
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">handleIntent</span>() = viewModelScope.launch {
-</span></span><span style="display:flex;"><span>        withState { state <span style="color:#f92672">-&gt;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">when</span> (<span style="color:#66d9ef">val</span> intent = receiveIntent()) {
-</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">is</span> <span style="color:#a6e22e">CounterIntent</span>.Increment <span style="color:#f92672">-&gt;</span> updateState { <span style="color:#66d9ef">it</span>.copy(count = <span style="color:#66d9ef">it</span>.count + <span style="color:#ae81ff">1</span>) }
-</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">is</span> <span style="color:#a6e22e">CounterIntent</span>.Decrement <span style="color:#f92672">-&gt;</span> updateState { <span style="color:#66d9ef">it</span>.copy(count = <span style="color:#66d9ef">it</span>.count - <span style="color:#ae81ff">1</span>) }
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">private</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">handleIntent</span>() = viewModelScope.launch {
+</span></span><span style="display:flex;"><span>        withState { state <span style="color:#ff79c6">-&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">when</span> (<span style="color:#ff79c6">val</span> intent = receiveIntent()) {
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">is</span> <span style="color:#50fa7b">CounterIntent</span>.Increment <span style="color:#ff79c6">-&gt;</span> updateState { <span style="color:#ff79c6">it</span>.copy(count = <span style="color:#ff79c6">it</span>.count + <span style="color:#bd93f9">1</span>) }
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">is</span> <span style="color:#50fa7b">CounterIntent</span>.Decrement <span style="color:#ff79c6">-&gt;</span> updateState { <span style="color:#ff79c6">it</span>.copy(count = <span style="color:#ff79c6">it</span>.count - <span style="color:#bd93f9">1</span>) }
 </span></span><span style="display:flex;"><span>            }
 </span></span><span style="display:flex;"><span>            checkCounterValue(state.count)
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">suspend</span> <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">checkCounterValue</span>(count: Int) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (count % <span style="color:#ae81ff">10</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> count <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) {
-</span></span><span style="display:flex;"><span>            sendAction { <span style="color:#a6e22e">CounterAction</span>.ShowToast(<span style="color:#e6db74">&#34;Counter is now </span><span style="color:#e6db74">$count</span><span style="color:#e6db74">!&#34;</span>) }
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">private</span> <span style="color:#ff79c6">suspend</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">checkCounterValue</span>(count: Int) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (count % <span style="color:#bd93f9">10</span> <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">0</span> <span style="color:#ff79c6">&amp;&amp;</span> count <span style="color:#ff79c6">!=</span> <span style="color:#bd93f9">0</span>) {
+</span></span><span style="display:flex;"><span>            sendAction { <span style="color:#50fa7b">CounterAction</span>.ShowToast(<span style="color:#f1fa8c">&#34;Counter is now </span><span style="color:#f1fa8c">$count</span><span style="color:#f1fa8c">!&#34;</span>) }
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
@@ -254,39 +254,39 @@ Simplifying MVI Architecture | codeskraps
 </ol>
 <h2 id="using-the-viewmodel-in-the-ui">Using the ViewModel in the UI</h2>
 <p>Here&rsquo;s how you might use this ViewModel in an Android Activity or Fragment:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CounterActivity</span> : AppCompatActivity() {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">val</span> viewModel: CounterViewModel <span style="color:#66d9ef">by</span> viewModels()
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">CounterActivity</span> : AppCompatActivity() {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">private</span> <span style="color:#ff79c6">val</span> viewModel: CounterViewModel <span style="color:#ff79c6">by</span> viewModels()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">onCreate</span>(savedInstanceState: Bundle?) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span>.onCreate(savedInstanceState)
-</span></span><span style="display:flex;"><span>        setContentView(<span style="color:#a6e22e">R</span>.layout.activity_counter)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">override</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">onCreate</span>(savedInstanceState: Bundle?) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">super</span>.onCreate(savedInstanceState)
+</span></span><span style="display:flex;"><span>        setContentView(<span style="color:#50fa7b">R</span>.layout.activity_counter)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Collect state
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        lifecycleScope.launch {
-</span></span><span style="display:flex;"><span>            viewModel.state.collect { state <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// Collect state
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        lifecycleScope.launch {
+</span></span><span style="display:flex;"><span>            viewModel.state.collect { state <span style="color:#ff79c6">-&gt;</span>
 </span></span><span style="display:flex;"><span>                updateUI(state)
 </span></span><span style="display:flex;"><span>            }
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Collect actions
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        lifecycleScope.launch {
-</span></span><span style="display:flex;"><span>            viewModel.action.collect { action <span style="color:#f92672">-&gt;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">when</span> (action) {
-</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">is</span> <span style="color:#a6e22e">CounterAction</span>.ShowToast <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">Toast</span>.makeText(<span style="color:#66d9ef">this</span><span style="color:#a6e22e">@CounterActivity</span>, action.message, <span style="color:#a6e22e">Toast</span>.LENGTH_SHORT).show()
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// Collect actions
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        lifecycleScope.launch {
+</span></span><span style="display:flex;"><span>            viewModel.action.collect { action <span style="color:#ff79c6">-&gt;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">when</span> (action) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">is</span> <span style="color:#50fa7b">CounterAction</span>.ShowToast <span style="color:#ff79c6">-&gt;</span> <span style="color:#50fa7b">Toast</span>.makeText(<span style="color:#ff79c6">this</span>@CounterActivity, action.message, <span style="color:#50fa7b">Toast</span>.LENGTH_SHORT).show()
 </span></span><span style="display:flex;"><span>                }
 </span></span><span style="display:flex;"><span>            }
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Send intents
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        incrementButton.setOnClickListener {
-</span></span><span style="display:flex;"><span>            viewModel.handleIntent(<span style="color:#a6e22e">CounterIntent</span>.Increment)
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// Send intents
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        incrementButton.setOnClickListener {
+</span></span><span style="display:flex;"><span>            viewModel.handleIntent(<span style="color:#50fa7b">CounterIntent</span>.Increment)
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>        decrementButton.setOnClickListener {
-</span></span><span style="display:flex;"><span>            viewModel.handleIntent(<span style="color:#a6e22e">CounterIntent</span>.Decrement)
+</span></span><span style="display:flex;"><span>            viewModel.handleIntent(<span style="color:#50fa7b">CounterIntent</span>.Decrement)
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">updateUI</span>(state: CounterState) {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">private</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">updateUI</span>(state: CounterState) {
 </span></span><span style="display:flex;"><span>        counterTextView.text = state.count.toString()
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}</span></span></code></pre></div>

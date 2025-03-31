@@ -8,7 +8,7 @@ React Native vs Kotlin Multiplatform | codeskraps
 
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Your website description">
+<meta name="description" content="Mobile development blog by Carles Sentis, sharing expertise in Android, iOS, and Kotlin Multiplatform development">
 
 <meta name="generator" content="Hugo 0.145.0">
 
@@ -41,6 +41,11 @@ React Native vs Kotlin Multiplatform | codeskraps
             <ul>
                 
                 <li>
+                    <a href="https://codeskraps.com/posts/" title="" >
+                        ~/posts</a>
+                </li>
+                
+                <li>
                     <a href="https://codeskraps.com/projects/" title="" >
                         ~/projects</a>
                 </li>
@@ -48,11 +53,6 @@ React Native vs Kotlin Multiplatform | codeskraps
                 <li>
                     <a href="https://codeskraps.com/about/" title="" >
                         ~/about</a>
-                </li>
-                
-                <li>
-                    <a href="https://codeskraps.com/posts/" title="" >
-                        ~/posts</a>
                 </li>
                 
             </ul>
@@ -120,30 +120,30 @@ React Native vs Kotlin Multiplatform | codeskraps
 <h2 id="language-and-learning-curve">Language and Learning Curve</h2>
 <h3 id="react-native-javascript-for-the-web-developer">React Native: JavaScript for the Web Developer</h3>
 <p>React Native&rsquo;s use of JavaScript as its primary language is a significant advantage for many developers, especially those with a web development background. JavaScript&rsquo;s popularity and the vast ecosystem of tools and libraries make it an accessible choice for beginners and experienced developers alike.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react&#39;</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Text</span>, <span style="color:#a6e22e">View</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react-native&#39;</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> React from <span style="color:#f1fa8c">&#39;react&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> { Text, View } from <span style="color:#f1fa8c">&#39;react-native&#39;</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">HelloWorldApp</span> <span style="color:#f92672">=</span> () =&gt; {
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">View</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span>{{ <span style="color:#a6e22e">flex</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">justifyContent</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;center&#34;</span>, <span style="color:#a6e22e">alignItems</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;center&#34;</span> }}<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Text</span><span style="color:#f92672">&gt;</span><span style="color:#a6e22e">Hello</span>, <span style="color:#a6e22e">world</span><span style="color:#f92672">!&lt;</span><span style="color:#960050;background-color:#1e0010">/Text&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/View&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> HelloWorldApp <span style="color:#ff79c6">=</span> () =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">return</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;</span>View style<span style="color:#ff79c6">=</span>{{ flex<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">1</span>, justifyContent<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;center&#34;</span>, alignItems<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;center&#34;</span> }}<span style="color:#ff79c6">&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">&lt;</span>Text<span style="color:#ff79c6">&gt;</span>Hello, world<span style="color:#ff79c6">!&lt;</span>/Text&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;</span>/View&gt;
 </span></span><span style="display:flex;"><span>  );
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">HelloWorldApp</span>;</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">export</span> <span style="color:#ff79c6">default</span> HelloWorldApp;</span></span></code></pre></div>
 <p>This familiarity can lead to faster onboarding and development cycles, particularly for teams already versed in web technologies.</p>
 <h3 id="kmp-kotlins-modern-features-at-your-fingertips">KMP: Kotlin&rsquo;s Modern Features at Your Fingertips</h3>
 <p>Kotlin Multiplatform, on the other hand, leverages the power and expressiveness of the Kotlin language. While it may have a steeper learning curve for those not familiar with Kotlin, it offers numerous benefits.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">expect</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Platform</span>()
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">expect</span> <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">Platform</span>.name(): String
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">expect</span> <span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Platform</span>()
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">expect</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">Platform</span>.name(): String
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">expect</span> <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">hello</span>(): String
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">expect</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">hello</span>(): String
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">greet</span>(): String = hello() + <span style="color:#e6db74">&#34; on &#34;</span> + Platform().name()
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">greet</span>(): String = hello() + <span style="color:#f1fa8c">&#34; on &#34;</span> + Platform().name()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Greeting</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">greeting</span>(): String = greet()
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Greeting</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">greeting</span>(): String = greet()
 </span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 <p>These features can lead to more robust, maintainable code, which can be especially beneficial for larger, more complex projects.</p>
 <h2 id="ecosystem-and-libraries">Ecosystem and Libraries</h2>
