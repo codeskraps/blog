@@ -1,0 +1,15 @@
+{{ $img := .Get "img" }}
+{{ $title := .Get "title" }}
+{{ $url := .Get "url" }}
+
+<div class="project-container">
+  <div class="project-layout">
+    <div class="project-image">
+      <img src="{{ $img }}" alt="{{ $title }} logo">
+    </div>
+    <div class="project-content">
+      <h1><a href="{{ $url }}">{{ $title }}</a></h1>
+      {{ .Inner | markdownify }}
+    </div>
+  </div>
+</div> 

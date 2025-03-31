@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=58952&amp;path=livereload" data-no-instant defer></script>
     <title>
 Projects | codeskraps
 </title>
@@ -10,10 +10,10 @@ Projects | codeskraps
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Your website description">
 
-<meta name="generator" content="Hugo 0.141.0">
+<meta name="generator" content="Hugo 0.145.0">
 
 
-<link rel="canonical" href="https://codeskraps.com/projects/" >
+<link rel="canonical" href="http://localhost:58952/projects/" >
 
 
 
@@ -31,7 +31,7 @@ Projects | codeskraps
         <header class="headerWrapper">
     <div class="header">
         <div>
-            <a class="terminal" href="https://codeskraps.com/">
+            <a class="terminal" href="http://localhost:58952/">
                 <span>me@codeskraps.com ~ $</span>
             </a>
         </div>
@@ -41,17 +41,17 @@ Projects | codeskraps
             <ul>
                 
                 <li>
-                    <a href="https://codeskraps.com/projects/" title="" >
+                    <a href="http://localhost:58952/projects/" title="" >
                         ~/projects</a>
                 </li>
                 
                 <li>
-                    <a href="https://codeskraps.com/about/" title="" >
+                    <a href="http://localhost:58952/about/" title="" >
                         ~/about</a>
                 </li>
                 
                 <li>
-                    <a href="https://codeskraps.com/posts/" title="" >
+                    <a href="http://localhost:58952/posts/" title="" >
                         ~/posts</a>
                 </li>
                 
@@ -80,70 +80,101 @@ Projects | codeskraps
             <main class="main">
                 
   <article>
-      <header>
-        <h1>
-          Projects
-        </h1>
-      </header>
-      <p>
+    <header>
+      <h1>
+        Projects
+      </h1>
+    </header>
+    
+    <style>
+      .project-container {
+        margin-bottom: 4rem;
+      }
+      .project-layout {
+        display: flex;
+        gap: 2rem;
+        align-items: flex-start;
+      }
+      .project-image {
+        flex: 0 0 150px;
+      }
+      .project-image img {
+        width: 100%;
+        height: auto;
+      }
+      .project-content {
+        flex: 1;
+        text-align: left;
+      }
+      .project-content h1,
+      .project-content h2,
+      .project-content h3 {
+        margin-top: 0;
+      }
+      @media (max-width: 768px) {
+        .project-layout {
+          flex-direction: column;
+        }
+        .project-content {
+          width: 100%;
+        }
+      }
+    </style>
+
+    
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-      
-      
-  <picture>
-  <img class="img-fluid" src="https://codeskraps.com/images/weekly_weather_logo.webp?v=7d09cf4c9c2d09df631c4b261c3b04b0" alt="weekly_weather_logo" loading="lazy" height="192" width="192" />
-</picture>
-</p>
-<h1 id="weekly-weatherhttpsrepocodeskrapscomcodeskrapsweekly-weather"><a href="https://repo.codeskraps.com/codeskraps/Weekly-Weather">Weekly Weather</a></h1>
-<p>A quick view of your weekly weather</p>
-<p>A quick overview of you weekly weather of your current location or search and save your favourite locations for easy access.</p>
-<p>Save a GPS weather location with a custom name.</p>
-<p>App translated into 37 languages.</p>
-<p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-      
-      
-  <picture>
-  <img class="img-fluid" src="https://codeskraps.com/images/sbrowser_logo.webp?v=99f3ce8e863ee001ff5c8a5d2b5b2965" alt="sbrowser_logo" loading="lazy" height="192" width="192" />
-</picture>
-</p>
-<h1 id="sbrowserhttpsrepocodeskrapscomcodeskrapssbrowser"><a href="https://repo.codeskraps.com/codeskraps/sBrowser">sBrowser</a></h1>
-<p>This is an app for Android powered devices. sBrowser is a simple Internet broswer specially developed for teaching purposes in a workshop in 091 Labs (091labs.com).</p>
+<div class="project-container">
+  <div class="project-layout">
+    <div class="project-image">
+      <img src="/images/weekly_weather_logo.webp" alt="Weekly Weather logo">
+    </div>
+    <div class="project-content">
+      <h1><a href="https://repo.codeskraps.com/codeskraps/Weekly-Weather">Weekly Weather</a></h1>
+      <p>A clean, intuitive interface for viewing weather forecasts. Weekly Weather provides detailed weekly forecasts for your current location or saved favorite places.</p>
+<h3 id="features">Features</h3>
+<ul>
+<li>View detailed weekly weather forecasts</li>
+<li>Automatically detect current location</li>
+<li>Search and save favorite locations for quick access</li>
+<li>Custom naming for GPS locations</li>
+<li>Available in 37 languages</li>
+<li>Lightweight and battery-efficient</li>
+</ul>
+<p>Weather data provided by Open-Meteo with weather icons from Makin-Things.</p>
 
     </div>
+  </div>
+</div> 
+
+
+
+
+<div class="project-container">
+  <div class="project-layout">
+    <div class="project-image">
+      <img src="/images/sbrowser_logo.webp" alt="sBrowser logo">
+    </div>
+    <div class="project-content">
+      <h1><a href="https://repo.codeskraps.com/codeskraps/sBrowser">sBrowser</a></h1>
+      <p>A simple yet powerful Internet browser for Android devices. Originally developed for teaching purposes in a workshop at 091 Labs, it has evolved into a feature-rich yet lightweight browsing solution.</p>
+<h3 id="features">Features</h3>
+<ul>
+<li>Ad-blocking functionality</li>
+<li>Bookmark management with thumbnails</li>
+<li>HTML5 video support</li>
+<li>Customizable user agent</li>
+<li>Privacy-focused with encrypted search options</li>
+<li>Material Design user interface</li>
+<li>Support for HTTPS</li>
+</ul>
+<p>Latest version: 3.4 (2024) - Updated with modern Android architecture, Material 3 design, and improved performance and stability.</p>
+
+    </div>
+  </div>
+</div> 
+
   </article>
 
             </main>

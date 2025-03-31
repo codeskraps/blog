@@ -3,13 +3,27 @@ About | {{ .Site.Params.author.name }}
 {{ end }}
 
 {{ define "main" }}
-  <article>
+  <article class="about-page">
       <header>
         <h1>
           {{ .Title }}
         </h1>
       </header>
-      {{ .Content }}
-    </div>
+      <div class="about-content">
+        {{ .Content }}
+      </div>
   </article>
+
+  <style>
+    .about-page {
+      text-align: left;
+    }
+    .about-page h1, .about-page h2, .about-page h3, .about-page h4, .about-page h5, .about-page h6 {
+      text-align: center;
+    }
+    .about-page img {
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
 {{ end }}
