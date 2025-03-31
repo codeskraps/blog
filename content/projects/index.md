@@ -14,9 +14,19 @@ A clean, intuitive interface for viewing weather forecasts. Weekly Weather provi
 - Available in 37 languages
 - Lightweight and battery-efficient
 
-{{< screenshots "/images/weekly_weather/screenshot1.svg" "/images/weekly_weather/screenshot2.svg" "/images/weekly_weather/screenshot3.svg" >}}
+<div style="display: flex !important; flex-wrap: wrap !important; gap: 1rem !important; justify-content: center !important; margin: 2rem 0 !important;">
+  <div style="flex: 1 !important; max-width: 180px !important; min-width: 120px !important;">
+    <img src="/images/weekly_weather/screenshot1.png" alt="Weather forecast screen" style="display: block !important; width: 100% !important; height: auto !important; border-radius: 8px !important; border: 1px solid #ddd !important; box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;">
+  </div>
+  <div style="flex: 1 !important; max-width: 180px !important; min-width: 120px !important;">
+    <img src="/images/weekly_weather/screenshot2.png" alt="Location selection screen" style="display: block !important; width: 100% !important; height: auto !important; border-radius: 8px !important; border: 1px solid #ddd !important; box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;">
+  </div>
+  <div style="flex: 1 !important; max-width: 180px !important; min-width: 120px !important;">
+    <img src="/images/weekly_weather/screenshot3.png" alt="Weather details screen" style="display: block !important; width: 100% !important; height: auto !important; border-radius: 8px !important; border: 1px solid #ddd !important; box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;">
+  </div>
+</div>
 
-Weather data provided by Open-Meteo with weather icons from Makin-Things.
+Weather data provided by [Open-Meteo](https://open-meteo.com/) with weather icons from [Makin-Things/weather-icons](https://github.com/Makin-Things/weather-icons).
 {{< /project >}}
 
 {{< project img="/images/sbrowser_logo.webp" title="sBrowser" url="https://repo.codeskraps.com/codeskraps/sBrowser" >}}

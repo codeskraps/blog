@@ -2,6 +2,11 @@ baseURL = 'https://codeskraps.com/'
 languageCode = 'en-us'
 title = 'codeskraps'
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
 [services]
     [services.googleAnalytics]
         id = 'G-YP8WK3KZF1'
@@ -19,7 +24,7 @@ title = 'codeskraps'
         weight = 0
     [[menu.header]]
         name = "projects"
-	url = "/projects/"
+        url = "/projects/"
         weight = 1
     [[menu.header]]
         name = "about"

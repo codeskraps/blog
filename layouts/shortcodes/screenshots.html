@@ -1,33 +1,7 @@
-<div class="screenshot-gallery">
-  <style>
-    .screenshot-gallery {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-      margin: 1.5rem 0;
-    }
-    .screenshot-item {
-      flex: 0 0 calc(33% - 1rem);
-      max-width: 200px;
-    }
-    .screenshot-item img {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-      border: 1px solid #ddd;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    @media (max-width: 768px) {
-      .screenshot-item {
-        flex: 0 0 calc(50% - 1rem);
-      }
-    }
-  </style>
-
+<div class="screenshot-gallery" style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin: 1.5rem 0;">
   {{ range .Params }}
-  <div class="screenshot-item">
-    <img src="{{ . }}" alt="App screenshot">
+  <div style="flex: 0 0 30%; max-width: 200px; margin-bottom: 1rem;">
+    <img src="{{ . }}" alt="App screenshot" style="width: 100%; height: auto; border-radius: 12px; border: 1px solid #ddd;">
   </div>
   {{ end }}
 </div> 
