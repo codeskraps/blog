@@ -16,9 +16,9 @@ Git provides a handy way to set configuration options for a single command using
 
 Here's the syntax:
 
-{{<highlight bash>}}
+{{<codewithcopy bash>}}
 git -c core.sshCommand="ssh -i /path/to/private_key_file" <git command>
-{{</highlight>}}
+{{</codewithcopy>}}
 
 ## Examples
 
@@ -26,26 +26,26 @@ git -c core.sshCommand="ssh -i /path/to/private_key_file" <git command>
 
 To clone a repository using a specific SSH key:
 
-{{<highlight bash>}}
+{{<codewithcopy bash>}}
 git -c core.sshCommand="ssh -i /path/to/private_key_file" clone git@github.com:username/repo.git
-{{</highlight>}}
+{{</codewithcopy>}}
 
 ### Adding a Submodule
 
 Similarly, when adding a submodule:
 
-{{<highlight bash>}}
+{{<codewithcopy bash>}}
 git -c core.sshCommand="ssh -i /path/to/private_key_file" submodule add git@github.com:username/submodule.git
-{{</highlight>}}
+{{</codewithcopy>}}
 
 ## Making SSH Keys Available
 
 Before using SSH keys with Git, it's important to check which keys are already available on your system:
 
 1. **Check Available Keys**: List the contents of your SSH directory:
-   {{<highlight bash>}}
+   {{<codewithcopy bash>}}
    ls -al ~/.ssh
-   {{</highlight>}}
+   {{</codewithcopy>}}
    This command will show you all files in your SSH directory, including your key files (typically with extensions like .pub for public keys).
 
 2. **Common Key Names**: Look for files like:
@@ -54,10 +54,10 @@ Before using SSH keys with Git, it's important to check which keys are already a
    - id_ecdsa, id_ecdsa.pub
 
 3. **Add to SSH Agent**: If you find the key you want to use, ensure it's added to your SSH agent:
-   {{<highlight bash>}}
+   {{<codewithcopy bash>}}
    eval "$(ssh-agent -s)"
    ssh-add ~/.ssh/your_private_key_file
-   {{</highlight>}}
+   {{</codewithcopy>}}
 
 4. **Verify Key in Git Host**: Make sure the corresponding public key (the .pub file) is added to your Git host (e.g., GitHub, GitLab) in the SSH keys section of your account settings.
 
@@ -73,10 +73,10 @@ After cloning a repository using the method described above, you might want to m
 
 3. Add the following lines under the `[core]` section (or create it if it doesn't exist):
 
-   {{<highlight ini>}}
+   {{<codewithcopy ini>}}
    [core]
        sshCommand = ssh -i /path/to/private_key_file
-   {{</highlight>}}
+   {{</codewithcopy>}}
 
 4. Save and close the file.
 

@@ -12,91 +12,91 @@ You can move the `/home` folder on Ubuntu, but you must do it carefully to avoid
 ## **1. Create a Backup (Recommended)**
 Before proceeding, create a backup of your home folder in case anything goes wrong.
 
-{{<highlight bash>}}
+{{<codewithcopy bash>}}
 sudo tar -czvf /home_backup.tar.gz /home
-{{</highlight>}}
+{{</codewithcopy>}}
 
 ## **2. Create a New Partition or Mount Point (If Needed)**
 If you're moving /home to a different partition or disk, make sure it's properly formatted and mounted.
 
 For example, if you want to use a new disk (e.g., `/dev/sdb1`):
 
-{{<highlight bash>}}
+{{<codewithcopy bash>}}
 sudo mkfs.ext4 /dev/sdb1
 sudo mkdir /mnt/newhome
 sudo mount /dev/sdb1 /mnt/newhome
-{{</highlight>}}
+{{</codewithcopy>}}
 
 ## **3. Copy the Home Folder**
 Copy all user data to the new location while preserving permissions:
 
-{{<highlight bash>}}
+{{<codewithcopy bash>}}
 sudo rsync -aXS /home/ /mnt/newhome/
-{{</highlight>}}
+{{</codewithcopy>}}
 
 ---
 
 ## **4. Update fstab**
 Edit /etc/fstab to mount the new home directory at boot.
 
-{{<highlight bash>}}
+{{<codewithcopy bash>}}
 sudo nano /etc/fstab
-{{</highlight>}}
+{{</codewithcopy>}}
 
 Add this line at the end (adjust the path accordingly):
 
-{{<highlight bash>}}
+{{<codewithcopy bash>}}
 /dev/sdb1  /home  ext4  defaults  0  2
-{{</highlight>}}
+{{</codewithcopy>}}
 
 If you prefer using the UUID, first find it:
 
-{{<highlight bash>}}
+{{<codewithcopy bash>}}
 sudo blkid
-{{</highlight>}}
+{{</codewithcopy>}}
 
 Then, add this line instead:
 
-{{<highlight arduino>}}
+{{<codewithcopy arduino>}}
 UUID=your-uuid /home ext4 defaults 0 2
-{{</highlight>}}
+{{</codewithcopy>}}
 
 ---
 
 ## **5. Unmount Old Home and Mount New One**
 Switch to a different session (e.g., TTY):
 
-{{<highlight bash>}}
+{{<codewithcopy bash>}}
 Ctrl + Alt + F3
-{{</highlight>}}
+{{</codewithcopy>}}
 
 Log in and stop processes using `/home`:
 
-{{<highlight bash>}}
+{{<codewithcopy bash>}}
 sudo systemctl stop gdm  # For GNOME (or use sddm/lightdm if applicable)
-{{</highlight>}}
+{{</codewithcopy>}}
 
 Unmount and remount:
 
-{{<highlight bash>}}
+{{<codewithcopy bash>}}
 sudo umount /home
 sudo mount /home
-{{</highlight>}}
+{{</codewithcopy>}}
 
 ---
 
 ## **6. Verify and Reboot**
 Check that everything is in place:
 
-{{<highlight bash>}}
+{{<codewithcopy bash>}}
 ls /home
-{{</highlight>}}
+{{</codewithcopy>}}
 
 If everything looks good, reboot:
 
-{{<highlight bash>}}
+{{<codewithcopy bash>}}
 sudo reboot
-{{</highlight>}}
+{{</codewithcopy>}}
 
 ---
 
@@ -105,6 +105,6 @@ sudo reboot
 
 * If you face permission issues, you might need to reapply ownership:
 
-{{<highlight bash>}}
+{{<codewithcopy bash>}}
 sudo chown -R username:username /home/username
-{{</highlight>}}
+{{</codewithcopy>}}

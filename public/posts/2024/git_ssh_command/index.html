@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=55173&amp;path=livereload" data-no-instant defer></script>
     <title>
 Configuring SSH Keys for Individual Git Commands | codeskraps
 </title>
@@ -13,7 +13,7 @@ Configuring SSH Keys for Individual Git Commands | codeskraps
 <meta name="generator" content="Hugo 0.145.0">
 
 
-<link rel="canonical" href="https://codeskraps.com/posts/2024/git_ssh_command/" >
+<link rel="canonical" href="http://localhost:55173/posts/2024/git_ssh_command/" >
 
 
 
@@ -31,7 +31,7 @@ Configuring SSH Keys for Individual Git Commands | codeskraps
         <header class="headerWrapper">
     <div class="header">
         <div>
-            <a class="terminal" href="https://codeskraps.com/">
+            <a class="terminal" href="http://localhost:55173/">
                 <span>me@codeskraps.com ~ $</span>
             </a>
         </div>
@@ -41,17 +41,17 @@ Configuring SSH Keys for Individual Git Commands | codeskraps
             <ul>
                 
                 <li>
-                    <a href="https://codeskraps.com/posts/" title="" >
+                    <a href="http://localhost:55173/posts/" title="" >
                         ~/posts</a>
                 </li>
                 
                 <li>
-                    <a href="https://codeskraps.com/projects/" title="" >
+                    <a href="http://localhost:55173/projects/" title="" >
                         ~/projects</a>
                 </li>
                 
                 <li>
-                    <a href="https://codeskraps.com/about/" title="" >
+                    <a href="http://localhost:55173/about/" title="" >
                         ~/about</a>
                 </li>
                 
@@ -113,20 +113,465 @@ Configuring SSH Keys for Individual Git Commands | codeskraps
 <h2 id="the-solution">The Solution</h2>
 <p>Git provides a handy way to set configuration options for a single command using the <code>-c</code> flag. This allows you to specify the SSH command to use, including the path to your private key file.</p>
 <p>Here&rsquo;s the syntax:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git -c core.sshCommand<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;ssh -i /path/to/private_key_file&#34;</span> &lt;git command&gt;</span></span></code></pre></div>
+
+<style>
+.code-block-container {
+    position: relative;
+    margin: 1em 0;
+}
+
+.code-header {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 999;
+}
+
+.copy-button {
+    display: inline-flex;
+    align-items: center;
+    background: #2d2d2d;
+    color: white;
+    border: 1px solid #404040;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+    background: #404040;
+}
+
+.copy-button svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+}
+
+.tooltip {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: black;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: none;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: black;
+}
+
+.copy-button.copied .tooltip {
+    display: block;
+}
+</style>
+
+<div class="code-block-container" data-lang="bash">
+    <div class="code-header">
+        <button class="copy-button" onclick="copyCodeBlock(this)" aria-label="Copy code">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 4v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7.242a2 2 0 0 0-.602-1.43L16.083 2.57A2 2 0 0 0 14.685 2H10a2 2 0 0 0-2 2z"/>
+                <path d="M16 18v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2"/>
+            </svg>
+            <span>Copy</span>
+            <div class="tooltip">Copied!</div>
+        </button>
+    </div>
+    <div class="code-content">
+        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git -c core.sshCommand<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;ssh -i /path/to/private_key_file&#34;</span> &lt;git command&gt;</span></span></code></pre></div>
+    </div>
+</div>
+
+<script>
+function copyCodeBlock(button) {
+    const container = button.closest('.code-block-container');
+    const codeContent = container.querySelector('.code-content pre');
+    const code = codeContent.textContent;
+    
+    navigator.clipboard.writeText(code.trim()).then(() => {
+        button.classList.add('copied');
+        setTimeout(() => {
+            button.classList.remove('copied');
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+        
+        const textarea = document.createElement('textarea');
+        textarea.value = code.trim();
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand('copy');
+            button.classList.add('copied');
+            setTimeout(() => {
+                button.classList.remove('copied');
+            }, 2000);
+        } catch (e) {
+            console.error('Fallback failed:', e);
+        }
+        document.body.removeChild(textarea);
+    });
+}
+</script> 
 <h2 id="examples">Examples</h2>
 <h3 id="cloning-a-repository">Cloning a Repository</h3>
 <p>To clone a repository using a specific SSH key:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git -c core.sshCommand<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;ssh -i /path/to/private_key_file&#34;</span> clone git@github.com:username/repo.git</span></span></code></pre></div>
+
+<style>
+.code-block-container {
+    position: relative;
+    margin: 1em 0;
+}
+
+.code-header {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 999;
+}
+
+.copy-button {
+    display: inline-flex;
+    align-items: center;
+    background: #2d2d2d;
+    color: white;
+    border: 1px solid #404040;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+    background: #404040;
+}
+
+.copy-button svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+}
+
+.tooltip {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: black;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: none;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: black;
+}
+
+.copy-button.copied .tooltip {
+    display: block;
+}
+</style>
+
+<div class="code-block-container" data-lang="bash">
+    <div class="code-header">
+        <button class="copy-button" onclick="copyCodeBlock(this)" aria-label="Copy code">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 4v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7.242a2 2 0 0 0-.602-1.43L16.083 2.57A2 2 0 0 0 14.685 2H10a2 2 0 0 0-2 2z"/>
+                <path d="M16 18v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2"/>
+            </svg>
+            <span>Copy</span>
+            <div class="tooltip">Copied!</div>
+        </button>
+    </div>
+    <div class="code-content">
+        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git -c core.sshCommand<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;ssh -i /path/to/private_key_file&#34;</span> clone git@github.com:username/repo.git</span></span></code></pre></div>
+    </div>
+</div>
+
+<script>
+function copyCodeBlock(button) {
+    const container = button.closest('.code-block-container');
+    const codeContent = container.querySelector('.code-content pre');
+    const code = codeContent.textContent;
+    
+    navigator.clipboard.writeText(code.trim()).then(() => {
+        button.classList.add('copied');
+        setTimeout(() => {
+            button.classList.remove('copied');
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+        
+        const textarea = document.createElement('textarea');
+        textarea.value = code.trim();
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand('copy');
+            button.classList.add('copied');
+            setTimeout(() => {
+                button.classList.remove('copied');
+            }, 2000);
+        } catch (e) {
+            console.error('Fallback failed:', e);
+        }
+        document.body.removeChild(textarea);
+    });
+}
+</script> 
 <h3 id="adding-a-submodule">Adding a Submodule</h3>
 <p>Similarly, when adding a submodule:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git -c core.sshCommand<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;ssh -i /path/to/private_key_file&#34;</span> submodule add git@github.com:username/submodule.git</span></span></code></pre></div>
+
+<style>
+.code-block-container {
+    position: relative;
+    margin: 1em 0;
+}
+
+.code-header {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 999;
+}
+
+.copy-button {
+    display: inline-flex;
+    align-items: center;
+    background: #2d2d2d;
+    color: white;
+    border: 1px solid #404040;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+    background: #404040;
+}
+
+.copy-button svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+}
+
+.tooltip {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: black;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: none;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: black;
+}
+
+.copy-button.copied .tooltip {
+    display: block;
+}
+</style>
+
+<div class="code-block-container" data-lang="bash">
+    <div class="code-header">
+        <button class="copy-button" onclick="copyCodeBlock(this)" aria-label="Copy code">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 4v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7.242a2 2 0 0 0-.602-1.43L16.083 2.57A2 2 0 0 0 14.685 2H10a2 2 0 0 0-2 2z"/>
+                <path d="M16 18v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2"/>
+            </svg>
+            <span>Copy</span>
+            <div class="tooltip">Copied!</div>
+        </button>
+    </div>
+    <div class="code-content">
+        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git -c core.sshCommand<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;ssh -i /path/to/private_key_file&#34;</span> submodule add git@github.com:username/submodule.git</span></span></code></pre></div>
+    </div>
+</div>
+
+<script>
+function copyCodeBlock(button) {
+    const container = button.closest('.code-block-container');
+    const codeContent = container.querySelector('.code-content pre');
+    const code = codeContent.textContent;
+    
+    navigator.clipboard.writeText(code.trim()).then(() => {
+        button.classList.add('copied');
+        setTimeout(() => {
+            button.classList.remove('copied');
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+        
+        const textarea = document.createElement('textarea');
+        textarea.value = code.trim();
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand('copy');
+            button.classList.add('copied');
+            setTimeout(() => {
+                button.classList.remove('copied');
+            }, 2000);
+        } catch (e) {
+            console.error('Fallback failed:', e);
+        }
+        document.body.removeChild(textarea);
+    });
+}
+</script> 
 <h2 id="making-ssh-keys-available">Making SSH Keys Available</h2>
 <p>Before using SSH keys with Git, it&rsquo;s important to check which keys are already available on your system:</p>
 <ol>
 <li>
 <p><strong>Check Available Keys</strong>: List the contents of your SSH directory:
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ls -al ~/.ssh</span></span></code></pre></div>
+
+<style>
+.code-block-container {
+    position: relative;
+    margin: 1em 0;
+}
+
+.code-header {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 999;
+}
+
+.copy-button {
+    display: inline-flex;
+    align-items: center;
+    background: #2d2d2d;
+    color: white;
+    border: 1px solid #404040;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+    background: #404040;
+}
+
+.copy-button svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+}
+
+.tooltip {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: black;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: none;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: black;
+}
+
+.copy-button.copied .tooltip {
+    display: block;
+}
+</style>
+
+<div class="code-block-container" data-lang="bash">
+    <div class="code-header">
+        <button class="copy-button" onclick="copyCodeBlock(this)" aria-label="Copy code">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 4v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7.242a2 2 0 0 0-.602-1.43L16.083 2.57A2 2 0 0 0 14.685 2H10a2 2 0 0 0-2 2z"/>
+                <path d="M16 18v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2"/>
+            </svg>
+            <span>Copy</span>
+            <div class="tooltip">Copied!</div>
+        </button>
+    </div>
+    <div class="code-content">
+        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>   ls -al ~/.ssh
+</span></span><span style="display:flex;"><span>   </span></span></code></pre></div>
+    </div>
+</div>
+
+<script>
+function copyCodeBlock(button) {
+    const container = button.closest('.code-block-container');
+    const codeContent = container.querySelector('.code-content pre');
+    const code = codeContent.textContent;
+    
+    navigator.clipboard.writeText(code.trim()).then(() => {
+        button.classList.add('copied');
+        setTimeout(() => {
+            button.classList.remove('copied');
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+        
+        const textarea = document.createElement('textarea');
+        textarea.value = code.trim();
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand('copy');
+            button.classList.add('copied');
+            setTimeout(() => {
+                button.classList.remove('copied');
+            }, 2000);
+        } catch (e) {
+            console.error('Fallback failed:', e);
+        }
+        document.body.removeChild(textarea);
+    });
+}
+</script> 
 This command will show you all files in your SSH directory, including your key files (typically with extensions like .pub for public keys).</p>
 </li>
 <li>
@@ -139,8 +584,120 @@ This command will show you all files in your SSH directory, including your key f
 </li>
 <li>
 <p><strong>Add to SSH Agent</strong>: If you find the key you want to use, ensure it&rsquo;s added to your SSH agent:
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">eval</span> <span style="color:#f1fa8c">&#34;</span><span style="color:#ff79c6">$(</span>ssh-agent -s<span style="color:#ff79c6">)</span><span style="color:#f1fa8c">&#34;</span>
-</span></span><span style="display:flex;"><span>ssh-add ~/.ssh/your_private_key_file</span></span></code></pre></div></p>
+
+<style>
+.code-block-container {
+    position: relative;
+    margin: 1em 0;
+}
+
+.code-header {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 999;
+}
+
+.copy-button {
+    display: inline-flex;
+    align-items: center;
+    background: #2d2d2d;
+    color: white;
+    border: 1px solid #404040;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+    background: #404040;
+}
+
+.copy-button svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+}
+
+.tooltip {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: black;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: none;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: black;
+}
+
+.copy-button.copied .tooltip {
+    display: block;
+}
+</style>
+
+<div class="code-block-container" data-lang="bash">
+    <div class="code-header">
+        <button class="copy-button" onclick="copyCodeBlock(this)" aria-label="Copy code">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 4v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7.242a2 2 0 0 0-.602-1.43L16.083 2.57A2 2 0 0 0 14.685 2H10a2 2 0 0 0-2 2z"/>
+                <path d="M16 18v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2"/>
+            </svg>
+            <span>Copy</span>
+            <div class="tooltip">Copied!</div>
+        </button>
+    </div>
+    <div class="code-content">
+        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>   <span style="color:#8be9fd;font-style:italic">eval</span> <span style="color:#f1fa8c">&#34;</span><span style="color:#ff79c6">$(</span>ssh-agent -s<span style="color:#ff79c6">)</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span>   ssh-add ~/.ssh/your_private_key_file
+</span></span><span style="display:flex;"><span>   </span></span></code></pre></div>
+    </div>
+</div>
+
+<script>
+function copyCodeBlock(button) {
+    const container = button.closest('.code-block-container');
+    const codeContent = container.querySelector('.code-content pre');
+    const code = codeContent.textContent;
+    
+    navigator.clipboard.writeText(code.trim()).then(() => {
+        button.classList.add('copied');
+        setTimeout(() => {
+            button.classList.remove('copied');
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+        
+        const textarea = document.createElement('textarea');
+        textarea.value = code.trim();
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand('copy');
+            button.classList.add('copied');
+            setTimeout(() => {
+                button.classList.remove('copied');
+            }, 2000);
+        } catch (e) {
+            console.error('Fallback failed:', e);
+        }
+        document.body.removeChild(textarea);
+    });
+}
+</script> </p>
 </li>
 <li>
 <p><strong>Verify Key in Git Host</strong>: Make sure the corresponding public key (the .pub file) is added to your Git host (e.g., GitHub, GitLab) in the SSH keys section of your account settings.</p>
@@ -158,8 +715,120 @@ This command will show you all files in your SSH directory, including your key f
 </li>
 <li>
 <p>Add the following lines under the <code>[core]</code> section (or create it if it doesn&rsquo;t exist):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#ff79c6">[core]</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#50fa7b">sshCommand</span> <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">ssh -i /path/to/private_key_file</span></span></span></code></pre></div>
+
+<style>
+.code-block-container {
+    position: relative;
+    margin: 1em 0;
+}
+
+.code-header {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 999;
+}
+
+.copy-button {
+    display: inline-flex;
+    align-items: center;
+    background: #2d2d2d;
+    color: white;
+    border: 1px solid #404040;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+    background: #404040;
+}
+
+.copy-button svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+}
+
+.tooltip {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: black;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: none;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: black;
+}
+
+.copy-button.copied .tooltip {
+    display: block;
+}
+</style>
+
+<div class="code-block-container" data-lang="ini">
+    <div class="code-header">
+        <button class="copy-button" onclick="copyCodeBlock(this)" aria-label="Copy code">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 4v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7.242a2 2 0 0 0-.602-1.43L16.083 2.57A2 2 0 0 0 14.685 2H10a2 2 0 0 0-2 2z"/>
+                <path d="M16 18v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2"/>
+            </svg>
+            <span>Copy</span>
+            <div class="tooltip">Copied!</div>
+        </button>
+    </div>
+    <div class="code-content">
+        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span>   <span style="color:#ff79c6">[core]</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#50fa7b">sshCommand</span> <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">ssh -i /path/to/private_key_file
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">   </span></span></span></code></pre></div>
+    </div>
+</div>
+
+<script>
+function copyCodeBlock(button) {
+    const container = button.closest('.code-block-container');
+    const codeContent = container.querySelector('.code-content pre');
+    const code = codeContent.textContent;
+    
+    navigator.clipboard.writeText(code.trim()).then(() => {
+        button.classList.add('copied');
+        setTimeout(() => {
+            button.classList.remove('copied');
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+        
+        const textarea = document.createElement('textarea');
+        textarea.value = code.trim();
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand('copy');
+            button.classList.add('copied');
+            setTimeout(() => {
+                button.classList.remove('copied');
+            }, 2000);
+        } catch (e) {
+            console.error('Fallback failed:', e);
+        }
+        document.body.removeChild(textarea);
+    });
+}
+</script> 
 </li>
 <li>
 <p>Save and close the file.</p>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=55173&amp;path=livereload" data-no-instant defer></script>
     <title>
 React Native vs Kotlin Multiplatform | codeskraps
 </title>
@@ -13,7 +13,7 @@ React Native vs Kotlin Multiplatform | codeskraps
 <meta name="generator" content="Hugo 0.145.0">
 
 
-<link rel="canonical" href="https://codeskraps.com/posts/2024/react_vs_kmp/" >
+<link rel="canonical" href="http://localhost:55173/posts/2024/react_vs_kmp/" >
 
 
 
@@ -31,7 +31,7 @@ React Native vs Kotlin Multiplatform | codeskraps
         <header class="headerWrapper">
     <div class="header">
         <div>
-            <a class="terminal" href="https://codeskraps.com/">
+            <a class="terminal" href="http://localhost:55173/">
                 <span>me@codeskraps.com ~ $</span>
             </a>
         </div>
@@ -41,17 +41,17 @@ React Native vs Kotlin Multiplatform | codeskraps
             <ul>
                 
                 <li>
-                    <a href="https://codeskraps.com/posts/" title="" >
+                    <a href="http://localhost:55173/posts/" title="" >
                         ~/posts</a>
                 </li>
                 
                 <li>
-                    <a href="https://codeskraps.com/projects/" title="" >
+                    <a href="http://localhost:55173/projects/" title="" >
                         ~/projects</a>
                 </li>
                 
                 <li>
-                    <a href="https://codeskraps.com/about/" title="" >
+                    <a href="http://localhost:55173/about/" title="" >
                         ~/about</a>
                 </li>
                 
@@ -120,7 +120,84 @@ React Native vs Kotlin Multiplatform | codeskraps
 <h2 id="language-and-learning-curve">Language and Learning Curve</h2>
 <h3 id="react-native-javascript-for-the-web-developer">React Native: JavaScript for the Web Developer</h3>
 <p>React Native&rsquo;s use of JavaScript as its primary language is a significant advantage for many developers, especially those with a web development background. JavaScript&rsquo;s popularity and the vast ecosystem of tools and libraries make it an accessible choice for beginners and experienced developers alike.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> React from <span style="color:#f1fa8c">&#39;react&#39;</span>;
+
+<style>
+.code-block-container {
+    position: relative;
+    margin: 1em 0;
+}
+
+.code-header {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 999;
+}
+
+.copy-button {
+    display: inline-flex;
+    align-items: center;
+    background: #2d2d2d;
+    color: white;
+    border: 1px solid #404040;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+    background: #404040;
+}
+
+.copy-button svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+}
+
+.tooltip {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: black;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: none;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: black;
+}
+
+.copy-button.copied .tooltip {
+    display: block;
+}
+</style>
+
+<div class="code-block-container" data-lang="javascript">
+    <div class="code-header">
+        <button class="copy-button" onclick="copyCodeBlock(this)" aria-label="Copy code">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 4v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7.242a2 2 0 0 0-.602-1.43L16.083 2.57A2 2 0 0 0 14.685 2H10a2 2 0 0 0-2 2z"/>
+                <path d="M16 18v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2"/>
+            </svg>
+            <span>Copy</span>
+            <div class="tooltip">Copied!</div>
+        </button>
+    </div>
+    <div class="code-content">
+        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> React from <span style="color:#f1fa8c">&#39;react&#39;</span>;
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> { Text, View } from <span style="color:#f1fa8c">&#39;react-native&#39;</span>;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> HelloWorldApp <span style="color:#ff79c6">=</span> () =&gt; {
@@ -132,10 +209,121 @@ React Native vs Kotlin Multiplatform | codeskraps
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">export</span> <span style="color:#ff79c6">default</span> HelloWorldApp;</span></span></code></pre></div>
+    </div>
+</div>
+
+<script>
+function copyCodeBlock(button) {
+    const container = button.closest('.code-block-container');
+    const codeContent = container.querySelector('.code-content pre');
+    const code = codeContent.textContent;
+    
+    navigator.clipboard.writeText(code.trim()).then(() => {
+        button.classList.add('copied');
+        setTimeout(() => {
+            button.classList.remove('copied');
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+        
+        const textarea = document.createElement('textarea');
+        textarea.value = code.trim();
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand('copy');
+            button.classList.add('copied');
+            setTimeout(() => {
+                button.classList.remove('copied');
+            }, 2000);
+        } catch (e) {
+            console.error('Fallback failed:', e);
+        }
+        document.body.removeChild(textarea);
+    });
+}
+</script> 
 <p>This familiarity can lead to faster onboarding and development cycles, particularly for teams already versed in web technologies.</p>
 <h3 id="kmp-kotlins-modern-features-at-your-fingertips">KMP: Kotlin&rsquo;s Modern Features at Your Fingertips</h3>
 <p>Kotlin Multiplatform, on the other hand, leverages the power and expressiveness of the Kotlin language. While it may have a steeper learning curve for those not familiar with Kotlin, it offers numerous benefits.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">expect</span> <span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Platform</span>()
+
+<style>
+.code-block-container {
+    position: relative;
+    margin: 1em 0;
+}
+
+.code-header {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 999;
+}
+
+.copy-button {
+    display: inline-flex;
+    align-items: center;
+    background: #2d2d2d;
+    color: white;
+    border: 1px solid #404040;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+    background: #404040;
+}
+
+.copy-button svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+}
+
+.tooltip {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: black;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: none;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: black;
+}
+
+.copy-button.copied .tooltip {
+    display: block;
+}
+</style>
+
+<div class="code-block-container" data-lang="kotlin">
+    <div class="code-header">
+        <button class="copy-button" onclick="copyCodeBlock(this)" aria-label="Copy code">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 4v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7.242a2 2 0 0 0-.602-1.43L16.083 2.57A2 2 0 0 0 14.685 2H10a2 2 0 0 0-2 2z"/>
+                <path d="M16 18v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2"/>
+            </svg>
+            <span>Copy</span>
+            <div class="tooltip">Copied!</div>
+        </button>
+    </div>
+    <div class="code-content">
+        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">expect</span> <span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Platform</span>()
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">expect</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">Platform</span>.name(): String
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">expect</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">hello</span>(): String
@@ -145,6 +333,40 @@ React Native vs Kotlin Multiplatform | codeskraps
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Greeting</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">greeting</span>(): String = greet()
 </span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+    </div>
+</div>
+
+<script>
+function copyCodeBlock(button) {
+    const container = button.closest('.code-block-container');
+    const codeContent = container.querySelector('.code-content pre');
+    const code = codeContent.textContent;
+    
+    navigator.clipboard.writeText(code.trim()).then(() => {
+        button.classList.add('copied');
+        setTimeout(() => {
+            button.classList.remove('copied');
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+        
+        const textarea = document.createElement('textarea');
+        textarea.value = code.trim();
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand('copy');
+            button.classList.add('copied');
+            setTimeout(() => {
+                button.classList.remove('copied');
+            }, 2000);
+        } catch (e) {
+            console.error('Fallback failed:', e);
+        }
+        document.body.removeChild(textarea);
+    });
+}
+</script> 
 <p>These features can lead to more robust, maintainable code, which can be especially beneficial for larger, more complex projects.</p>
 <h2 id="ecosystem-and-libraries">Ecosystem and Libraries</h2>
 <h3 id="react-native-a-vast-universe-of-packages">React Native: A Vast Universe of Packages</h3>

@@ -24,10 +24,10 @@ Fear not! There's a simple (if somewhat counterintuitive) fix. Here's what you n
 
 2. Then, run these two commands:
 
-   {{<highlight bash>}}
+   {{<codewithcopy bash>}}
    git rm -rf --cached .
    git add .
-   {{</highlight>}}
+   {{</codewithcopy>}}
 
 Let's break down what these commands do:
 

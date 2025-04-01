@@ -24,7 +24,7 @@ Kotlin Multiplatform, developed by JetBrains, takes a different approach. Introd
 
 React Native's use of JavaScript as its primary language is a significant advantage for many developers, especially those with a web development background. JavaScript's popularity and the vast ecosystem of tools and libraries make it an accessible choice for beginners and experienced developers alike.
 
-{{< highlight javascript >}}
+{{<codewithcopy javascript>}}
 import React from 'react';
 import { Text, View } from 'react-native';
 
@@ -37,7 +37,7 @@ const HelloWorldApp = () => {
 }
 
 export default HelloWorldApp;
-{{< /highlight >}}
+{{</codewithcopy>}}
 
 This familiarity can lead to faster onboarding and development cycles, particularly for teams already versed in web technologies.
 
@@ -45,7 +45,7 @@ This familiarity can lead to faster onboarding and development cycles, particula
 
 Kotlin Multiplatform, on the other hand, leverages the power and expressiveness of the Kotlin language. While it may have a steeper learning curve for those not familiar with Kotlin, it offers numerous benefits.
 
-{{< highlight kotlin >}}
+{{<codewithcopy kotlin>}}
 expect class Platform()
 expect fun Platform.name(): String
 
@@ -56,7 +56,7 @@ fun greet(): String = hello() + " on " + Platform().name()
 class Greeting {
     fun greeting(): String = greet()
 }
-{{< /highlight >}}
+{{</codewithcopy>}}
 
 These features can lead to more robust, maintainable code, which can be especially beneficial for larger, more complex projects.
 

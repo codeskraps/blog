@@ -1,0 +1,89 @@
+.code-block-container {
+    position: relative;
+    margin: 1em 0;
+    background: #1e1e1e;
+}
+
+.code-header {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem !important;
+    z-index: 20;
+}
+
+.copy-button {
+    background: #2d2d2d !important;
+    border: 1px solid #404040 !important;
+    cursor: pointer;
+    padding: 0.4rem 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #ffffff !important;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    font-size: 0.85em;
+    line-height: 1;
+    min-height: 32px;
+}
+
+.copy-button:hover {
+    background-color: #404040 !important;
+    border-color: #505050 !important;
+}
+
+.copy-button svg {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+}
+
+.copy-button .button-text {
+    color: #ffffff !important;
+}
+
+.copy-button .tooltip {
+    visibility: hidden;
+    position: absolute;
+    top: -2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #000000;
+    color: #ffffff;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    pointer-events: none;
+    z-index: 30;
+}
+
+.copy-button.copied .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.copy-button.copied {
+    background-color: #1a4721 !important;
+    border-color: #2ea043 !important;
+    color: #3fb950 !important;
+}
+
+.code-content {
+    position: relative;
+    overflow-x: auto;
+    padding: 1rem;
+}
+
+.copy-button .tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: #000000 transparent transparent transparent;
+} 

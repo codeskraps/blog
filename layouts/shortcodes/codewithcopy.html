@@ -1,0 +1,112 @@
+{{ $lang := .Get 0 }}
+<style>
+.code-block-container {
+    position: relative;
+    margin: 1em 0;
+}
+
+.code-header {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 999;
+}
+
+.copy-button {
+    display: inline-flex;
+    align-items: center;
+    background: #2d2d2d;
+    color: white;
+    border: 1px solid #404040;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+    background: #404040;
+}
+
+.copy-button svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+}
+
+.tooltip {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: black;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: none;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: black;
+}
+
+.copy-button.copied .tooltip {
+    display: block;
+}
+</style>
+
+<div class="code-block-container" data-lang="{{ $lang }}">
+    <div class="code-header">
+        <button class="copy-button" onclick="copyCodeBlock(this)" aria-label="Copy code">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 4v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7.242a2 2 0 0 0-.602-1.43L16.083 2.57A2 2 0 0 0 14.685 2H10a2 2 0 0 0-2 2z"/>
+                <path d="M16 18v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2"/>
+            </svg>
+            <span>Copy</span>
+            <div class="tooltip">Copied!</div>
+        </button>
+    </div>
+    <div class="code-content">
+        {{ highlight (trim .Inner "\n") $lang "" }}
+    </div>
+</div>
+
+<script>
+function copyCodeBlock(button) {
+    const container = button.closest('.code-block-container');
+    const codeContent = container.querySelector('.code-content pre');
+    const code = codeContent.textContent;
+    
+    navigator.clipboard.writeText(code.trim()).then(() => {
+        button.classList.add('copied');
+        setTimeout(() => {
+            button.classList.remove('copied');
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+        // Fallback
+        const textarea = document.createElement('textarea');
+        textarea.value = code.trim();
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand('copy');
+            button.classList.add('copied');
+            setTimeout(() => {
+                button.classList.remove('copied');
+            }, 2000);
+        } catch (e) {
+            console.error('Fallback failed:', e);
+        }
+        document.body.removeChild(textarea);
+    });
+}
+</script> 

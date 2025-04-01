@@ -10,7 +10,7 @@ Model-View-Intent (MVI) is a powerful architectural pattern for building user in
 
 First, let's look at the complete helper class:
 
-{{< highlight kotlin >}}
+{{<codewithcopy kotlin>}}
 interface StateReceiver<STATE> {
     suspend fun updateState(transform: suspend (STATE) -> STATE)
     suspend fun withState(block: suspend (STATE) -> Unit)
@@ -81,7 +81,7 @@ class MVIViewModelDelegate<STATE, INTENT, ACTION>(
         throw NotImplementedError()
     }
 }
-{{< /highlight >}}
+{{</codewithcopy>}}
 
 ## Understanding the MVI Helper Class
 
@@ -115,7 +115,7 @@ This class implements the `MVIViewModel` interface, providing a concrete impleme
 
 Let's implement a simple counter application using our MVI helper class. Note that we can use either data classes or sealed interfaces for our State, Intent, and Action definitions:
 
-{{< highlight kotlin >}}
+{{<codewithcopy kotlin>}}
 // Define our State, Intent, and Action
 data class CounterState(val count: Int = 0)
 
@@ -150,7 +150,7 @@ class CounterViewModel : MVIViewModel<CounterState, CounterIntent, CounterAction
         }
     }
 }
-{{< /highlight >}}
+{{</codewithcopy>}}
 
 In this example:
 
@@ -163,7 +163,7 @@ In this example:
 
 Here's how you might use this ViewModel in an Android Activity or Fragment:
 
-{{< highlight kotlin >}}
+{{<codewithcopy kotlin>}}
 class CounterActivity : AppCompatActivity() {
     private val viewModel: CounterViewModel by viewModels()
 
@@ -200,7 +200,7 @@ class CounterActivity : AppCompatActivity() {
         counterTextView.text = state.count.toString()
     }
 }
-{{< /highlight >}}
+{{</codewithcopy>}}
 
 ## Conclusion
 
