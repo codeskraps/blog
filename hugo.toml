@@ -3,6 +3,9 @@ languageCode = 'en-us'
 title = 'codeskraps'
 description = 'Mobile development blog focused on Android, iOS, and cross-platform solutions with Kotlin Multiplatform'
 
+[taxonomies]
+  tag = "tags"
+
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]

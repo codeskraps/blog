@@ -79,48 +79,7 @@ Projects | codeskraps
         <div class="content">
             <main class="main">
                 
-  <article>
-    <header>
-      <h1>
-        Projects
-      </h1>
-    </header>
-    
-    <style>
-      .project-container {
-        margin-bottom: 4rem;
-      }
-      .project-layout {
-        display: flex;
-        gap: 2rem;
-        align-items: flex-start;
-      }
-      .project-image {
-        flex: 0 0 150px;
-      }
-      .project-image img {
-        width: 100%;
-        height: auto;
-      }
-      .project-content {
-        flex: 1;
-        text-align: left;
-      }
-      .project-content h1,
-      .project-content h2,
-      .project-content h3 {
-        margin-top: 0;
-      }
-      @media (max-width: 768px) {
-        .project-layout {
-          flex-direction: column;
-        }
-        .project-content {
-          width: 100%;
-        }
-      }
-    </style>
-
+<article class="content-padding">
     
 
 
@@ -186,7 +145,46 @@ Projects | codeskraps
   </div>
 </div> 
 
-  </article>
+</article>
+
+<style>
+.content-padding {
+    padding-top: 2rem;
+}
+
+.project-container {
+    margin-bottom: 4rem;
+}
+.project-layout {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+.project-image {
+    flex: 0 0 150px;
+}
+.project-image img {
+    width: 100%;
+    height: auto;
+}
+.project-content {
+    flex: 1;
+    text-align: left;
+}
+.project-content h1,
+.project-content h2,
+.project-content h3 {
+    margin-top: 0;
+}
+@media (max-width: 768px) {
+    .project-layout {
+        flex-direction: column;
+    }
+    .project-content {
+        width: 100%;
+    }
+}
+</style>
 
             </main>
         </div>

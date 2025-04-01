@@ -1,29 +1,33 @@
-{{ define "title"}}
-About | {{ .Site.Params.author.name }}
+{{ define "title" }}
+{{ .Title }} | {{ .Site.Params.author.name }}
 {{ end }}
 
 {{ define "main" }}
-  <article class="about-page">
-      <header>
-        <h1>
-          {{ .Title }}
-        </h1>
-      </header>
-      <div class="about-content">
-        {{ .Content }}
-      </div>
-  </article>
+<article class="content-padding about-content">
+    {{ .Content }}
+</article>
 
-  <style>
-    .about-page {
-      text-align: left;
-    }
-    .about-page h1, .about-page h2, .about-page h3, .about-page h4, .about-page h5, .about-page h6 {
-      text-align: center;
-    }
-    .about-page img {
-      display: block;
-      margin: 0 auto;
-    }
-  </style>
+<style>
+.content-padding {
+    padding-top: 2rem;
+}
+
+.about-content {
+    text-align: left;
+}
+
+.about-content h1,
+.about-content h2,
+.about-content h3,
+.about-content h4,
+.about-content h5,
+.about-content h6 {
+    text-align: center;
+}
+
+.about-content img {
+    display: block;
+    margin: 0 auto;
+}
+</style>
 {{ end }}

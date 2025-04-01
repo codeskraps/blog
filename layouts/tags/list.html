@@ -1,0 +1,74 @@
+{{ define "title" }}
+{{ .Title }} | {{ .Site.Params.author.name }}
+{{ end }}
+
+{{ define "main" }}
+<div class="tag-cloud-container">
+    <div class="tag-cloud">
+        {{ range .Site.Taxonomies.tags.ByCount }}
+        {{ $fontSize := add 1 (mul 0.3 (math.Log .Count)) }}
+        <a href="{{ .Page.RelPermalink }}" class="tag" style="font-size: {{ $fontSize }}rem">
+            <span class="highlight">
+                {{ .Page.Title }}
+                <span class="tag-count">({{ .Count }})</span>
+            </span>
+        </a>
+        {{ end }}
+    </div>
+</div>
+
+<style>
+.tag-cloud-container {
+    min-height: calc(100vh - 200px); /* Adjust for header and footer */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+    background: var(--card-bg);
+    border-radius: 8px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.tag {
+    text-decoration: none;
+    line-height: 1.4;
+}
+
+.highlight {
+    background: var(--accent-color);
+    color: var(--bg-color);
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    transition: all 0.2s;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.tag:hover .highlight {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+.tag-count {
+    opacity: 0.7;
+    font-size: 0.8em;
+}
+
+/* Ensure tags wrap nicely on mobile */
+@media (max-width: 600px) {
+    .tag-cloud {
+        padding: 1rem;
+    }
+}
+</style>
+{{ end }} 

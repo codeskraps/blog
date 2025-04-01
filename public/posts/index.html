@@ -81,19 +81,19 @@ Posts | codeskraps
         <div class="content">
             <main class="main">
                 
-
 <div>
     <div class="listHeader">
-        <h1>Posts</h1>
+        <div class="header-content">
+            <div></div>
+            <a href="/tags" class="tags-link"><span class="highlight">Tags</span></a>
+        </div>
     </div>
 
     
 
     <div>
         
-
         <a class="postListLink" href="https://codeskraps.com/posts/2025/move_home_folder/">
-            
             <div class="postListItem" role="listitem">
                 <div class="postHeader">
                     <span class="postTitle">Move /home Folder</span>
@@ -105,12 +105,8 @@ Posts | codeskraps
                 </div>
             </div>
         </a>
-
-
         
-
         <a class="postListLink" href="https://codeskraps.com/posts/2024/react_vs_kmp/">
-            
             <div class="postListItem" role="listitem">
                 <div class="postHeader">
                     <span class="postTitle">React Native vs Kotlin Multiplatform</span>
@@ -123,12 +119,8 @@ Posts | codeskraps
                 </div>
             </div>
         </a>
-
-
         
-
         <a class="postListLink" href="https://codeskraps.com/posts/2024/mvi_architecture/">
-            
             <div class="postListItem" role="listitem">
                 <div class="postHeader">
                     <span class="postTitle">Simplifying MVI Architecture</span>
@@ -140,12 +132,8 @@ Posts | codeskraps
                 </div>
             </div>
         </a>
-
-
         
-
         <a class="postListLink" href="https://codeskraps.com/posts/2024/gitignore_not_working/">
-            
             <div class="postListItem" role="listitem">
                 <div class="postHeader">
                     <span class="postTitle">When .gitignore Doesnt Seem to Work: A Quick Fix</span>
@@ -157,12 +145,8 @@ Posts | codeskraps
                 </div>
             </div>
         </a>
-
-
         
-
         <a class="postListLink" href="https://codeskraps.com/posts/2024/git_ssh_command/">
-            
             <div class="postListItem" role="listitem">
                 <div class="postHeader">
                     <span class="postTitle">Configuring SSH Keys for Individual Git Commands</span>
@@ -174,12 +158,35 @@ Posts | codeskraps
                 </div>
             </div>
         </a>
-
-
         
     </div>
 </div>
 
+<style>
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tags-link {
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.highlight {
+    background: var(--accent-color);
+    color: var(--bg-color);
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    transition: opacity 0.2s;
+}
+
+.tags-link:hover .highlight {
+    opacity: 0.8;
+}
+</style>
 
             </main>
         </div>

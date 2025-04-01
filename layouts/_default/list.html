@@ -1,0 +1,63 @@
+{{ define "title" }}
+{{ .Title }} | {{ .Site.Params.author.name }}
+{{ end }}
+
+{{ define "main" }}
+<div>
+    <div class="listHeader">
+        <div class="header-content">
+            <div></div>
+            <a href="/tags" class="tags-link"><span class="highlight">Tags</span></a>
+        </div>
+    </div>
+
+    {{ with .Content }}
+    <div class="listContent">
+        {{- . -}}
+    </div>
+    {{ end }}
+
+    <div>
+        {{ range .Pages }}
+        <a class="postListLink" href="{{ .Permalink }}">
+            <div class="postListItem" role="listitem">
+                <div class="postHeader">
+                    <span class="postTitle">{{ .Title }}</span>
+                    {{ $formattedDate := .Date.Format "2006-01-02" }}
+                    <time class="postDate" datetime="{{ $formattedDate }}">{{ .Date | time.Format ":date_long" }}</time>
+                </div>
+                <div class="postExcerpt">
+                    <p>{{ .Summary }}</p>
+                </div>
+            </div>
+        </a>
+        {{end}}
+    </div>
+</div>
+
+<style>
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tags-link {
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.highlight {
+    background: var(--accent-color);
+    color: var(--bg-color);
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    transition: opacity 0.2s;
+}
+
+.tags-link:hover .highlight {
+    opacity: 0.8;
+}
+</style>
+{{ end }} 
