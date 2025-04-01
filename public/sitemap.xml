@@ -2,70 +2,70 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:55173/about/</loc>
+    <loc>http://localhost:55459/about/</loc>
   </url><url>
-    <loc>http://localhost:55173/</loc>
+    <loc>http://localhost:55459/</loc>
     <lastmod>2025-01-29T14:30:17+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:55173/tags/linux/</loc>
+    <loc>http://localhost:55459/tags/linux/</loc>
     <lastmod>2025-01-29T14:30:17+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:55173/posts/2025/move_home_folder/</loc>
+    <loc>http://localhost:55459/posts/2025/move_home_folder/</loc>
     <lastmod>2025-01-29T14:30:17+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:55173/posts/</loc>
+    <loc>http://localhost:55459/posts/</loc>
     <lastmod>2025-01-29T14:30:17+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:55173/tags/</loc>
+    <loc>http://localhost:55459/tags/</loc>
     <lastmod>2025-01-29T14:30:17+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:55173/tags/android/</loc>
+    <loc>http://localhost:55459/tags/android/</loc>
     <lastmod>2024-10-03T17:16:34+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:55173/tags/ios/</loc>
+    <loc>http://localhost:55459/tags/ios/</loc>
     <lastmod>2024-10-03T17:16:34+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:55173/tags/kmp/</loc>
+    <loc>http://localhost:55459/tags/kmp/</loc>
     <lastmod>2024-10-03T17:16:34+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:55173/tags/kotlin/</loc>
+    <loc>http://localhost:55459/tags/kotlin/</loc>
     <lastmod>2024-10-03T17:16:34+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:55173/posts/2024/react_vs_kmp/</loc>
+    <loc>http://localhost:55459/posts/2024/react_vs_kmp/</loc>
     <lastmod>2024-10-03T17:16:34+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:55173/tags/react-native/</loc>
+    <loc>http://localhost:55459/tags/react-native/</loc>
     <lastmod>2024-10-03T17:16:34+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:55173/tags/architecture/</loc>
+    <loc>http://localhost:55459/tags/architecture/</loc>
     <lastmod>2024-09-27T13:45:09+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:55173/tags/mvi/</loc>
+    <loc>http://localhost:55459/tags/mvi/</loc>
     <lastmod>2024-09-27T13:45:09+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:55173/tags/mvvm/</loc>
+    <loc>http://localhost:55459/tags/mvvm/</loc>
     <lastmod>2024-09-27T13:45:09+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:55173/posts/2024/mvi_architecture/</loc>
+    <loc>http://localhost:55459/posts/2024/mvi_architecture/</loc>
     <lastmod>2024-09-27T13:45:09+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:55173/tags/viewmodel/</loc>
+    <loc>http://localhost:55459/tags/viewmodel/</loc>
     <lastmod>2024-09-27T13:45:09+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:55173/tags/git/</loc>
+    <loc>http://localhost:55459/tags/git/</loc>
     <lastmod>2024-06-02T18:14:23+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:55173/posts/2024/gitignore_not_working/</loc>
+    <loc>http://localhost:55459/posts/2024/gitignore_not_working/</loc>
     <lastmod>2024-06-02T18:14:23+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:55173/posts/2024/git_ssh_command/</loc>
+    <loc>http://localhost:55459/posts/2024/git_ssh_command/</loc>
     <lastmod>2024-04-17T16:56:53+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:55173/tags/ssh/</loc>
+    <loc>http://localhost:55459/tags/ssh/</loc>
     <lastmod>2024-04-17T16:56:53+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:55173/categories/</loc>
+    <loc>http://localhost:55459/categories/</loc>
   </url><url>
-    <loc>http://localhost:55173/projects/</loc>
+    <loc>http://localhost:55459/projects/</loc>
   </url>
 </urlset>
