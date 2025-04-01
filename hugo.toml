@@ -49,7 +49,7 @@ hostname = "codeskraps.com"
 sitedescription = 'Mobile development blog by Carles Sentis, sharing expertise in Android, iOS, and Kotlin Multiplatform development'
 readingTime = true
 published = true
-footerHtml = 'CC 2024, Built with <a href="https://gohugo.io" class="footerLink">Hugo</a> and <a href="https://github.com/LordMathis/hugo-theme-nightfall" class="footerLink">Nightfall</a> theme'
+footerHtml = 'CC 2025, Built with <a href="https://gohugo.io" class="footerLink">Hugo</a>'
 enableOpenGraph = true
 enableTwitterCards = true
 
