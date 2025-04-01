@@ -2,70 +2,70 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:55459/about/</loc>
+    <loc>https://codeskraps.com/about/</loc>
   </url><url>
-    <loc>http://localhost:55459/</loc>
+    <loc>https://codeskraps.com/</loc>
     <lastmod>2025-01-29T14:30:17+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:55459/tags/linux/</loc>
+    <loc>https://codeskraps.com/tags/linux/</loc>
     <lastmod>2025-01-29T14:30:17+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:55459/posts/2025/move_home_folder/</loc>
+    <loc>https://codeskraps.com/posts/2025/move_home_folder/</loc>
     <lastmod>2025-01-29T14:30:17+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:55459/posts/</loc>
+    <loc>https://codeskraps.com/posts/</loc>
     <lastmod>2025-01-29T14:30:17+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:55459/tags/</loc>
+    <loc>https://codeskraps.com/tags/</loc>
     <lastmod>2025-01-29T14:30:17+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:55459/tags/android/</loc>
+    <loc>https://codeskraps.com/tags/android/</loc>
     <lastmod>2024-10-03T17:16:34+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:55459/tags/ios/</loc>
+    <loc>https://codeskraps.com/tags/ios/</loc>
     <lastmod>2024-10-03T17:16:34+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:55459/tags/kmp/</loc>
+    <loc>https://codeskraps.com/tags/kmp/</loc>
     <lastmod>2024-10-03T17:16:34+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:55459/tags/kotlin/</loc>
+    <loc>https://codeskraps.com/tags/kotlin/</loc>
     <lastmod>2024-10-03T17:16:34+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:55459/posts/2024/react_vs_kmp/</loc>
+    <loc>https://codeskraps.com/posts/2024/react_vs_kmp/</loc>
     <lastmod>2024-10-03T17:16:34+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:55459/tags/react-native/</loc>
+    <loc>https://codeskraps.com/tags/react-native/</loc>
     <lastmod>2024-10-03T17:16:34+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:55459/tags/architecture/</loc>
+    <loc>https://codeskraps.com/tags/architecture/</loc>
     <lastmod>2024-09-27T13:45:09+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:55459/tags/mvi/</loc>
+    <loc>https://codeskraps.com/tags/mvi/</loc>
     <lastmod>2024-09-27T13:45:09+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:55459/tags/mvvm/</loc>
+    <loc>https://codeskraps.com/tags/mvvm/</loc>
     <lastmod>2024-09-27T13:45:09+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:55459/posts/2024/mvi_architecture/</loc>
+    <loc>https://codeskraps.com/posts/2024/mvi_architecture/</loc>
     <lastmod>2024-09-27T13:45:09+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:55459/tags/viewmodel/</loc>
+    <loc>https://codeskraps.com/tags/viewmodel/</loc>
     <lastmod>2024-09-27T13:45:09+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:55459/tags/git/</loc>
+    <loc>https://codeskraps.com/tags/git/</loc>
     <lastmod>2024-06-02T18:14:23+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:55459/posts/2024/gitignore_not_working/</loc>
+    <loc>https://codeskraps.com/posts/2024/gitignore_not_working/</loc>
     <lastmod>2024-06-02T18:14:23+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:55459/posts/2024/git_ssh_command/</loc>
+    <loc>https://codeskraps.com/posts/2024/git_ssh_command/</loc>
     <lastmod>2024-04-17T16:56:53+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:55459/tags/ssh/</loc>
+    <loc>https://codeskraps.com/tags/ssh/</loc>
     <lastmod>2024-04-17T16:56:53+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:55459/categories/</loc>
+    <loc>https://codeskraps.com/categories/</loc>
   </url><url>
-    <loc>http://localhost:55459/projects/</loc>
+    <loc>https://codeskraps.com/projects/</loc>
   </url>
 </urlset>

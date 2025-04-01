@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Linux on codeskraps</title>
-    <link>http://localhost:55459/tags/linux/</link>
+    <link>https://codeskraps.com/tags/linux/</link>
     <description>Recent content in Linux on codeskraps</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <managingEditor>me@codeskraps.com (codeskraps)</managingEditor>
     <webMaster>me@codeskraps.com (codeskraps)</webMaster>
     <lastBuildDate>Wed, 29 Jan 2025 14:30:17 +0100</lastBuildDate>
-    <atom:link href="http://localhost:55459/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://codeskraps.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Move /home Folder</title>
-      <link>http://localhost:55459/posts/2025/move_home_folder/</link>
+      <link>https://codeskraps.com/posts/2025/move_home_folder/</link>
       <pubDate>Wed, 29 Jan 2025 14:30:17 +0100</pubDate><author>me@codeskraps.com (codeskraps)</author>
-      <guid>http://localhost:55459/posts/2025/move_home_folder/</guid>
+      <guid>https://codeskraps.com/posts/2025/move_home_folder/</guid>
       <description>&lt;p&gt;You can move the &lt;code&gt;/home&lt;/code&gt; folder on Ubuntu, but you must do it carefully to avoid breaking your system. Below are the steps to safely move &lt;code&gt;/home&lt;/code&gt; to a new location.&lt;/p&gt;</description>
     </item>
   </channel>

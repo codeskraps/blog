@@ -2,96 +2,96 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on codeskraps</title>
-    <link>http://localhost:55459/tags/</link>
+    <link>https://codeskraps.com/tags/</link>
     <description>Recent content in Tags on codeskraps</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <managingEditor>me@codeskraps.com (codeskraps)</managingEditor>
     <webMaster>me@codeskraps.com (codeskraps)</webMaster>
     <lastBuildDate>Wed, 29 Jan 2025 14:30:17 +0100</lastBuildDate>
-    <atom:link href="http://localhost:55459/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://codeskraps.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux</title>
-      <link>http://localhost:55459/tags/linux/</link>
+      <link>https://codeskraps.com/tags/linux/</link>
       <pubDate>Wed, 29 Jan 2025 14:30:17 +0100</pubDate><author>me@codeskraps.com (codeskraps)</author>
-      <guid>http://localhost:55459/tags/linux/</guid>
+      <guid>https://codeskraps.com/tags/linux/</guid>
       <description></description>
     </item>
     <item>
       <title>Android</title>
-      <link>http://localhost:55459/tags/android/</link>
+      <link>https://codeskraps.com/tags/android/</link>
       <pubDate>Thu, 03 Oct 2024 17:16:34 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
-      <guid>http://localhost:55459/tags/android/</guid>
+      <guid>https://codeskraps.com/tags/android/</guid>
       <description></description>
     </item>
     <item>
       <title>Ios</title>
-      <link>http://localhost:55459/tags/ios/</link>
+      <link>https://codeskraps.com/tags/ios/</link>
       <pubDate>Thu, 03 Oct 2024 17:16:34 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
-      <guid>http://localhost:55459/tags/ios/</guid>
+      <guid>https://codeskraps.com/tags/ios/</guid>
       <description></description>
     </item>
     <item>
       <title>Kmp</title>
-      <link>http://localhost:55459/tags/kmp/</link>
+      <link>https://codeskraps.com/tags/kmp/</link>
       <pubDate>Thu, 03 Oct 2024 17:16:34 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
-      <guid>http://localhost:55459/tags/kmp/</guid>
+      <guid>https://codeskraps.com/tags/kmp/</guid>
       <description></description>
     </item>
     <item>
       <title>Kotlin</title>
-      <link>http://localhost:55459/tags/kotlin/</link>
+      <link>https://codeskraps.com/tags/kotlin/</link>
       <pubDate>Thu, 03 Oct 2024 17:16:34 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
-      <guid>http://localhost:55459/tags/kotlin/</guid>
+      <guid>https://codeskraps.com/tags/kotlin/</guid>
       <description></description>
     </item>
     <item>
       <title>React-Native</title>
-      <link>http://localhost:55459/tags/react-native/</link>
+      <link>https://codeskraps.com/tags/react-native/</link>
       <pubDate>Thu, 03 Oct 2024 17:16:34 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
-      <guid>http://localhost:55459/tags/react-native/</guid>
+      <guid>https://codeskraps.com/tags/react-native/</guid>
       <description></description>
     </item>
     <item>
       <title>Architecture</title>
-      <link>http://localhost:55459/tags/architecture/</link>
+      <link>https://codeskraps.com/tags/architecture/</link>
       <pubDate>Fri, 27 Sep 2024 13:45:09 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
-      <guid>http://localhost:55459/tags/architecture/</guid>
+      <guid>https://codeskraps.com/tags/architecture/</guid>
       <description></description>
     </item>
     <item>
       <title>Mvi</title>
-      <link>http://localhost:55459/tags/mvi/</link>
+      <link>https://codeskraps.com/tags/mvi/</link>
       <pubDate>Fri, 27 Sep 2024 13:45:09 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
-      <guid>http://localhost:55459/tags/mvi/</guid>
+      <guid>https://codeskraps.com/tags/mvi/</guid>
       <description></description>
     </item>
     <item>
       <title>Mvvm</title>
-      <link>http://localhost:55459/tags/mvvm/</link>
+      <link>https://codeskraps.com/tags/mvvm/</link>
       <pubDate>Fri, 27 Sep 2024 13:45:09 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
-      <guid>http://localhost:55459/tags/mvvm/</guid>
+      <guid>https://codeskraps.com/tags/mvvm/</guid>
       <description></description>
     </item>
     <item>
       <title>Viewmodel</title>
-      <link>http://localhost:55459/tags/viewmodel/</link>
+      <link>https://codeskraps.com/tags/viewmodel/</link>
       <pubDate>Fri, 27 Sep 2024 13:45:09 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
-      <guid>http://localhost:55459/tags/viewmodel/</guid>
+      <guid>https://codeskraps.com/tags/viewmodel/</guid>
       <description></description>
     </item>
     <item>
       <title>Git</title>
-      <link>http://localhost:55459/tags/git/</link>
+      <link>https://codeskraps.com/tags/git/</link>
       <pubDate>Sun, 02 Jun 2024 18:14:23 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
-      <guid>http://localhost:55459/tags/git/</guid>
+      <guid>https://codeskraps.com/tags/git/</guid>
       <description></description>
     </item>
     <item>
       <title>Ssh</title>
-      <link>http://localhost:55459/tags/ssh/</link>
+      <link>https://codeskraps.com/tags/ssh/</link>
       <pubDate>Wed, 17 Apr 2024 16:56:53 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
-      <guid>http://localhost:55459/tags/ssh/</guid>
+      <guid>https://codeskraps.com/tags/ssh/</guid>
       <description></description>
     </item>
   </channel>
