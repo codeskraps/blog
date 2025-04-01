@@ -4,7 +4,7 @@
         <img src="/favicon.ico" alt="codeskraps logo" style="width: 48px; height: 48px; margin-bottom: 3rem;" />
         <div class="intro-title" style="font-family: 'Fira Mono', monospace; font-size: 3rem; font-weight: 500; margin-bottom: 3rem;">{{ .Site.Title }}</div>
         {{ with .Site.Params.social }}
-        <div class="intro-social" style="display: flex; gap: 2rem;">
+        <div class="intro-social" style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
             {{ range . }}
             <a href="{{ .url }}" {{ with .target }}target="{{ . }}"{{ end }} {{ with .aria }}aria-label="{{ . }}"{{ end }}>
                 {{ .name }}
