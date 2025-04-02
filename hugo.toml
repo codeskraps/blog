@@ -60,7 +60,7 @@ enableTwitterCards = true
         bio = "Mobile developer with extensive experience in Android, iOS, and cross-platform solutions"
 
     [params.styles]
-        color = "orange"
+        color = "#2fe7ed"
 
 [[params.social]]
 key = 0
