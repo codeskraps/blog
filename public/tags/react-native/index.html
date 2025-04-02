@@ -81,133 +81,47 @@ React-Native | codeskraps
         <div class="content">
             <main class="main">
                 
-<div class="tag-cloud-container">
-    <div class="tag-cloud">
+<div>
+    <div class="listHeader">
+        <div class="header-content">
+            <div></div>
+            <a href="/tags" class="tags-link"><span class="highlight">Tags</span></a>
+        </div>
+    </div>
+
+    
+
+    <div>
         
-        
-        <a href="/tags/android/" class="tag" style="font-size: 1.2079441541679836rem">
-            <span class="highlight">
-                Android
-                <span class="tag-count">(2)</span>
-            </span>
-        </a>
-        
-        
-        <a href="/tags/git/" class="tag" style="font-size: 1.2079441541679836rem">
-            <span class="highlight">
-                Git
-                <span class="tag-count">(2)</span>
-            </span>
-        </a>
-        
-        
-        <a href="/tags/kmp/" class="tag" style="font-size: 1.2079441541679836rem">
-            <span class="highlight">
-                Kmp
-                <span class="tag-count">(2)</span>
-            </span>
-        </a>
-        
-        
-        <a href="/tags/kotlin/" class="tag" style="font-size: 1.2079441541679836rem">
-            <span class="highlight">
-                Kotlin
-                <span class="tag-count">(2)</span>
-            </span>
-        </a>
-        
-        
-        <a href="/tags/architecture/" class="tag" style="font-size: 1rem">
-            <span class="highlight">
-                Architecture
-                <span class="tag-count">(1)</span>
-            </span>
-        </a>
-        
-        
-        <a href="/tags/ios/" class="tag" style="font-size: 1rem">
-            <span class="highlight">
-                Ios
-                <span class="tag-count">(1)</span>
-            </span>
-        </a>
-        
-        
-        <a href="/tags/linux/" class="tag" style="font-size: 1rem">
-            <span class="highlight">
-                Linux
-                <span class="tag-count">(1)</span>
-            </span>
-        </a>
-        
-        
-        <a href="/tags/mvi/" class="tag" style="font-size: 1rem">
-            <span class="highlight">
-                Mvi
-                <span class="tag-count">(1)</span>
-            </span>
-        </a>
-        
-        
-        <a href="/tags/mvvm/" class="tag" style="font-size: 1rem">
-            <span class="highlight">
-                Mvvm
-                <span class="tag-count">(1)</span>
-            </span>
-        </a>
-        
-        
-        <a href="/tags/react-native/" class="tag" style="font-size: 1rem">
-            <span class="highlight">
-                React-Native
-                <span class="tag-count">(1)</span>
-            </span>
-        </a>
-        
-        
-        <a href="/tags/ssh/" class="tag" style="font-size: 1rem">
-            <span class="highlight">
-                Ssh
-                <span class="tag-count">(1)</span>
-            </span>
-        </a>
-        
-        
-        <a href="/tags/viewmodel/" class="tag" style="font-size: 1rem">
-            <span class="highlight">
-                Viewmodel
-                <span class="tag-count">(1)</span>
-            </span>
+        <a class="postListLink" href="https://codeskraps.com/posts/2024/react_vs_kmp/">
+            <div class="postListItem" role="listitem">
+                <div class="postHeader">
+                    <span class="postTitle">React Native vs Kotlin Multiplatform</span>
+                    
+                    <time class="postDate" datetime="2024-10-03">October 3, 2024</time>
+                </div>
+                <div class="postExcerpt">
+                    <p><h2 id="introduction">Introduction</h2>
+<p>In the ever-evolving world of mobile app development, choosing the right cross-platform framework can be a game-changer for businesses and developers alike. Two prominent contenders in this space are React Native and Kotlin Multiplatform (KMP). Both offer unique approaches to the challenge of writing code once and deploying it across multiple platforms. This article will dive deep into the strengths and considerations of each, helping you make an informed decision for your next project.</p></p>
+                </div>
+            </div>
         </a>
         
     </div>
 </div>
 
 <style>
-.tag-cloud-container {
-    min-height: calc(100vh - 200px);  
+.header-content {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    padding: 2rem;
 }
 
-.tag-cloud {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    padding: 2rem;
-    background: var(--card-bg);
-    border-radius: 8px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.tag {
+.tags-link {
     text-decoration: none;
-    line-height: 1.4;
+    font-size: 1.8rem;
+    font-weight: bold;
+    padding: 0.8rem 1.5rem;
 }
 
 .highlight {
@@ -215,26 +129,11 @@ React-Native | codeskraps
     color: var(--bg-color);
     padding: 0.2em 0.4em;
     border-radius: 4px;
-    transition: all 0.2s;
-    display: inline-block;
-    text-decoration: none;
+    transition: opacity 0.2s;
 }
 
-.tag:hover .highlight {
+.tags-link:hover .highlight {
     opacity: 0.8;
-    text-decoration: underline;
-}
-
-.tag-count {
-    opacity: 0.7;
-    font-size: 0.8em;
-}
-
- 
-@media (max-width: 600px) {
-    .tag-cloud {
-        padding: 1rem;
-    }
 }
 </style>
 
