@@ -6,6 +6,8 @@ draft = false
 +++
 
 When ChatGPT was released on November 30, 2022, few of us understood how dramatically it would transform the software development landscape. As someone who's worked through this transition, I've witnessed firsthand the remarkable shift in how we approach coding and problem-solving.
+
+{{< figure src="header.png" alt="The Evolution of Software Development in the AI Era" width="800" height="400" >}}
 <!--more-->
 
 ## The Early Days: A Promising but Flawed Tool
