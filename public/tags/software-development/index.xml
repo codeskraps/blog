@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Software-Development on codeskraps</title>
-    <link>http://localhost:58776/tags/software-development/</link>
+    <link>https://codeskraps.com/tags/software-development/</link>
     <description>Recent content in Software-Development on codeskraps</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <managingEditor>me@codeskraps.com (codeskraps)</managingEditor>
     <webMaster>me@codeskraps.com (codeskraps)</webMaster>
     <lastBuildDate>Wed, 02 Apr 2025 00:00:00 +0100</lastBuildDate>
-    <atom:link href="http://localhost:58776/tags/software-development/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://codeskraps.com/tags/software-development/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The Evolution of Software Development in the AI Era</title>
-      <link>http://localhost:58776/posts/2025/evolution_software_development_ai/</link>
+      <link>https://codeskraps.com/posts/2025/evolution_software_development_ai/</link>
       <pubDate>Wed, 02 Apr 2025 00:00:00 +0100</pubDate><author>me@codeskraps.com (codeskraps)</author>
-      <guid>http://localhost:58776/posts/2025/evolution_software_development_ai/</guid>
-      <description>&lt;p&gt;When ChatGPT was released on November 30, 2022, few of us understood how dramatically it would transform the software development landscape. As someone who&amp;rsquo;s worked through this transition, I&amp;rsquo;ve witnessed firsthand the remarkable shift in how we approach coding and problem-solving.&lt;/p&gt;&#xA;&lt;figure class=&#34;responsive-image&#34;&gt;&lt;img src=&#34;http://localhost:58776/posts/2025/evolution_software_development_ai/header.png&#34;&#xA;    alt=&#34;The Evolution of Software Development in the AI Era&#34; width=&#34;600&#34; height=&#34;350&#34;&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;style&gt;&#xA;.responsive-image {&#xA;    max-width: 600px;&#xA;    width: 100%;&#xA;    height: auto;&#xA;    display: block;&#xA;    margin: 0 auto;&#xA;}&#xA;&lt;/style&gt;</description>
+      <guid>https://codeskraps.com/posts/2025/evolution_software_development_ai/</guid>
+      <description>&lt;p&gt;When ChatGPT was released on November 30, 2022, few of us understood how dramatically it would transform the software development landscape. As someone who&amp;rsquo;s worked through this transition, I&amp;rsquo;ve witnessed firsthand the remarkable shift in how we approach coding and problem-solving.&lt;/p&gt;&#xA;&lt;figure class=&#34;responsive-image&#34;&gt;&lt;img src=&#34;https://codeskraps.com/posts/2025/evolution_software_development_ai/header.png&#34;&#xA;    alt=&#34;The Evolution of Software Development in the AI Era&#34; width=&#34;600&#34; height=&#34;350&#34;&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;style&gt;&#xA;.responsive-image {&#xA;    max-width: 600px;&#xA;    width: 100%;&#xA;    height: auto;&#xA;    display: block;&#xA;    margin: 0 auto;&#xA;}&#xA;&lt;/style&gt;</description>
     </item>
   </channel>
 </rss>
