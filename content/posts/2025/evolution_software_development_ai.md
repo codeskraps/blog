@@ -2,7 +2,7 @@
 title = 'The Evolution of Software Development in the AI Era'
 date = 2025-04-02T00:00:00+01:00
 tags = ['ai', 'software-development', 'future']
-draft = false
+draft = true
 +++
 
 When ChatGPT was released on November 30, 2022, few of us understood how dramatically it would transform the software development landscape. As someone who's worked through this transition, I've witnessed firsthand the remarkable shift in how we approach coding and problem-solving.
