@@ -16,9 +16,11 @@ description = 'Mobile development blog focused on Android, iOS, and cross-platfo
     lineNos = false
     style = 'dracula'
 
-[services]
-    [services.googleAnalytics]
-        id = 'G-YP8WK3KZF1'
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML"]
+  term = ["HTML", "RSS"]
 
 [module]
     [[module.imports]]
@@ -52,6 +54,9 @@ published = true
 footerHtml = 'CC 2025, Built with <a href="https://gohugo.io" class="footerLink">Hugo</a>'
 enableOpenGraph = true
 enableTwitterCards = true
+umami = true
+umamiScript = "https://umami.codeskraps.com/script.js"
+umamiWebsiteId = "a80a52da-0b7d-4faf-9dfc-ee6ca5a8421f"
 
     [params.author]
         name = "codeskraps"
@@ -95,4 +100,11 @@ key = 4
 name = "email"
 url = "mailto:me@codeskraps.com"
 aria = "Email me"
+
+[[params.social]]
+key = 5
+name = "rss"
+url = "/index.xml"
+target = "_blank"
+aria = "RSS Feed"
 

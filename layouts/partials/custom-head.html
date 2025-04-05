@@ -1,0 +1,7 @@
+{{ if and .Site.Params.umami .Site.Params.umamiScript .Site.Params.umamiWebsiteId -}}
+<script defer src="{{ .Site.Params.umamiScript }}" data-website-id="{{ .Site.Params.umamiWebsiteId }}"></script>
+{{- end }}
+
+<!-- Code copy functionality -->
+<link rel="stylesheet" href="/css/code-copy.css">
+<script defer src="/js/code-copy.js"></script> 
