@@ -51,7 +51,7 @@ hostname = "codeskraps.com"
 sitedescription = 'Mobile development blog by Carles Sentis, sharing expertise in Android, iOS, and Kotlin Multiplatform development'
 readingTime = true
 published = true
-footerHtml = 'CC 2025, Built with <a href="https://gohugo.io" class="footerLink">Hugo</a> | Analytics by <a href="https://umami.is" class="footerLink">Self-hosted Umami</a>'
+footerHtml = 'CC 2025, Built with <a href="https://umami.codeskraps.com/" class="footerLink">Hugo</a> | Analytics by <a href="https://umami.is" class="footerLink">Self-hosted Umami</a>'
 enableOpenGraph = true
 enableTwitterCards = true
 umami = true
