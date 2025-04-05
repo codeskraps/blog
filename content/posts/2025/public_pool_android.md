@@ -1,8 +1,8 @@
 +++
 title = 'Building PublicPoolAndroid in One Day with Cursor'
-date = 2025-04-04T10:00:00+01:00
+date = 2025-04-05T10:00:00+01:00
 tags = ['android', 'cryptocurrency', 'mining', 'cursor', 'development']
-draft = true
+draft = false
 +++
 
 Today I want to share how I built a complete cryptocurrency mining monitoring app in just one day, from initial concept to Google Play Store submission, using Cursor as my IDE.
