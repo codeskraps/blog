@@ -7,11 +7,7 @@ draft = false
 
 When ChatGPT was released on November 30, 2022, few of us understood how dramatically it would transform the software development landscape. As someone who's worked through this transition, I've witnessed firsthand the remarkable shift in how we approach coding and problem-solving.
 
-{{ $image := .Resources.GetMatch "header.png" }}
-{{ with $image }}
-  {{ $resized := .Resize "600x" }}
-  <img src="{{ $resized.RelPermalink }}" alt="The Evolution of Software Development in the AI Era" width="{{ $resized.Width }}" height="{{ $resized.Height }}">
-{{ end }}
+{{< responsive-image src="header.png" alt="The Evolution of Software Development in the AI Era" maxWidth="600" >}}
 
 <!--more-->
 

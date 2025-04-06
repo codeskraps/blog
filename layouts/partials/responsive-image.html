@@ -1,0 +1,29 @@
+{{ $image := .image }}
+{{ $alt := .alt }}
+{{ $class := .class | default "responsive-image" }}
+{{ $maxWidth := .maxWidth | default "800" }}
+
+{{ with $image }}
+  {{ $small := .Resize (printf "480x jpg q85") }}
+  {{ $medium := .Resize (printf "800x jpg q90") }}
+  {{ $large := .Resize (printf "%sx jpg q95" $maxWidth) }}
+  
+  <picture style="display: block; text-align: center; margin: 2rem auto;">
+    <source media="(max-width: 480px)" srcset="{{ $small.RelPermalink }}">
+    <source media="(max-width: 800px)" srcset="{{ $medium.RelPermalink }}">
+    <source media="(min-width: 801px)" srcset="{{ $large.RelPermalink }}">
+    <img 
+      src="{{ $large.RelPermalink }}" 
+      alt="{{ $alt }}" 
+      width="{{ $large.Width }}" 
+      height="{{ $large.Height }}"
+      style="max-width: 100%; height: auto; margin: 0 auto; display: block;"
+      class="{{ $class }}"
+      loading="lazy"
+    >
+  </picture>
+{{ else }}
+  <div style="text-align: center; color: red; padding: 1rem; border: 1px solid #ccc;">
+    Image not found: {{ .path | default "unknown path" }}
+  </div>
+{{ end }} 

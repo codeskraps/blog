@@ -7,11 +7,7 @@ draft = false
 
 Today I want to share how I built a complete cryptocurrency mining monitoring app in just one day, from initial concept to Google Play Store submission, using Cursor as my IDE.
 
-{{ $image := .Resources.GetMatch "feature_graphic.png" }}
-{{ with $image }}
-  {{ $resized := .Resize "800x" }}
-  <img src="{{ $resized.RelPermalink }}" alt="Public Pool Android App" width="{{ $resized.Width }}" height="{{ $resized.Height }}">
-{{ end }}
+{{< responsive-image src="feature_graphic.png" alt="Public Pool Android App" maxWidth="800" >}}
 
 <!--more-->
 

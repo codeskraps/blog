@@ -1,0 +1,8 @@
+{{ $path := .Get "src" }}
+{{ $alt := .Get "alt" | default "" }}
+{{ $class := .Get "class" | default "responsive-image" }}
+{{ $maxWidth := .Get "maxWidth" | default "800" }}
+
+{{ $image := $.Page.Resources.GetMatch $path }}
+
+{{ partial "responsive-image.html" (dict "image" $image "alt" $alt "class" $class "maxWidth" $maxWidth "path" $path) }} 
