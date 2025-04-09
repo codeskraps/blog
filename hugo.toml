@@ -56,6 +56,7 @@ enableOpenGraph = true
 enableTwitterCards = true
 umami = true
 umamiScript = "https://umami.codeskraps.com/script.js"
+umamiDataDoNotTrack = true
 umamiWebsiteId = "a80a52da-0b7d-4faf-9dfc-ee6ca5a8421f"
 
     [params.author]

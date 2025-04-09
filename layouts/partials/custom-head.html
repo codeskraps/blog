@@ -1,5 +1,5 @@
 {{ if and .Site.Params.umami .Site.Params.umamiScript .Site.Params.umamiWebsiteId -}}
-<script defer src="{{ .Site.Params.umamiScript }}" data-website-id="{{ .Site.Params.umamiWebsiteId }}"></script>
+<script defer src="{{ .Site.Params.umamiScript }}" data-website-id="{{ .Site.Params.umamiWebsiteId }}" data-do-not-track="true"></script>
 {{- end }}
 
 <!-- Code copy functionality -->
