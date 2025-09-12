@@ -70,17 +70,17 @@ umamiWebsiteId = "a80a52da-0b7d-4faf-9dfc-ee6ca5a8421f"
 
 [[params.social]]
 key = 0
-name = "repo"
-url = "https://repo.codeskraps.com/codeskraps"
+name = "git"
+url = "https://git.codeskraps.com/codeskraps"
 target = "_blank"
-aria = "Repo Profile"
+aria = "Git Repository"
 
 [[params.social]]
 key = 1
 name = "github"
 url = "https://github.com/codeskraps"
 target = "_blank"
-aria = "GitHub Profile"
+aria = "GitHub"
 
 [[params.social]]
 key = 2
@@ -94,7 +94,7 @@ key = 3
 name = "linkedin"
 url = "https://www.linkedin.com/in/carles-sentis-4a072130"
 target = "_blank"
-aria = "LinkedIn Profile"
+aria = "LinkedIn"
 
 [[params.social]]
 key = 4
