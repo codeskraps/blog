@@ -3,7 +3,7 @@ title = 'Projects'
 type = 'projects'
 +++
 
-{{< project img="/images/public_pool/ic_launcher.webp" title="Public Pool Android" url="https://repo.codeskraps.com/codeskraps/PublicPoolAndroid" >}}
+{{< project img="/images/public_pool/ic_launcher.webp" title="Public Pool Android" url="https://git.codeskraps.com/codeskraps/PublicPoolAndroid" >}}
 Monitor your cryptocurrency mining activity on Public Pool directly from your Android device. Keep track of your hash rate, workers, and wallet details on the go.
 
 ### Features
@@ -26,7 +26,7 @@ Monitor your cryptocurrency mining activity on Public Pool directly from your An
 Available on [Google Play](https://play.google.com/store/apps/details?id=com.codeskraps.publicpool) - A lightweight app to keep you connected to your mining operations wherever you go.
 {{< /project >}}
 
-{{< project img="/images/weekly_weather/weekly_weather_logo.webp" title="Weekly Weather" url="https://repo.codeskraps.com/codeskraps/Weekly-Weather" >}}
+{{< project img="/images/weekly_weather/weekly_weather_logo.webp" title="Weekly Weather" url="https://git.codeskraps.com/codeskraps/Weekly-Weather" >}}
 A clean, intuitive interface for viewing weather forecasts. Weekly Weather provides detailed weekly forecasts for your current location or saved favorite places.
 
 ### Features
@@ -52,7 +52,7 @@ A clean, intuitive interface for viewing weather forecasts. Weekly Weather provi
 Weather data provided by [Open-Meteo](https://open-meteo.com/) with weather icons from [Makin-Things/weather-icons](https://github.com/Makin-Things/weather-icons). Available on [Google Play](https://play.google.com/store/apps/details?id=com.arklan.weather).
 {{< /project >}}
 
-{{< project img="/images/sBrowser/sbrowser_logo.webp" title="sBrowser" url="https://repo.codeskraps.com/codeskraps/sBrowser" >}}
+{{< project img="/images/sBrowser/sbrowser_logo.webp" title="sBrowser" url="https://git.codeskraps.com/codeskraps/sBrowser" >}}
 A simple yet powerful Internet browser for Android devices. Originally developed for teaching purposes in a workshop at 091 Labs, it has evolved into a feature-rich yet lightweight browsing solution.
 
 ### Features

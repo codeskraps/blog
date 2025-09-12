@@ -17,7 +17,7 @@ Today I want to share how I built a complete cryptocurrency mining monitoring ap
 
 ## The App: Public Pool Android
 
-[Public Pool Android](https://repo.codeskraps.com/codeskraps/PublicPoolAndroid) is a mobile application that lets cryptocurrency miners monitor their mining activities directly from their Android devices. The app provides real-time tracking of hash rates, worker status, and wallet details while on the go.
+[Public Pool Android](https://git.codeskraps.com/codeskraps/PublicPoolAndroid) is a mobile application that lets cryptocurrency miners monitor their mining activities directly from their Android devices. The app provides real-time tracking of hash rates, worker status, and wallet details while on the go.
 
 ## Key Features
 
