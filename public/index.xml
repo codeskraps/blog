@@ -8,7 +8,7 @@
     <language>en-us</language>
     <managingEditor>me@codeskraps.com (codeskraps)</managingEditor>
     <webMaster>me@codeskraps.com (codeskraps)</webMaster>
-    <lastBuildDate>Sat, 05 Apr 2025 10:00:00 +0100</lastBuildDate>
+    <lastBuildDate>Fri, 19 Sep 2025 10:00:00 +0000</lastBuildDate>
     <atom:link href="https://codeskraps.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About Me</title>
@@ -16,6 +16,13 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><author>me@codeskraps.com (codeskraps)</author>
       <guid>https://codeskraps.com/about/</guid>
       <description>&lt;p&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;  &#xA;  &#xA;  &#xA;      &#xA;      &#xA;  &lt;picture&gt;&#xA;  &lt;img class=&#34;img-fluid&#34; src=&#34;https://codeskraps.com/images/me_codeskraps.gif?v=9df9e0930034eb1e10990a99d3ef1056&#34; alt=&#34;me&#34; loading=&#34;lazy&#34; height=&#34;107&#34; width=&#34;150&#34; /&gt;&#xA;&lt;/picture&gt;&#xA;&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;m a passionate and highly motivated software engineer with a deep-rooted love for technology that dates back to my first computer, an Amstrad 8256. From those early days of programming as a hobby, I&amp;rsquo;ve turned my passion into a successful career, specializing in cross-platform mobile development with expertise in both Android and iOS ecosystems.&lt;/p&gt;&#xA;&lt;br&gt;&#xA;&lt;h2 id=&#34;professional-journey&#34;&gt;Professional Journey&lt;/h2&gt;&#xA;&lt;p&gt;Currently, I&amp;rsquo;m a professional at Trifork Smart Enterprise, where I leverage my extensive experience in mobile development to deliver high-quality solutions. My career spans various domains, including:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>When AI Crawlers Attack: A Server Performance Horror Story</title>
+      <link>https://codeskraps.com/posts/2025/ai_crawlers/</link>
+      <pubDate>Fri, 19 Sep 2025 10:00:00 +0000</pubDate><author>me@codeskraps.com (codeskraps)</author>
+      <guid>https://codeskraps.com/posts/2025/ai_crawlers/</guid>
+      <description>&lt;p&gt;&lt;em&gt;How ClaudeBot brought my Gogs server to its knees and taught me about the hidden costs of the AI gold rush&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;{{ $image := .Resources.GetMatch &amp;ldquo;cpu_usage.png&amp;rdquo; }}&#xA;{{ with $image }}&#xA;{{ $resized := .Resize &amp;ldquo;600x&amp;rdquo; }}&#xA;&lt;img src=&#34;{{ $resized.RelPermalink }}&#34; alt=&#34;When AI Crawlers Attack: A Server Performance Horror Story&#34; width=&#34;{{ $resized.Width }}&#34; height=&#34;{{ $resized.Height }}&#34;&gt;&#xA;{{ end }}&lt;/p&gt;</description>
     </item>
     <item>
       <title>Building PublicPoolAndroid in One Day with Cursor</title>
