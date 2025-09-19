@@ -9,11 +9,7 @@ summary = 'How ClaudeBot brought my Gogs server to its knees and taught me about
 
 *How ClaudeBot brought my Gogs server to its knees and taught me about the hidden costs of the AI gold rush*
 
-{{ $image := .Resources.GetMatch "cpu_usage.png" }}
-{{ with $image }}
-  {{ $resized := .Resize "600x" }}
-  <img src="{{ $resized.RelPermalink }}" alt="When AI Crawlers Attack: A Server Performance Horror Story" width="{{ $resized.Width }}" height="{{ $resized.Height }}">
-{{ end }}
+{{< responsive-image src="cpu_usage.png" alt="When AI Crawlers Attack: A Server Performance Horror Story" maxWidth="600" >}}
 
 <!--more-->
 
