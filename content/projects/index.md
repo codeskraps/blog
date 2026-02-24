@@ -34,6 +34,8 @@ A clean, intuitive interface for viewing weather forecasts. Weekly Weather provi
 - Automatically detect current location
 - Search and save favorite locations for quick access
 - Custom naming for GPS locations
+- Interactive radar map with animated precipitation overlay
+- Configurable units (metric/imperial), theme, and radar speed
 - Available in 37 languages
 - Lightweight and battery-efficient
 
@@ -42,10 +44,13 @@ A clean, intuitive interface for viewing weather forecasts. Weekly Weather provi
     <img src="/images/weekly_weather/screenshot1.png" alt="Weather forecast screen" style="display: block !important; width: 100% !important; height: auto !important; border-radius: 8px !important; border: 1px solid #ddd !important; box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;">
   </div>
   <div style="flex: 1 !important; max-width: 180px !important; min-width: 120px !important;">
-    <img src="/images/weekly_weather/screenshot2.png" alt="Location selection screen" style="display: block !important; width: 100% !important; height: auto !important; border-radius: 8px !important; border: 1px solid #ddd !important; box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;">
+    <img src="/images/weekly_weather/screenshot2.png" alt="Map view screen" style="display: block !important; width: 100% !important; height: auto !important; border-radius: 8px !important; border: 1px solid #ddd !important; box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;">
   </div>
   <div style="flex: 1 !important; max-width: 180px !important; min-width: 120px !important;">
-    <img src="/images/weekly_weather/screenshot3.png" alt="Weather details screen" style="display: block !important; width: 100% !important; height: auto !important; border-radius: 8px !important; border: 1px solid #ddd !important; box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;">
+    <img src="/images/weekly_weather/screenshot3.png" alt="Radar screen" style="display: block !important; width: 100% !important; height: auto !important; border-radius: 8px !important; border: 1px solid #ddd !important; box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;">
+  </div>
+  <div style="flex: 1 !important; max-width: 180px !important; min-width: 120px !important;">
+    <img src="/images/weekly_weather/screenshot4.png" alt="Settings screen" style="display: block !important; width: 100% !important; height: auto !important; border-radius: 8px !important; border: 1px solid #ddd !important; box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;">
   </div>
 </div>
 

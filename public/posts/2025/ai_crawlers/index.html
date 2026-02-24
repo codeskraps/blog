@@ -1,257 +1,47 @@
-<!DOCTYPE html>
-<html lang="en-us">
-
-<head>
-    <title>
-When AI Crawlers Attack: A Server Performance Horror Story | codeskraps
-</title>
-
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Mobile development blog by Carles Sentis, sharing expertise in Android, iOS, and Kotlin Multiplatform development">
-
-<meta name="generator" content="Hugo 0.145.0">
-
-
-<link rel="canonical" href="https://codeskraps.com/posts/2025/ai_crawlers/" >
-
-
-
-
-<link href="/css/style.min.ef8e99489b0b85e34523800e588426b1b4c05e27adcb9d7193952cef205afe6d.css" rel="stylesheet">
-
-<script defer src="https://umami.codeskraps.com/script.js" data-website-id="a80a52da-0b7d-4faf-9dfc-ee6ca5a8421f" data-do-not-track="true"></script>
-
-
-<link rel="stylesheet" href="/css/code-copy.css">
-<script defer src="/js/code-copy.js"></script> 
-
-
-</head>
-
-<body>
-
-    <div class="flexWrapper">
-        <header class="headerWrapper">
-    <div class="header">
-        <div>
-            <a class="terminal" href="https://codeskraps.com/">
-                <span>me@codeskraps.com ~ $</span>
-            </a>
-        </div>
-        <input class="side-menu" type="checkbox" id="side-menu">
-        <label class="hamb" for="side-menu"><span class="hamb-line"></span></label>
-        <nav class="headerLinks">
-            <ul>
-                
-                <li>
-                    <a href="https://codeskraps.com/posts/" title="" >
-                        ~/posts</a>
-                </li>
-                
-                <li>
-                    <a href="https://codeskraps.com/projects/" title="" >
-                        ~/projects</a>
-                </li>
-                
-                <li>
-                    <a href="https://codeskraps.com/about/" title="" >
-                        ~/about</a>
-                </li>
-                
-            </ul>
-        </nav>
-    </div>
-</header>
-
-
-        <div class="content">
-            <main class="main">
-                
-<div class="postWrapper">
-    <h1>When AI Crawlers Attack: A Server Performance Horror Story</h1>
-    
-    
-    <section class="postMetadata">
-        <dl>
-            
-                
-<dt>tags</dt>
-<dd><span></span>
-    <a href="/tags/devops/">#Devops</a><span></span>
-    <a href="/tags/performance/">#Performance</a><span></span>
-    <a href="/tags/ai/">#Ai</a><span></span>
-    <a href="/tags/gogs/">#Gogs</a><span></span>
-    <a href="/tags/nginx/">#Nginx</a><span></span>
-    <a href="/tags/troubleshooting/">#Troubleshooting</a></dd>
-            
-            
-            
-            
-                <dt>published</dt>
-                
-                <dd><time datetime="2025-09-19">September 19, 2025</time></dd>
-            
-            
-                <dt>reading time</dt>
-                <dd>5 minutes</dd>
-            
-        </dl>
-    </section>
-    
-    <div>
-        <p><em>How ClaudeBot brought my Gogs server to its knees and taught me about the hidden costs of the AI gold rush</em></p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-  
-  <picture style="display: block; text-align: center; margin: 2rem auto;">
-    <source media="(max-width: 480px)" srcset="/posts/2025/ai_crawlers/cpu_usage_hu_1f322cbc236d2a69.jpg">
-    <source media="(max-width: 800px)" srcset="/posts/2025/ai_crawlers/cpu_usage_hu_29ea70d853da090b.jpg">
-    <source media="(min-width: 801px)" srcset="/posts/2025/ai_crawlers/cpu_usage_hu_16a6eafdba3168be.jpg">
-    <img 
-      src="/posts/2025/ai_crawlers/cpu_usage_hu_16a6eafdba3168be.jpg" 
-      alt="When AI Crawlers Attack: A Server Performance Horror Story" 
-      width="600" 
-      height="413"
-      style="max-width: 100%; height: auto; margin: 0 auto; display: block;"
-      class="responsive-image"
-      loading="lazy"
-    >
-  </picture>
-  
-<h2 id="the-problem-server-on-fire">The Problem: Server on Fire</h2>
-<p>It started like any other morning. My monitoring system, Bezel, was screaming at me: <strong>98% CPU usage</strong> on my modest server which wasn&rsquo;t build for such thing. The server was practically on fire.</p>
-<p>A quick <code>top</code> command revealed the culprit: my Gogs git repository service was consuming around 20% CPU constantly. For a service that usually idles at 2-3%, this was alarming. I&rsquo;d recently migrated from <code>repo.codeskraps.com</code> to <code>git.codeskraps.com</code>, so my first instinct was to blame the domain change.</p>
-<h2 id="first-lead-the-domain-migration-red-herring">First Lead: The Domain Migration Red Herring</h2>
-<p>The initial investigation seemed promising. The systemd logs showed Gogs had consumed an astronomical <strong>1 day, 10 hours, and 57 minutes of CPU time</strong> before my reboot. The application logs still showed references to the old domain:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Available on http://repo.codeskraps.com/
-</span></span></code></pre></div><p>Classic configuration mismatch! I updated the <code>app.ini</code> file:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#ff79c6">[server]</span>
-</span></span><span style="display:flex;"><span><span style="color:#50fa7b">DOMAIN</span>           <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">git.codeskraps.com</span>
-</span></span><span style="display:flex;"><span><span style="color:#50fa7b">EXTERNAL_URL</span>     <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">http://git.codeskraps.com/</span>
-</span></span></code></pre></div><p>The CPU usage calmed down immediately. Problem solved, right? Wrong.</p>
-<h2 id="the-real-culprit-emerges">The Real Culprit Emerges</h2>
-<p>An hour later, the CPU spiked again. Time to dig deeper.</p>
-<p>The database logs revealed a disturbing pattern - constant failed authentication attempts:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span>record <span style="color:#ff79c6">not</span> found
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">SELECT</span> ... <span style="color:#ff79c6">FROM</span> <span style="color:#ff79c6">`</span><span style="color:#ff79c6">user</span><span style="color:#ff79c6">`</span> <span style="color:#ff79c6">WHERE</span> <span style="color:#ff79c6">user</span>.email <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;some@email.com&#34;</span> ...
-</span></span><span style="display:flex;"><span>record <span style="color:#ff79c6">not</span> found  
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">SELECT</span> ... <span style="color:#ff79c6">FROM</span> <span style="color:#ff79c6">`</span><span style="color:#ff79c6">user</span><span style="color:#ff79c6">`</span> <span style="color:#ff79c6">WHERE</span> <span style="color:#ff79c6">user</span>.email <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;some_other@email.com&#34;</span> ...
-</span></span></code></pre></div><p>Every few seconds, someone was trying to authenticate with non-existent user accounts. But who? The <code>strace</code> output showed child processes being spawned and terminated rapidly, with heavy database lock contention.</p>
-<h2 id="down-the-authentication-rabbit-hole">Down the Authentication Rabbit Hole</h2>
-<p>I suspected compromised credentials or a misconfigured CI/CD system. The email addresses looked like internal corporate accounts - maybe some automated system was trying to access repositories with old credentials?</p>
-<p>I spent valuable time investigating:</p>
-<ul>
-<li>Webhook configurations</li>
-<li>Failed delivery queues</li>
-<li>Repository corruption</li>
-<li>Database integrity</li>
-<li>Git process loops</li>
-</ul>
-<p>All clean. The mystery deepened.</p>
-<h2 id="the-smoking-gun-web-server-logs">The Smoking Gun: Web Server Logs</h2>
-<p>Finally, I checked what I should have looked at first - the nginx access logs:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo tail -f /var/log/nginx/access.log | grep git.codeskraps.com
-</span></span></code></pre></div><p>The output was shocking:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>216.73.216.179 &#34;GET /codeskraps/ManualTrader/src/...&#34; &#34;ClaudeBot/1.0&#34;
-</span></span><span style="display:flex;"><span>216.73.216.179 &#34;GET /codeskraps/Blog/commits/...&#34; &#34;ClaudeBot/1.0&#34; 
-</span></span><span style="display:flex;"><span>216.73.216.179 &#34;GET /codeskraps/sBrowser/commit/...&#34; &#34;ClaudeBot/1.0&#34;
-</span></span></code></pre></div><p><strong>ClaudeBot was absolutely hammering my server.</strong> Request after request, hitting every file, every commit, every branch, with different language parameters (<code>?lang=es-ES</code>, <code>?lang=pt-PT</code>, etc.). Hundreds of requests per minute from Anthropic&rsquo;s web crawler.</p>
-<h2 id="the-ai-crawler-problem">The AI Crawler Problem</h2>
-<p>Each ClaudeBot request forced Gogs to:</p>
-<ol>
-<li>Process the HTTP request</li>
-<li>Attempt user authentication (explaining the database queries)</li>
-<li>Generate git file/commit views</li>
-<li>Parse and render repository content</li>
-<li>Return potentially large responses</li>
-</ol>
-<p>With a relentless stream of requests, my poor single-core server was drowning. The &ldquo;authentication failures&rdquo; weren&rsquo;t failed logins - they were Gogs trying to determine access permissions for each crawled page.</p>
-<h2 id="the-solution-just-say-no">The Solution: Just Say No</h2>
-<p>The fix was surprisingly simple. I updated my nginx configuration to block ClaudeBot:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-nginx" data-lang="nginx"><span style="display:flex;"><span><span style="color:#ff79c6">server</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">server_name</span> <span style="color:#f1fa8c">git.codeskraps.com</span>;
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Block ClaudeBot to prevent CPU overload
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">if</span> <span style="color:#f1fa8c">(</span><span style="color:#8be9fd;font-style:italic">$http_user_agent</span> ~<span style="color:#f1fa8c">*</span> <span style="color:#f1fa8c">&#34;ClaudeBot&#34;)</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">403</span>;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">location</span> <span style="color:#f1fa8c">/</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">proxy_pass</span> <span style="color:#f1fa8c">http://localhost:3000</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># ... rest of config
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>Immediate relief. The logs showed ClaudeBot getting <code>403 Forbidden</code> responses instead of overwhelming my application server:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>216.73.216.179 &#34;GET /codeskraps/ManualTrader/...&#34; 403 134 &#34;ClaudeBot/1.0&#34;
-</span></span></code></pre></div><p>CPU usage dropped to normal levels within minutes.</p>
-<h2 id="the-broader-issue-ais-hidden-infrastructure-cost">The Broader Issue: AI&rsquo;s Hidden Infrastructure Cost</h2>
-<p>This incident highlights a growing problem in the AI era: <strong>aggressive web crawling is becoming an infrastructure tax on small developers and businesses.</strong></p>
-<p>AI companies are in an arms race to collect training data. Their crawlers are becoming more aggressive, more comprehensive, and more resource-intensive. While large platforms like GitHub can handle the load, small self-hosted services get overwhelmed.</p>
-<p>Consider the resources consumed:</p>
-<ul>
-<li>Bandwidth for serving pages that will never be seen by humans</li>
-<li>CPU cycles processing requests that provide no value to the site owner</li>
-<li>Database queries for permission checks on content that will be scraped regardless</li>
-<li>Server costs scaling with crawler activity, not actual usage</li>
-</ul>
-<h2 id="what-you-can-do">What You Can Do</h2>
-<p>If you&rsquo;re running your own services, consider these protective measures:</p>
-<h3 id="1-monitor-your-logs">1. Monitor Your Logs</h3>
-<p>Check your web server logs regularly for crawler patterns:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>grep -i <span style="color:#f1fa8c">&#34;bot\|crawler&#34;</span> /var/log/nginx/access.log | tail -20
-</span></span></code></pre></div><h3 id="2-implement-selective-blocking">2. Implement Selective Blocking</h3>
-<p>Block aggressive crawlers in your web server configuration:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-nginx" data-lang="nginx"><span style="display:flex;"><span><span style="color:#ff79c6">if</span> <span style="color:#f1fa8c">(</span><span style="color:#8be9fd;font-style:italic">$http_user_agent</span> ~<span style="color:#f1fa8c">*</span> <span style="color:#f1fa8c">&#34;(ClaudeBot|GPTBot|ChatGPT-User|CCBot|anthropic|OpenAI)&#34;)</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">403</span>;
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h3 id="3-use-robotstxt-though-many-ignore-it">3. Use robots.txt (Though Many Ignore It)</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>User-agent: ClaudeBot
-</span></span><span style="display:flex;"><span>Disallow: /
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>User-agent: GPTBot  
-</span></span><span style="display:flex;"><span>Disallow: /
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>User-agent: ChatGPT-User
-</span></span><span style="display:flex;"><span>Disallow: /
-</span></span></code></pre></div><h3 id="4-rate-limiting">4. Rate Limiting</h3>
-<p>Implement request rate limiting to prevent any single source from overwhelming your server.</p>
-<h2 id="the-irony">The Irony</h2>
-<p>The most ironic part? I was using Claude (Anthropic&rsquo;s AI) to debug the very problem that ClaudeBot (Anthropic&rsquo;s crawler) was causing. It&rsquo;s a perfect metaphor for the AI age - the same companies creating useful AI tools are also creating the infrastructure problems we need AI tools to solve.</p>
-<h2 id="conclusion">Conclusion</h2>
-<p>This wasn&rsquo;t a complex technical issue requiring deep system knowledge. It was a resource exhaustion problem caused by an overly aggressive web crawler. The time I spent investigating authentication systems, database corruption, and git processes was wasted because I didn&rsquo;t start with the most basic question: &ldquo;What&rsquo;s actually hitting my server?&rdquo;</p>
-<p>The lesson? When facing performance issues, always check your access logs first. And in 2025, be prepared to defend your servers against the AI crawler invasion.</p>
-<p>Your personal server wasn&rsquo;t designed to feed the AI training pipeline. It&rsquo;s okay to say no.</p>
-<hr>
-<p><em>Want to protect your own services? Start with web server logs and don&rsquo;t let the bots eat your lunch.</em></p>
-    </div>
-</div>
-
-            </main>
-        </div>
-
-
-        <footer class="footer">
-    
-        <span>CC 2025, Built with <a href="https://gohugo.io" class="footerLink">Hugo</a> | Analytics by <a href="https://umami.codeskraps.com/" class="footerLink">Self-hosted Umami</a></span>
-    
-</footer>
-    </div>
-
-</body>
-
-</html>
+<!doctype html><html lang=en-us><head><title>When AI Crawlers Attack: A Server Performance Horror Story | codeskraps
+</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Mobile development blog by Carles Sentis, sharing expertise in Android, iOS, and Kotlin Multiplatform development"><meta name=generator content="Hugo 0.145.0"><link rel=canonical href=https://codeskraps.com/posts/2025/ai_crawlers/><link href=/css/style.min.ef8e99489b0b85e34523800e588426b1b4c05e27adcb9d7193952cef205afe6d.css rel=stylesheet><script defer src=https://umami.codeskraps.com/script.js data-website-id=a80a52da-0b7d-4faf-9dfc-ee6ca5a8421f data-do-not-track=true></script><link rel=stylesheet href=/css/code-copy.css><script defer src=/js/code-copy.js></script></head><body><div class=flexWrapper><header class=headerWrapper><div class=header><div><a class=terminal href=https://codeskraps.com/><span>me@codeskraps.com ~ $</span></a></div><input class=side-menu type=checkbox id=side-menu>
+<label class=hamb for=side-menu><span class=hamb-line></span></label><nav class=headerLinks><ul><li><a href=https://codeskraps.com/posts/ title>~/posts</a></li><li><a href=https://codeskraps.com/projects/ title>~/projects</a></li><li><a href=https://codeskraps.com/about/ title>~/about</a></li></ul></nav></div></header><div class=content><main class=main><div class=postWrapper><h1>When AI Crawlers Attack: A Server Performance Horror Story</h1><section class=postMetadata><dl><dt>tags</dt><dd><span></span>
+<a href=/tags/devops/>#Devops</a><span></span>
+<a href=/tags/performance/>#Performance</a><span></span>
+<a href=/tags/ai/>#Ai</a><span></span>
+<a href=/tags/gogs/>#Gogs</a><span></span>
+<a href=/tags/nginx/>#Nginx</a><span></span>
+<a href=/tags/troubleshooting/>#Troubleshooting</a></dd><dt>published</dt><dd><time datetime=2025-09-19>September 19, 2025</time></dd><dt>reading time</dt><dd>5 minutes</dd></dl></section><div><p><em>How ClaudeBot brought my Gogs server to its knees and taught me about the hidden costs of the AI gold rush</em></p><picture style="display:block;text-align:center;margin:2rem auto"><source media="(max-width: 480px)" srcset=/posts/2025/ai_crawlers/cpu_usage_hu_1f322cbc236d2a69.jpg><source media="(max-width: 800px)" srcset=/posts/2025/ai_crawlers/cpu_usage_hu_29ea70d853da090b.jpg><source media="(min-width: 801px)" srcset=/posts/2025/ai_crawlers/cpu_usage_hu_16a6eafdba3168be.jpg><img src=/posts/2025/ai_crawlers/cpu_usage_hu_16a6eafdba3168be.jpg alt="When AI Crawlers Attack: A Server Performance Horror Story" width=600 height=413 style="max-width:100%;height:auto;margin:0 auto;display:block" class=responsive-image loading=lazy></picture><h2 id=the-problem-server-on-fire>The Problem: Server on Fire</h2><p>It started like any other morning. My monitoring system, Bezel, was screaming at me: <strong>98% CPU usage</strong> on my modest server which wasn&rsquo;t build for such thing. The server was practically on fire.</p><p>A quick <code>top</code> command revealed the culprit: my Gogs git repository service was consuming around 20% CPU constantly. For a service that usually idles at 2-3%, this was alarming. I&rsquo;d recently migrated from <code>repo.codeskraps.com</code> to <code>git.codeskraps.com</code>, so my first instinct was to blame the domain change.</p><h2 id=first-lead-the-domain-migration-red-herring>First Lead: The Domain Migration Red Herring</h2><p>The initial investigation seemed promising. The systemd logs showed Gogs had consumed an astronomical <strong>1 day, 10 hours, and 57 minutes of CPU time</strong> before my reboot. The application logs still showed references to the old domain:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>Available on http://repo.codeskraps.com/
+</span></span></code></pre></div><p>Classic configuration mismatch! I updated the <code>app.ini</code> file:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=display:flex><span><span style=color:#ff79c6>[server]</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>DOMAIN</span>           <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>git.codeskraps.com</span>
+</span></span><span style=display:flex><span><span style=color:#50fa7b>EXTERNAL_URL</span>     <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>http://git.codeskraps.com/</span>
+</span></span></code></pre></div><p>The CPU usage calmed down immediately. Problem solved, right? Wrong.</p><h2 id=the-real-culprit-emerges>The Real Culprit Emerges</h2><p>An hour later, the CPU spiked again. Time to dig deeper.</p><p>The database logs revealed a disturbing pattern - constant failed authentication attempts:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-mysql data-lang=mysql><span style=display:flex><span>record <span style=color:#ff79c6>not</span> found
+</span></span><span style=display:flex><span><span style=color:#ff79c6>SELECT</span> ... <span style=color:#ff79c6>FROM</span> <span style=color:#ff79c6>`</span><span style=color:#ff79c6>user</span><span style=color:#ff79c6>`</span> <span style=color:#ff79c6>WHERE</span> <span style=color:#ff79c6>user</span>.email <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>&#34;some@email.com&#34;</span> ...
+</span></span><span style=display:flex><span>record <span style=color:#ff79c6>not</span> found  
+</span></span><span style=display:flex><span><span style=color:#ff79c6>SELECT</span> ... <span style=color:#ff79c6>FROM</span> <span style=color:#ff79c6>`</span><span style=color:#ff79c6>user</span><span style=color:#ff79c6>`</span> <span style=color:#ff79c6>WHERE</span> <span style=color:#ff79c6>user</span>.email <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>&#34;some_other@email.com&#34;</span> ...
+</span></span></code></pre></div><p>Every few seconds, someone was trying to authenticate with non-existent user accounts. But who? The <code>strace</code> output showed child processes being spawned and terminated rapidly, with heavy database lock contention.</p><h2 id=down-the-authentication-rabbit-hole>Down the Authentication Rabbit Hole</h2><p>I suspected compromised credentials or a misconfigured CI/CD system. The email addresses looked like internal corporate accounts - maybe some automated system was trying to access repositories with old credentials?</p><p>I spent valuable time investigating:</p><ul><li>Webhook configurations</li><li>Failed delivery queues</li><li>Repository corruption</li><li>Database integrity</li><li>Git process loops</li></ul><p>All clean. The mystery deepened.</p><h2 id=the-smoking-gun-web-server-logs>The Smoking Gun: Web Server Logs</h2><p>Finally, I checked what I should have looked at first - the nginx access logs:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo tail -f /var/log/nginx/access.log | grep git.codeskraps.com
+</span></span></code></pre></div><p>The output was shocking:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>216.73.216.179 &#34;GET /codeskraps/ManualTrader/src/...&#34; &#34;ClaudeBot/1.0&#34;
+</span></span><span style=display:flex><span>216.73.216.179 &#34;GET /codeskraps/Blog/commits/...&#34; &#34;ClaudeBot/1.0&#34; 
+</span></span><span style=display:flex><span>216.73.216.179 &#34;GET /codeskraps/sBrowser/commit/...&#34; &#34;ClaudeBot/1.0&#34;
+</span></span></code></pre></div><p><strong>ClaudeBot was absolutely hammering my server.</strong> Request after request, hitting every file, every commit, every branch, with different language parameters (<code>?lang=es-ES</code>, <code>?lang=pt-PT</code>, etc.). Hundreds of requests per minute from Anthropic&rsquo;s web crawler.</p><h2 id=the-ai-crawler-problem>The AI Crawler Problem</h2><p>Each ClaudeBot request forced Gogs to:</p><ol><li>Process the HTTP request</li><li>Attempt user authentication (explaining the database queries)</li><li>Generate git file/commit views</li><li>Parse and render repository content</li><li>Return potentially large responses</li></ol><p>With a relentless stream of requests, my poor single-core server was drowning. The &ldquo;authentication failures&rdquo; weren&rsquo;t failed logins - they were Gogs trying to determine access permissions for each crawled page.</p><h2 id=the-solution-just-say-no>The Solution: Just Say No</h2><p>The fix was surprisingly simple. I updated my nginx configuration to block ClaudeBot:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-nginx data-lang=nginx><span style=display:flex><span><span style=color:#ff79c6>server</span> {
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>server_name</span> <span style=color:#f1fa8c>git.codeskraps.com</span>;
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#6272a4># Block ClaudeBot to prevent CPU overload
+</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>    <span style=color:#ff79c6>if</span> <span style=color:#f1fa8c>(</span><span style=color:#8be9fd;font-style:italic>$http_user_agent</span> ~<span style=color:#f1fa8c>*</span> <span style=color:#f1fa8c>&#34;ClaudeBot&#34;)</span> {
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>return</span> <span style=color:#bd93f9>403</span>;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>location</span> <span style=color:#f1fa8c>/</span> {
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>proxy_pass</span> <span style=color:#f1fa8c>http://localhost:3000</span>;
+</span></span><span style=display:flex><span>        <span style=color:#6272a4># ... rest of config
+</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Immediate relief. The logs showed ClaudeBot getting <code>403 Forbidden</code> responses instead of overwhelming my application server:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>216.73.216.179 &#34;GET /codeskraps/ManualTrader/...&#34; 403 134 &#34;ClaudeBot/1.0&#34;
+</span></span></code></pre></div><p>CPU usage dropped to normal levels within minutes.</p><h2 id=the-broader-issue-ais-hidden-infrastructure-cost>The Broader Issue: AI&rsquo;s Hidden Infrastructure Cost</h2><p>This incident highlights a growing problem in the AI era: <strong>aggressive web crawling is becoming an infrastructure tax on small developers and businesses.</strong></p><p>AI companies are in an arms race to collect training data. Their crawlers are becoming more aggressive, more comprehensive, and more resource-intensive. While large platforms like GitHub can handle the load, small self-hosted services get overwhelmed.</p><p>Consider the resources consumed:</p><ul><li>Bandwidth for serving pages that will never be seen by humans</li><li>CPU cycles processing requests that provide no value to the site owner</li><li>Database queries for permission checks on content that will be scraped regardless</li><li>Server costs scaling with crawler activity, not actual usage</li></ul><h2 id=what-you-can-do>What You Can Do</h2><p>If you&rsquo;re running your own services, consider these protective measures:</p><h3 id=1-monitor-your-logs>1. Monitor Your Logs</h3><p>Check your web server logs regularly for crawler patterns:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>grep -i <span style=color:#f1fa8c>&#34;bot\|crawler&#34;</span> /var/log/nginx/access.log | tail -20
+</span></span></code></pre></div><h3 id=2-implement-selective-blocking>2. Implement Selective Blocking</h3><p>Block aggressive crawlers in your web server configuration:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-nginx data-lang=nginx><span style=display:flex><span><span style=color:#ff79c6>if</span> <span style=color:#f1fa8c>(</span><span style=color:#8be9fd;font-style:italic>$http_user_agent</span> ~<span style=color:#f1fa8c>*</span> <span style=color:#f1fa8c>&#34;(ClaudeBot|GPTBot|ChatGPT-User|CCBot|anthropic|OpenAI)&#34;)</span> {
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>return</span> <span style=color:#bd93f9>403</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=3-use-robotstxt-though-many-ignore-it>3. Use robots.txt (Though Many Ignore It)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>User-agent: ClaudeBot
+</span></span><span style=display:flex><span>Disallow: /
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>User-agent: GPTBot  
+</span></span><span style=display:flex><span>Disallow: /
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>User-agent: ChatGPT-User
+</span></span><span style=display:flex><span>Disallow: /
+</span></span></code></pre></div><h3 id=4-rate-limiting>4. Rate Limiting</h3><p>Implement request rate limiting to prevent any single source from overwhelming your server.</p><h2 id=the-irony>The Irony</h2><p>The most ironic part? I was using Claude (Anthropic&rsquo;s AI) to debug the very problem that ClaudeBot (Anthropic&rsquo;s crawler) was causing. It&rsquo;s a perfect metaphor for the AI age - the same companies creating useful AI tools are also creating the infrastructure problems we need AI tools to solve.</p><h2 id=conclusion>Conclusion</h2><p>This wasn&rsquo;t a complex technical issue requiring deep system knowledge. It was a resource exhaustion problem caused by an overly aggressive web crawler. The time I spent investigating authentication systems, database corruption, and git processes was wasted because I didn&rsquo;t start with the most basic question: &ldquo;What&rsquo;s actually hitting my server?&rdquo;</p><p>The lesson? When facing performance issues, always check your access logs first. And in 2025, be prepared to defend your servers against the AI crawler invasion.</p><p>Your personal server wasn&rsquo;t designed to feed the AI training pipeline. It&rsquo;s okay to say no.</p><hr><p><em>Want to protect your own services? Start with web server logs and don&rsquo;t let the bots eat your lunch.</em></p></div></div></main></div><footer class=footer><span>CC 2025, Built with <a href=https://gohugo.io class=footerLink>Hugo</a> | Analytics by <a href=https://umami.codeskraps.com/ class=footerLink>Self-hosted Umami</a></span></footer></div></body></html>

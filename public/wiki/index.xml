@@ -1,21 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Wikis on codeskraps</title>
-    <link>https://codeskraps.com/wiki/</link>
-    <description>Recent content in Wikis on codeskraps</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <managingEditor>me@codeskraps.com (codeskraps)</managingEditor>
-    <webMaster>me@codeskraps.com (codeskraps)</webMaster>
-    <lastBuildDate>Wed, 10 Apr 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://codeskraps.com/wiki/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Build and Test Guide</title>
-      <link>https://codeskraps.com/wiki/build-and-test/</link>
-      <pubDate>Wed, 10 Apr 2024 00:00:00 +0000</pubDate><author>me@codeskraps.com (codeskraps)</author>
-      <guid>https://codeskraps.com/wiki/build-and-test/</guid>
-      <description>&lt;h1 id=&#34;build-and-test-guide&#34;&gt;Build and Test Guide&lt;/h1&gt;&#xA;&lt;p&gt;This guide provides step-by-step instructions for building and testing the blog before publishing changes.&lt;/p&gt;&#xA;&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://gohugo.io/installation/&#34;&gt;Hugo&lt;/a&gt; installed on your system&lt;/li&gt;&#xA;&lt;li&gt;Git for version control&lt;/li&gt;&#xA;&lt;li&gt;A modern web browser for testing&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;development-workflow&#34;&gt;Development Workflow&lt;/h2&gt;&#xA;&lt;h3 id=&#34;1-local-development&#34;&gt;1. Local Development&lt;/h3&gt;&#xA;&lt;p&gt;To start the development server:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo server -D&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This will:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Start a local server (usually at http://localhost:1313)&lt;/li&gt;&#xA;&lt;li&gt;Enable draft content viewing&lt;/li&gt;&#xA;&lt;li&gt;Watch for file changes and auto-reload&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;2-building-the-site&#34;&gt;2. Building the Site&lt;/h3&gt;&#xA;&lt;p&gt;To build the site for production:&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Wikis on codeskraps</title><link>https://codeskraps.com/wiki/</link><description>Recent content in Wikis on codeskraps</description><generator>Hugo</generator><language>en-us</language><managingEditor>me@codeskraps.com (codeskraps)</managingEditor><webMaster>me@codeskraps.com (codeskraps)</webMaster><lastBuildDate>Wed, 10 Apr 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://codeskraps.com/wiki/index.xml" rel="self" type="application/rss+xml"/><item><title>Build and Test Guide</title><link>https://codeskraps.com/wiki/build-and-test/</link><pubDate>Wed, 10 Apr 2024 00:00:00 +0000</pubDate><author>me@codeskraps.com (codeskraps)</author><guid>https://codeskraps.com/wiki/build-and-test/</guid><description>&lt;h1 id="build-and-test-guide">Build and Test Guide&lt;/h1>
+&lt;p>This guide provides step-by-step instructions for building and testing the blog before publishing changes.&lt;/p>
+&lt;h2 id="prerequisites">Prerequisites&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://gohugo.io/installation/">Hugo&lt;/a> installed on your system&lt;/li>
+&lt;li>Git for version control&lt;/li>
+&lt;li>A modern web browser for testing&lt;/li>
+&lt;/ul>
+&lt;h2 id="development-workflow">Development Workflow&lt;/h2>
+&lt;h3 id="1-local-development">1. Local Development&lt;/h3>
+&lt;p>To start the development server:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>hugo server -D
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This will:&lt;/p>
+&lt;ul>
+&lt;li>Start a local server (usually at http://localhost:1313)&lt;/li>
+&lt;li>Enable draft content viewing&lt;/li>
+&lt;li>Watch for file changes and auto-reload&lt;/li>
+&lt;/ul>
+&lt;h3 id="2-building-the-site">2. Building the Site&lt;/h3>
+&lt;p>To build the site for production:&lt;/p></description></item></channel></rss>

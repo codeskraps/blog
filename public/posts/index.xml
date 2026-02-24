@@ -1,70 +1,126 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Posts on codeskraps</title>
-    <link>https://codeskraps.com/posts/</link>
-    <description>Recent content in Posts on codeskraps</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <managingEditor>me@codeskraps.com (codeskraps)</managingEditor>
-    <webMaster>me@codeskraps.com (codeskraps)</webMaster>
-    <lastBuildDate>Fri, 19 Sep 2025 10:00:00 +0000</lastBuildDate>
-    <atom:link href="https://codeskraps.com/posts/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>When AI Crawlers Attack: A Server Performance Horror Story</title>
-      <link>https://codeskraps.com/posts/2025/ai_crawlers/</link>
-      <pubDate>Fri, 19 Sep 2025 10:00:00 +0000</pubDate><author>me@codeskraps.com (codeskraps)</author>
-      <guid>https://codeskraps.com/posts/2025/ai_crawlers/</guid>
-      <description>&lt;p&gt;&lt;em&gt;How ClaudeBot brought my Gogs server to its knees and taught me about the hidden costs of the AI gold rush&lt;/em&gt;&lt;/p&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;  &#xA;  &#xA;  &#xA;  &#xA;  &lt;picture style=&#34;display: block; text-align: center; margin: 2rem auto;&#34;&gt;&#xA;    &lt;source media=&#34;(max-width: 480px)&#34; srcset=&#34;https://codeskraps.com/posts/2025/ai_crawlers/cpu_usage_hu_1f322cbc236d2a69.jpg&#34;&gt;&#xA;    &lt;source media=&#34;(max-width: 800px)&#34; srcset=&#34;https://codeskraps.com/posts/2025/ai_crawlers/cpu_usage_hu_29ea70d853da090b.jpg&#34;&gt;&#xA;    &lt;source media=&#34;(min-width: 801px)&#34; srcset=&#34;https://codeskraps.com/posts/2025/ai_crawlers/cpu_usage_hu_16a6eafdba3168be.jpg&#34;&gt;&#xA;    &lt;img &#xA;      src=&#34;https://codeskraps.com/posts/2025/ai_crawlers/cpu_usage_hu_16a6eafdba3168be.jpg&#34; &#xA;      alt=&#34;When AI Crawlers Attack: A Server Performance Horror Story&#34; &#xA;      width=&#34;600&#34; &#xA;      height=&#34;413&#34;&#xA;      style=&#34;max-width: 100%; height: auto; margin: 0 auto; display: block;&#34;&#xA;      class=&#34;responsive-image&#34;&#xA;      loading=&#34;lazy&#34;&#xA;    &gt;&#xA;  &lt;/picture&gt;</description>
-    </item>
-    <item>
-      <title>Building PublicPoolAndroid in One Day with Cursor</title>
-      <link>https://codeskraps.com/posts/2025/public_pool_android/</link>
-      <pubDate>Sat, 05 Apr 2025 10:00:00 +0100</pubDate><author>me@codeskraps.com (codeskraps)</author>
-      <guid>https://codeskraps.com/posts/2025/public_pool_android/</guid>
-      <description>&lt;p&gt;Today I want to share how I built a complete cryptocurrency mining monitoring app in just one day, from initial concept to Google Play Store submission, using Cursor as my IDE.&lt;/p&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;  &#xA;  &#xA;  &#xA;  &#xA;  &lt;picture style=&#34;display: block; text-align: center; margin: 2rem auto;&#34;&gt;&#xA;    &lt;source media=&#34;(max-width: 480px)&#34; srcset=&#34;https://codeskraps.com/posts/2025/public_pool_android/feature_graphic_hu_b07fb17dbb2a4697.jpg&#34;&gt;&#xA;    &lt;source media=&#34;(max-width: 800px)&#34; srcset=&#34;https://codeskraps.com/posts/2025/public_pool_android/feature_graphic_hu_40801fc72754b39c.jpg&#34;&gt;&#xA;    &lt;source media=&#34;(min-width: 801px)&#34; srcset=&#34;https://codeskraps.com/posts/2025/public_pool_android/feature_graphic_hu_cc0a414e721049d1.jpg&#34;&gt;&#xA;    &lt;img &#xA;      src=&#34;https://codeskraps.com/posts/2025/public_pool_android/feature_graphic_hu_cc0a414e721049d1.jpg&#34; &#xA;      alt=&#34;Public Pool Android App&#34; &#xA;      width=&#34;800&#34; &#xA;      height=&#34;391&#34;&#xA;      style=&#34;max-width: 100%; height: auto; margin: 0 auto; display: block;&#34;&#xA;      class=&#34;responsive-image&#34;&#xA;      loading=&#34;lazy&#34;&#xA;    &gt;&#xA;  &lt;/picture&gt;</description>
-    </item>
-    <item>
-      <title>The Evolution of Software Development in the AI Era</title>
-      <link>https://codeskraps.com/posts/2025/evolution_software_development_ai/</link>
-      <pubDate>Wed, 02 Apr 2025 00:00:00 +0100</pubDate><author>me@codeskraps.com (codeskraps)</author>
-      <guid>https://codeskraps.com/posts/2025/evolution_software_development_ai/</guid>
-      <description>&lt;p&gt;When ChatGPT was released on November 30, 2022, few of us understood how dramatically it would transform the software development landscape. As someone who&amp;rsquo;s worked through this transition, I&amp;rsquo;ve witnessed firsthand the remarkable shift in how we approach coding and problem-solving.&lt;/p&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;  &#xA;  &#xA;  &#xA;  &#xA;  &lt;picture style=&#34;display: block; text-align: center; margin: 2rem auto;&#34;&gt;&#xA;    &lt;source media=&#34;(max-width: 480px)&#34; srcset=&#34;https://codeskraps.com/posts/2025/evolution_software_development_ai/header_hu_6f3939eea610ecff.jpg&#34;&gt;&#xA;    &lt;source media=&#34;(max-width: 800px)&#34; srcset=&#34;https://codeskraps.com/posts/2025/evolution_software_development_ai/header_hu_88733619c784d65a.jpg&#34;&gt;&#xA;    &lt;source media=&#34;(min-width: 801px)&#34; srcset=&#34;https://codeskraps.com/posts/2025/evolution_software_development_ai/header_hu_3ad9a43b3c96546.jpg&#34;&gt;&#xA;    &lt;img &#xA;      src=&#34;https://codeskraps.com/posts/2025/evolution_software_development_ai/header_hu_3ad9a43b3c96546.jpg&#34; &#xA;      alt=&#34;The Evolution of Software Development in the AI Era&#34; &#xA;      width=&#34;600&#34; &#xA;      height=&#34;344&#34;&#xA;      style=&#34;max-width: 100%; height: auto; margin: 0 auto; display: block;&#34;&#xA;      class=&#34;responsive-image&#34;&#xA;      loading=&#34;lazy&#34;&#xA;    &gt;&#xA;  &lt;/picture&gt;</description>
-    </item>
-    <item>
-      <title>Move /home Folder</title>
-      <link>https://codeskraps.com/posts/2025/move_home_folder/</link>
-      <pubDate>Wed, 29 Jan 2025 14:30:17 +0100</pubDate><author>me@codeskraps.com (codeskraps)</author>
-      <guid>https://codeskraps.com/posts/2025/move_home_folder/</guid>
-      <description>&lt;p&gt;You can move the &lt;code&gt;/home&lt;/code&gt; folder on Ubuntu, but you must do it carefully to avoid breaking your system. Below are the steps to safely move &lt;code&gt;/home&lt;/code&gt; to a new location.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>React Native vs Kotlin Multiplatform</title>
-      <link>https://codeskraps.com/posts/2024/react_vs_kmp/</link>
-      <pubDate>Thu, 03 Oct 2024 17:16:34 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
-      <guid>https://codeskraps.com/posts/2024/react_vs_kmp/</guid>
-      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;In the ever-evolving world of mobile app development, choosing the right cross-platform framework can be a game-changer for businesses and developers alike. Two prominent contenders in this space are React Native and Kotlin Multiplatform (KMP). Both offer unique approaches to the challenge of writing code once and deploying it across multiple platforms. This article will dive deep into the strengths and considerations of each, helping you make an informed decision for your next project.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Simplifying MVI Architecture</title>
-      <link>https://codeskraps.com/posts/2024/mvi_architecture/</link>
-      <pubDate>Fri, 27 Sep 2024 13:45:09 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
-      <guid>https://codeskraps.com/posts/2024/mvi_architecture/</guid>
-      <description>&lt;p&gt;Model-View-Intent (MVI) is a powerful architectural pattern for building user interfaces, especially in Android development. In this post, we&amp;rsquo;ll explore a helper class that simplifies the implementation of MVI, making it easier to manage state, handle user intents, and emit actions in your application.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>When .gitignore Doesnt Seem to Work: A Quick Fix</title>
-      <link>https://codeskraps.com/posts/2024/gitignore_not_working/</link>
-      <pubDate>Sun, 02 Jun 2024 18:14:23 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
-      <guid>https://codeskraps.com/posts/2024/gitignore_not_working/</guid>
-      <description>&lt;p&gt;As developers, we&amp;rsquo;ve all been there. You&amp;rsquo;ve added a file or folder to your &lt;code&gt;.gitignore&lt;/code&gt;, but Git keeps tracking it anyway. What gives? Let&amp;rsquo;s dive into why this happens and how to fix it.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Configuring SSH Keys for Individual Git Commands</title>
-      <link>https://codeskraps.com/posts/2024/git_ssh_command/</link>
-      <pubDate>Wed, 17 Apr 2024 16:56:53 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author>
-      <guid>https://codeskraps.com/posts/2024/git_ssh_command/</guid>
-      <description>&lt;p&gt;When working with Git repositories, you often need to authenticate using SSH keys. While you can configure SSH settings globally, there are times when you need to use a specific SSH key for just one command. This is particularly useful when cloning a new repository or adding a submodule, where there isn&amp;rsquo;t yet a local &lt;code&gt;.git/config&lt;/code&gt; file to modify.&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on codeskraps</title><link>https://codeskraps.com/posts/</link><description>Recent content in Posts on codeskraps</description><generator>Hugo</generator><language>en-us</language><managingEditor>me@codeskraps.com (codeskraps)</managingEditor><webMaster>me@codeskraps.com (codeskraps)</webMaster><lastBuildDate>Tue, 24 Feb 2026 10:00:00 +0100</lastBuildDate><atom:link href="https://codeskraps.com/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Weekly Weather v3: Radar Maps, New Settings, and Landscape Support</title><link>https://codeskraps.com/posts/2026/weekly_weather_v3/</link><pubDate>Tue, 24 Feb 2026 10:00:00 +0100</pubDate><author>me@codeskraps.com (codeskraps)</author><guid>https://codeskraps.com/posts/2026/weekly_weather_v3/</guid><description>&lt;p>Version 3 of &lt;a href="https://git.codeskraps.com/codeskraps/Weekly-Weather">Weekly Weather&lt;/a> is out, and it&amp;rsquo;s a significant update. The headline addition is an interactive radar map with animated precipitation overlays, but there&amp;rsquo;s a lot more packed into this release.&lt;/p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ &lt;picture style="display: block; text-align: center; margin: 2rem auto;">
+ &lt;source media="(max-width: 480px)" srcset="https://codeskraps.com/posts/2026/weekly_weather_v3/screenshot1_hu_339c9c5977770ba0.jpg">
+ &lt;source media="(max-width: 800px)" srcset="https://codeskraps.com/posts/2026/weekly_weather_v3/screenshot1_hu_4f77ce9234d55bc1.jpg">
+ &lt;source media="(min-width: 801px)" srcset="https://codeskraps.com/posts/2026/weekly_weather_v3/screenshot1_hu_86404b662431890a.jpg">
+ &lt;img 
+ src="https://codeskraps.com/posts/2026/weekly_weather_v3/screenshot1_hu_86404b662431890a.jpg" 
+ alt="Weekly Weather forecast screen" 
+ width="400" 
+ height="898"
+ style="max-width: 100%; height: auto; margin: 0 auto; display: block;"
+ class="responsive-image"
+ loading="lazy"
+ >
+ &lt;/picture></description></item><item><title>When AI Crawlers Attack: A Server Performance Horror Story</title><link>https://codeskraps.com/posts/2025/ai_crawlers/</link><pubDate>Fri, 19 Sep 2025 10:00:00 +0000</pubDate><author>me@codeskraps.com (codeskraps)</author><guid>https://codeskraps.com/posts/2025/ai_crawlers/</guid><description>&lt;p>&lt;em>How ClaudeBot brought my Gogs server to its knees and taught me about the hidden costs of the AI gold rush&lt;/em>&lt;/p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ &lt;picture style="display: block; text-align: center; margin: 2rem auto;">
+ &lt;source media="(max-width: 480px)" srcset="https://codeskraps.com/posts/2025/ai_crawlers/cpu_usage_hu_1f322cbc236d2a69.jpg">
+ &lt;source media="(max-width: 800px)" srcset="https://codeskraps.com/posts/2025/ai_crawlers/cpu_usage_hu_29ea70d853da090b.jpg">
+ &lt;source media="(min-width: 801px)" srcset="https://codeskraps.com/posts/2025/ai_crawlers/cpu_usage_hu_16a6eafdba3168be.jpg">
+ &lt;img 
+ src="https://codeskraps.com/posts/2025/ai_crawlers/cpu_usage_hu_16a6eafdba3168be.jpg" 
+ alt="When AI Crawlers Attack: A Server Performance Horror Story" 
+ width="600" 
+ height="413"
+ style="max-width: 100%; height: auto; margin: 0 auto; display: block;"
+ class="responsive-image"
+ loading="lazy"
+ >
+ &lt;/picture></description></item><item><title>Building PublicPoolAndroid in One Day with Cursor</title><link>https://codeskraps.com/posts/2025/public_pool_android/</link><pubDate>Sat, 05 Apr 2025 10:00:00 +0100</pubDate><author>me@codeskraps.com (codeskraps)</author><guid>https://codeskraps.com/posts/2025/public_pool_android/</guid><description>&lt;p>Today I want to share how I built a complete cryptocurrency mining monitoring app in just one day, from initial concept to Google Play Store submission, using Cursor as my IDE.&lt;/p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ &lt;picture style="display: block; text-align: center; margin: 2rem auto;">
+ &lt;source media="(max-width: 480px)" srcset="https://codeskraps.com/posts/2025/public_pool_android/feature_graphic_hu_b07fb17dbb2a4697.jpg">
+ &lt;source media="(max-width: 800px)" srcset="https://codeskraps.com/posts/2025/public_pool_android/feature_graphic_hu_40801fc72754b39c.jpg">
+ &lt;source media="(min-width: 801px)" srcset="https://codeskraps.com/posts/2025/public_pool_android/feature_graphic_hu_cc0a414e721049d1.jpg">
+ &lt;img 
+ src="https://codeskraps.com/posts/2025/public_pool_android/feature_graphic_hu_cc0a414e721049d1.jpg" 
+ alt="Public Pool Android App" 
+ width="800" 
+ height="391"
+ style="max-width: 100%; height: auto; margin: 0 auto; display: block;"
+ class="responsive-image"
+ loading="lazy"
+ >
+ &lt;/picture></description></item><item><title>The Evolution of Software Development in the AI Era</title><link>https://codeskraps.com/posts/2025/evolution_software_development_ai/</link><pubDate>Wed, 02 Apr 2025 00:00:00 +0100</pubDate><author>me@codeskraps.com (codeskraps)</author><guid>https://codeskraps.com/posts/2025/evolution_software_development_ai/</guid><description>&lt;p>When ChatGPT was released on November 30, 2022, few of us understood how dramatically it would transform the software development landscape. As someone who&amp;rsquo;s worked through this transition, I&amp;rsquo;ve witnessed firsthand the remarkable shift in how we approach coding and problem-solving.&lt;/p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ &lt;picture style="display: block; text-align: center; margin: 2rem auto;">
+ &lt;source media="(max-width: 480px)" srcset="https://codeskraps.com/posts/2025/evolution_software_development_ai/header_hu_6f3939eea610ecff.jpg">
+ &lt;source media="(max-width: 800px)" srcset="https://codeskraps.com/posts/2025/evolution_software_development_ai/header_hu_88733619c784d65a.jpg">
+ &lt;source media="(min-width: 801px)" srcset="https://codeskraps.com/posts/2025/evolution_software_development_ai/header_hu_3ad9a43b3c96546.jpg">
+ &lt;img 
+ src="https://codeskraps.com/posts/2025/evolution_software_development_ai/header_hu_3ad9a43b3c96546.jpg" 
+ alt="The Evolution of Software Development in the AI Era" 
+ width="600" 
+ height="344"
+ style="max-width: 100%; height: auto; margin: 0 auto; display: block;"
+ class="responsive-image"
+ loading="lazy"
+ >
+ &lt;/picture></description></item><item><title>Move /home Folder</title><link>https://codeskraps.com/posts/2025/move_home_folder/</link><pubDate>Wed, 29 Jan 2025 14:30:17 +0100</pubDate><author>me@codeskraps.com (codeskraps)</author><guid>https://codeskraps.com/posts/2025/move_home_folder/</guid><description>&lt;p>You can move the &lt;code>/home&lt;/code> folder on Ubuntu, but you must do it carefully to avoid breaking your system. Below are the steps to safely move &lt;code>/home&lt;/code> to a new location.&lt;/p></description></item><item><title>React Native vs Kotlin Multiplatform</title><link>https://codeskraps.com/posts/2024/react_vs_kmp/</link><pubDate>Thu, 03 Oct 2024 17:16:34 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author><guid>https://codeskraps.com/posts/2024/react_vs_kmp/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>In the ever-evolving world of mobile app development, choosing the right cross-platform framework can be a game-changer for businesses and developers alike. Two prominent contenders in this space are React Native and Kotlin Multiplatform (KMP). Both offer unique approaches to the challenge of writing code once and deploying it across multiple platforms. This article will dive deep into the strengths and considerations of each, helping you make an informed decision for your next project.&lt;/p></description></item><item><title>Simplifying MVI Architecture</title><link>https://codeskraps.com/posts/2024/mvi_architecture/</link><pubDate>Fri, 27 Sep 2024 13:45:09 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author><guid>https://codeskraps.com/posts/2024/mvi_architecture/</guid><description>&lt;p>Model-View-Intent (MVI) is a powerful architectural pattern for building user interfaces, especially in Android development. In this post, we&amp;rsquo;ll explore a helper class that simplifies the implementation of MVI, making it easier to manage state, handle user intents, and emit actions in your application.&lt;/p></description></item><item><title>When .gitignore Doesnt Seem to Work: A Quick Fix</title><link>https://codeskraps.com/posts/2024/gitignore_not_working/</link><pubDate>Sun, 02 Jun 2024 18:14:23 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author><guid>https://codeskraps.com/posts/2024/gitignore_not_working/</guid><description>&lt;p>As developers, we&amp;rsquo;ve all been there. You&amp;rsquo;ve added a file or folder to your &lt;code>.gitignore&lt;/code>, but Git keeps tracking it anyway. What gives? Let&amp;rsquo;s dive into why this happens and how to fix it.&lt;/p></description></item><item><title>Configuring SSH Keys for Individual Git Commands</title><link>https://codeskraps.com/posts/2024/git_ssh_command/</link><pubDate>Wed, 17 Apr 2024 16:56:53 +0200</pubDate><author>me@codeskraps.com (codeskraps)</author><guid>https://codeskraps.com/posts/2024/git_ssh_command/</guid><description>&lt;p>When working with Git repositories, you often need to authenticate using SSH keys. While you can configure SSH settings globally, there are times when you need to use a specific SSH key for just one command. This is particularly useful when cloning a new repository or adding a submodule, where there isn&amp;rsquo;t yet a local &lt;code>.git/config&lt;/code> file to modify.&lt;/p></description></item></channel></rss>
