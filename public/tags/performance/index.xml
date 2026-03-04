@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Performance on codeskraps</title>
-    <link>http://localhost:1313/tags/performance/</link>
+    <link>https://codeskraps.com/tags/performance/</link>
     <description>Recent content in Performance on codeskraps</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <managingEditor>me@codeskraps.com (codeskraps)</managingEditor>
     <webMaster>me@codeskraps.com (codeskraps)</webMaster>
     <lastBuildDate>Fri, 19 Sep 2025 10:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/performance/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://codeskraps.com/tags/performance/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>When AI Crawlers Attack: A Server Performance Horror Story</title>
-      <link>http://localhost:1313/posts/2025/ai_crawlers/</link>
+      <link>https://codeskraps.com/posts/2025/ai_crawlers/</link>
       <pubDate>Fri, 19 Sep 2025 10:00:00 +0000</pubDate><author>me@codeskraps.com (codeskraps)</author>
-      <guid>http://localhost:1313/posts/2025/ai_crawlers/</guid>
-      <description>&lt;p&gt;&lt;em&gt;How ClaudeBot brought my Gogs server to its knees and taught me about the hidden costs of the AI gold rush&lt;/em&gt;&lt;/p&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;  &#xA;  &#xA;  &#xA;  &#xA;  &lt;picture style=&#34;display: block; text-align: center; margin: 2rem auto;&#34;&gt;&#xA;    &lt;source media=&#34;(max-width: 480px)&#34; srcset=&#34;http://localhost:1313/posts/2025/ai_crawlers/cpu_usage_hu_1f322cbc236d2a69.jpg&#34;&gt;&#xA;    &lt;source media=&#34;(max-width: 800px)&#34; srcset=&#34;http://localhost:1313/posts/2025/ai_crawlers/cpu_usage_hu_29ea70d853da090b.jpg&#34;&gt;&#xA;    &lt;source media=&#34;(min-width: 801px)&#34; srcset=&#34;http://localhost:1313/posts/2025/ai_crawlers/cpu_usage_hu_16a6eafdba3168be.jpg&#34;&gt;&#xA;    &lt;img &#xA;      src=&#34;http://localhost:1313/posts/2025/ai_crawlers/cpu_usage_hu_16a6eafdba3168be.jpg&#34; &#xA;      alt=&#34;When AI Crawlers Attack: A Server Performance Horror Story&#34; &#xA;      width=&#34;600&#34; &#xA;      height=&#34;413&#34;&#xA;      style=&#34;max-width: 100%; height: auto; margin: 0 auto; display: block;&#34;&#xA;      class=&#34;responsive-image&#34;&#xA;      loading=&#34;lazy&#34;&#xA;    &gt;&#xA;  &lt;/picture&gt;</description>
+      <guid>https://codeskraps.com/posts/2025/ai_crawlers/</guid>
+      <description>&lt;p&gt;&lt;em&gt;How ClaudeBot brought my Gogs server to its knees and taught me about the hidden costs of the AI gold rush&lt;/em&gt;&lt;/p&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;  &#xA;  &#xA;  &#xA;  &#xA;  &lt;picture style=&#34;display: block; text-align: center; margin: 2rem auto;&#34;&gt;&#xA;    &lt;source media=&#34;(max-width: 480px)&#34; srcset=&#34;https://codeskraps.com/posts/2025/ai_crawlers/cpu_usage_hu_1f322cbc236d2a69.jpg&#34;&gt;&#xA;    &lt;source media=&#34;(max-width: 800px)&#34; srcset=&#34;https://codeskraps.com/posts/2025/ai_crawlers/cpu_usage_hu_29ea70d853da090b.jpg&#34;&gt;&#xA;    &lt;source media=&#34;(min-width: 801px)&#34; srcset=&#34;https://codeskraps.com/posts/2025/ai_crawlers/cpu_usage_hu_16a6eafdba3168be.jpg&#34;&gt;&#xA;    &lt;img &#xA;      src=&#34;https://codeskraps.com/posts/2025/ai_crawlers/cpu_usage_hu_16a6eafdba3168be.jpg&#34; &#xA;      alt=&#34;When AI Crawlers Attack: A Server Performance Horror Story&#34; &#xA;      width=&#34;600&#34; &#xA;      height=&#34;413&#34;&#xA;      style=&#34;max-width: 100%; height: auto; margin: 0 auto; display: block;&#34;&#xA;      class=&#34;responsive-image&#34;&#xA;      loading=&#34;lazy&#34;&#xA;    &gt;&#xA;  &lt;/picture&gt;</description>
     </item>
   </channel>
 </rss>
