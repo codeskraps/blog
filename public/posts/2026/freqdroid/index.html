@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <title>
+FreqDroid: Manage Your FreqTrade Bots From Your Phone | codeskraps
+</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Mobile development blog by Carles Sentis, sharing expertise in Android, iOS, and Kotlin Multiplatform development">
+
+<meta name="generator" content="Hugo 0.145.0">
+
+
+<link rel="canonical" href="http://localhost:1313/posts/2026/freqdroid/" >
+
+
+
+
+<link href="/css/style.min.ef8e99489b0b85e34523800e588426b1b4c05e27adcb9d7193952cef205afe6d.css" rel="stylesheet">
+
+<script defer src="https://umami.codeskraps.com/script.js" data-website-id="a80a52da-0b7d-4faf-9dfc-ee6ca5a8421f" data-do-not-track="true"></script>
+
+
+<link rel="stylesheet" href="/css/code-copy.css">
+<script defer src="/js/code-copy.js"></script> 
+
+
+</head>
+
+<body>
+
+    <div class="flexWrapper">
+        <header class="headerWrapper">
+    <div class="header">
+        <div>
+            <a class="terminal" href="http://localhost:1313/">
+                <span>me@codeskraps.com ~ $</span>
+            </a>
+        </div>
+        <input class="side-menu" type="checkbox" id="side-menu">
+        <label class="hamb" for="side-menu"><span class="hamb-line"></span></label>
+        <nav class="headerLinks">
+            <ul>
+                
+                <li>
+                    <a href="http://localhost:1313/posts/" title="" >
+                        ~/posts</a>
+                </li>
+                
+                <li>
+                    <a href="http://localhost:1313/projects/" title="" >
+                        ~/projects</a>
+                </li>
+                
+                <li>
+                    <a href="http://localhost:1313/about/" title="" >
+                        ~/about</a>
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="content">
+            <main class="main">
+                
+<div class="postWrapper">
+    <h1>FreqDroid: Manage Your FreqTrade Bots From Your Phone</h1>
+    
+    
+    <section class="postMetadata">
+        <dl>
+            
+                
+<dt>tags</dt>
+<dd><span></span>
+    <a href="/tags/android/">#Android</a><span></span>
+    <a href="/tags/kotlin/">#Kotlin</a><span></span>
+    <a href="/tags/open-source/">#Open-Source</a><span></span>
+    <a href="/tags/cryptocurrency/">#Cryptocurrency</a><span></span>
+    <a href="/tags/development/">#Development</a></dd>
+            
+            
+            
+            
+                <dt>published</dt>
+                
+                <dd><time datetime="2026-03-04">March 4, 2026</time></dd>
+            
+            
+                <dt>reading time</dt>
+                <dd>2 minutes</dd>
+            
+        </dl>
+    </section>
+    
+    <div>
+        <p>I&rsquo;m excited to announce that <a href="https://freqdroid.com/">FreqDroid</a> is now available on the Google Play Store. FreqDroid is a mobile client for <a href="https://www.freqtrade.io/">FreqTrade</a>, the popular open-source cryptocurrency trading bot framework, bringing full bot management to your pocket.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  <picture style="display: block; text-align: center; margin: 2rem auto;">
+    <source media="(max-width: 480px)" srcset="/posts/2026/freqdroid/bot_comparison_hu_cfc8efccf48342cb.jpg">
+    <source media="(max-width: 800px)" srcset="/posts/2026/freqdroid/bot_comparison_hu_3a8774b26166ba6e.jpg">
+    <source media="(min-width: 801px)" srcset="/posts/2026/freqdroid/bot_comparison_hu_ff452c46055977a1.jpg">
+    <img 
+      src="/posts/2026/freqdroid/bot_comparison_hu_ff452c46055977a1.jpg" 
+      alt="FreqDroid multi-bot comparison dashboard" 
+      width="400" 
+      height="867"
+      style="max-width: 100%; height: auto; margin: 0 auto; display: block;"
+      class="responsive-image"
+      loading="lazy"
+    >
+  </picture>
+  
+<h2 id="what-is-freqdroid">What is FreqDroid?</h2>
+<p>If you run FreqTrade bots, you know the pain of having to sit at your computer to check on your trades. FreqDroid solves this by giving you a dedicated mobile app to monitor and manage all your bots from anywhere.</p>
+<p>Whether you&rsquo;re running a single bot or managing a fleet of them across different strategies, FreqDroid aggregates everything into a clean, intuitive interface.</p>
+<h2 id="key-features">Key Features</h2>
+<h3 id="multi-bot-dashboard">Multi-Bot Dashboard</h3>
+<p>FreqDroid&rsquo;s standout feature is its ability to aggregate data from multiple trading bots into a single view. Open trades, profit charts, and performance metrics across every bot — all on one screen. No more switching between browser tabs or SSH sessions.</p>
+<h3 id="detailed-analytics">Detailed Analytics</h3>
+<p>Dive deep into individual bot performance with:</p>
+<ul>
+<li>Trade logs and history</li>
+<li>Pair-by-pair breakdowns</li>
+<li>Balance history</li>
+<li>Cumulative profit charts</li>
+<li>Candlestick charts with technical indicator overlays (supporting both Standard and Heikin-Ashi candle types)</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  <picture style="display: block; text-align: center; margin: 2rem auto;">
+    <source media="(max-width: 480px)" srcset="/posts/2026/freqdroid/profit_over_time_hu_1a37710cd009f962.jpg">
+    <source media="(max-width: 800px)" srcset="/posts/2026/freqdroid/profit_over_time_hu_7b58647707d5c58e.jpg">
+    <source media="(min-width: 801px)" srcset="/posts/2026/freqdroid/profit_over_time_hu_9a8c3b72e10016.jpg">
+    <img 
+      src="/posts/2026/freqdroid/profit_over_time_hu_9a8c3b72e10016.jpg" 
+      alt="FreqDroid profit over time chart" 
+      width="400" 
+      height="867"
+      style="max-width: 100%; height: auto; margin: 0 auto; display: block;"
+      class="responsive-image"
+      loading="lazy"
+    >
+  </picture>
+  
+<h3 id="flexible-navigation">Flexible Navigation</h3>
+<p>The app offers two interface modes to suit your workflow:</p>
+<ul>
+<li><strong>Aggregate</strong>: A flat, all-in-one view that combines everything into a single scrollable dashboard</li>
+<li><strong>Classic</strong>: A sectioned layout with a bot picker, giving you a more traditional dashboard-and-trade experience</li>
+</ul>
+<h3 id="push-notifications-via-ntfy">Push Notifications via ntfy</h3>
+<p>FreqDroid integrates with <a href="https://ntfy.sh/">ntfy</a> for self-hosted push notifications. Configure your FreqTrade webhooks to publish to ntfy topics and get instant trade alerts on your phone — with support for both live streaming and scheduled polling. Your server, your data.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  <picture style="display: block; text-align: center; margin: 2rem auto;">
+    <source media="(max-width: 480px)" srcset="/posts/2026/freqdroid/indicators_hu_9f328e13fcd43e8.jpg">
+    <source media="(max-width: 800px)" srcset="/posts/2026/freqdroid/indicators_hu_a1e7d9780ca12bc8.jpg">
+    <source media="(min-width: 801px)" srcset="/posts/2026/freqdroid/indicators_hu_219b9276e06b719d.jpg">
+    <img 
+      src="/posts/2026/freqdroid/indicators_hu_219b9276e06b719d.jpg" 
+      alt="FreqDroid candlestick chart with technical indicators" 
+      width="400" 
+      height="867"
+      style="max-width: 100%; height: auto; margin: 0 auto; display: block;"
+      class="responsive-image"
+      loading="lazy"
+    >
+  </picture>
+  
+<h3 id="customization">Customization</h3>
+<ul>
+<li>Full HSL color picker for accent colors</li>
+<li>Material You dynamic theming on Android</li>
+<li>Light, dark, and system theme options</li>
+</ul>
+<h2 id="tech-stack">Tech Stack</h2>
+<p>FreqDroid is built with <a href="https://kotlinlang.org/docs/multiplatform.html">Kotlin Multiplatform</a> and <a href="https://www.jetbrains.com/compose-multiplatform/">Compose Multiplatform</a>, sharing code across platforms while maintaining native performance. The stack includes:</p>
+<ul>
+<li><strong>Ktor</strong> for networking</li>
+<li><strong>SQLDelight</strong> for local persistence</li>
+<li><strong>Koin</strong> for dependency injection</li>
+<li><strong>Voyager</strong> for navigation</li>
+</ul>
+<p>The project follows a multi-module architecture with dedicated packages for domain, core, and feature layers.</p>
+<h2 id="open-source">Open Source</h2>
+<p>FreqDroid is fully open-source under the MIT License. You can browse the code, open issues, or contribute on the <a href="https://git.codeskraps.com/codeskraps/FreqDroid">project repository</a>.</p>
+<h2 id="get-it">Get It</h2>
+<p>FreqDroid is available now on <a href="https://play.google.com/store/apps/details?id=com.codeskraps.freqdroid">Google Play</a>, with iOS coming soon.</p>
+<a href="https://play.google.com/store/apps/details?id=com.codeskraps.freqdroid">
+  <img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="200">
+</a>
+    </div>
+</div>
+
+            </main>
+        </div>
+
+
+        <footer class="footer">
+    
+        <span>CC 2025, Built with <a href="https://gohugo.io" class="footerLink">Hugo</a> | Analytics by <a href="https://umami.codeskraps.com/" class="footerLink">Self-hosted Umami</a></span>
+    
+</footer>
+    </div>
+
+</body>
+
+</html>

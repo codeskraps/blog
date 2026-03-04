@@ -1,33 +1,1776 @@
-<!doctype html><html lang=en-us><head><title>Move /home Folder | codeskraps
-</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Mobile development blog by Carles Sentis, sharing expertise in Android, iOS, and Kotlin Multiplatform development"><meta name=generator content="Hugo 0.145.0"><link rel=canonical href=https://codeskraps.com/posts/2025/move_home_folder/><link href=/css/style.min.ef8e99489b0b85e34523800e588426b1b4c05e27adcb9d7193952cef205afe6d.css rel=stylesheet><script defer src=https://umami.codeskraps.com/script.js data-website-id=a80a52da-0b7d-4faf-9dfc-ee6ca5a8421f data-do-not-track=true></script><link rel=stylesheet href=/css/code-copy.css><script defer src=/js/code-copy.js></script></head><body><div class=flexWrapper><header class=headerWrapper><div class=header><div><a class=terminal href=https://codeskraps.com/><span>me@codeskraps.com ~ $</span></a></div><input class=side-menu type=checkbox id=side-menu>
-<label class=hamb for=side-menu><span class=hamb-line></span></label><nav class=headerLinks><ul><li><a href=https://codeskraps.com/posts/ title>~/posts</a></li><li><a href=https://codeskraps.com/projects/ title>~/projects</a></li><li><a href=https://codeskraps.com/about/ title>~/about</a></li></ul></nav></div></header><div class=content><main class=main><div class=postWrapper><h1>Move /home Folder</h1><section class=postMetadata><dl><dt>tags</dt><dd><span></span>
-<a href=/tags/linux/>#Linux</a></dd><dt>published</dt><dd><time datetime=2025-01-29>January 29, 2025</time></dd><dt>reading time</dt><dd>2 minutes</dd></dl></section><div><p>You can move the <code>/home</code> folder on Ubuntu, but you must do it carefully to avoid breaking your system. Below are the steps to safely move <code>/home</code> to a new location.</p><hr><h2 id=1-create-a-backup-recommended><strong>1. Create a Backup (Recommended)</strong></h2><p>Before proceeding, create a backup of your home folder in case anything goes wrong.</p><style>.code-block-container{position:relative;margin:1em 0;border:1px solid #5e5e5e;border-radius:1px;overflow:hidden}.code-header{position:absolute;top:8px;right:8px;z-index:999}.copy-button{display:inline-flex;align-items:center;background:#2d2d2d;color:#fff;border:1px solid #404040;border-radius:4px;padding:4px 8px;font-size:.8em;cursor:pointer;transition:all .2s ease}.copy-button:hover{background:#404040}.copy-button svg{width:14px;height:14px;margin-right:4px}.tooltip{position:absolute;top:-30px;left:50%;transform:translateX(-50%);background:#000;color:#fff;padding:4px 8px;border-radius:4px;font-size:12px;display:none}.tooltip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#000}.copy-button.copied .tooltip{display:block}.code-content{margin:0;padding:0}.code-content pre{margin:0;padding:10px}</style><div class=code-block-container data-lang=bash><div class=code-header><button class=copy-button onclick=copyCodeBlock(this) aria-label="Copy code">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4v12a2 2 0 002 2h8a2 2 0 002-2V7.242a2 2 0 00-.602-1.43L16.083 2.57A2 2 0 0014.685 2H10A2 2 0 008 4z"/><path d="M16 18v2a2 2 0 01-2 2H6a2 2 0 01-2-2V9a2 2 0 012-2h2"/></svg>
-<span>Copy</span><div class=tooltip>Copied!</div></button></div><div class=code-content><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo tar -czvf /home_backup.tar.gz /home</span></span></code></pre></div></div></div><script>function copyCodeBlock(e){const n=e.closest(".code-block-container"),s=n.querySelector(".code-content pre"),t=s.textContent;navigator.clipboard.writeText(t.trim()).then(()=>{e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}).catch(n=>{console.error("Failed to copy:",n);const s=document.createElement("textarea");s.value=t.trim(),document.body.appendChild(s),s.select();try{document.execCommand("copy"),e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}catch(e){console.error("Fallback failed:",e)}document.body.removeChild(s)})}</script><h2 id=2-create-a-new-partition-or-mount-point-if-needed><strong>2. Create a New Partition or Mount Point (If Needed)</strong></h2><p>If you&rsquo;re moving /home to a different partition or disk, make sure it&rsquo;s properly formatted and mounted.</p><p>For example, if you want to use a new disk (e.g., <code>/dev/sdb1</code>):</p><style>.code-block-container{position:relative;margin:1em 0;border:1px solid #5e5e5e;border-radius:1px;overflow:hidden}.code-header{position:absolute;top:8px;right:8px;z-index:999}.copy-button{display:inline-flex;align-items:center;background:#2d2d2d;color:#fff;border:1px solid #404040;border-radius:4px;padding:4px 8px;font-size:.8em;cursor:pointer;transition:all .2s ease}.copy-button:hover{background:#404040}.copy-button svg{width:14px;height:14px;margin-right:4px}.tooltip{position:absolute;top:-30px;left:50%;transform:translateX(-50%);background:#000;color:#fff;padding:4px 8px;border-radius:4px;font-size:12px;display:none}.tooltip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#000}.copy-button.copied .tooltip{display:block}.code-content{margin:0;padding:0}.code-content pre{margin:0;padding:10px}</style><div class=code-block-container data-lang=bash><div class=code-header><button class=copy-button onclick=copyCodeBlock(this) aria-label="Copy code">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4v12a2 2 0 002 2h8a2 2 0 002-2V7.242a2 2 0 00-.602-1.43L16.083 2.57A2 2 0 0014.685 2H10A2 2 0 008 4z"/><path d="M16 18v2a2 2 0 01-2 2H6a2 2 0 01-2-2V9a2 2 0 012-2h2"/></svg>
-<span>Copy</span><div class=tooltip>Copied!</div></button></div><div class=code-content><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo mkfs.ext4 /dev/sdb1
-</span></span><span style=display:flex><span>sudo mkdir /mnt/newhome
-</span></span><span style=display:flex><span>sudo mount /dev/sdb1 /mnt/newhome</span></span></code></pre></div></div></div><script>function copyCodeBlock(e){const n=e.closest(".code-block-container"),s=n.querySelector(".code-content pre"),t=s.textContent;navigator.clipboard.writeText(t.trim()).then(()=>{e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}).catch(n=>{console.error("Failed to copy:",n);const s=document.createElement("textarea");s.value=t.trim(),document.body.appendChild(s),s.select();try{document.execCommand("copy"),e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}catch(e){console.error("Fallback failed:",e)}document.body.removeChild(s)})}</script><h2 id=3-copy-the-home-folder><strong>3. Copy the Home Folder</strong></h2><p>Copy all user data to the new location while preserving permissions:</p><style>.code-block-container{position:relative;margin:1em 0;border:1px solid #5e5e5e;border-radius:1px;overflow:hidden}.code-header{position:absolute;top:8px;right:8px;z-index:999}.copy-button{display:inline-flex;align-items:center;background:#2d2d2d;color:#fff;border:1px solid #404040;border-radius:4px;padding:4px 8px;font-size:.8em;cursor:pointer;transition:all .2s ease}.copy-button:hover{background:#404040}.copy-button svg{width:14px;height:14px;margin-right:4px}.tooltip{position:absolute;top:-30px;left:50%;transform:translateX(-50%);background:#000;color:#fff;padding:4px 8px;border-radius:4px;font-size:12px;display:none}.tooltip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#000}.copy-button.copied .tooltip{display:block}.code-content{margin:0;padding:0}.code-content pre{margin:0;padding:10px}</style><div class=code-block-container data-lang=bash><div class=code-header><button class=copy-button onclick=copyCodeBlock(this) aria-label="Copy code">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4v12a2 2 0 002 2h8a2 2 0 002-2V7.242a2 2 0 00-.602-1.43L16.083 2.57A2 2 0 0014.685 2H10A2 2 0 008 4z"/><path d="M16 18v2a2 2 0 01-2 2H6a2 2 0 01-2-2V9a2 2 0 012-2h2"/></svg>
-<span>Copy</span><div class=tooltip>Copied!</div></button></div><div class=code-content><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo rsync -aXS /home/ /mnt/newhome/</span></span></code></pre></div></div></div><script>function copyCodeBlock(e){const n=e.closest(".code-block-container"),s=n.querySelector(".code-content pre"),t=s.textContent;navigator.clipboard.writeText(t.trim()).then(()=>{e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}).catch(n=>{console.error("Failed to copy:",n);const s=document.createElement("textarea");s.value=t.trim(),document.body.appendChild(s),s.select();try{document.execCommand("copy"),e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}catch(e){console.error("Fallback failed:",e)}document.body.removeChild(s)})}</script><hr><h2 id=4-update-fstab><strong>4. Update fstab</strong></h2><p>Edit /etc/fstab to mount the new home directory at boot.</p><style>.code-block-container{position:relative;margin:1em 0;border:1px solid #5e5e5e;border-radius:1px;overflow:hidden}.code-header{position:absolute;top:8px;right:8px;z-index:999}.copy-button{display:inline-flex;align-items:center;background:#2d2d2d;color:#fff;border:1px solid #404040;border-radius:4px;padding:4px 8px;font-size:.8em;cursor:pointer;transition:all .2s ease}.copy-button:hover{background:#404040}.copy-button svg{width:14px;height:14px;margin-right:4px}.tooltip{position:absolute;top:-30px;left:50%;transform:translateX(-50%);background:#000;color:#fff;padding:4px 8px;border-radius:4px;font-size:12px;display:none}.tooltip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#000}.copy-button.copied .tooltip{display:block}.code-content{margin:0;padding:0}.code-content pre{margin:0;padding:10px}</style><div class=code-block-container data-lang=bash><div class=code-header><button class=copy-button onclick=copyCodeBlock(this) aria-label="Copy code">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4v12a2 2 0 002 2h8a2 2 0 002-2V7.242a2 2 0 00-.602-1.43L16.083 2.57A2 2 0 0014.685 2H10A2 2 0 008 4z"/><path d="M16 18v2a2 2 0 01-2 2H6a2 2 0 01-2-2V9a2 2 0 012-2h2"/></svg>
-<span>Copy</span><div class=tooltip>Copied!</div></button></div><div class=code-content><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo nano /etc/fstab</span></span></code></pre></div></div></div><script>function copyCodeBlock(e){const n=e.closest(".code-block-container"),s=n.querySelector(".code-content pre"),t=s.textContent;navigator.clipboard.writeText(t.trim()).then(()=>{e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}).catch(n=>{console.error("Failed to copy:",n);const s=document.createElement("textarea");s.value=t.trim(),document.body.appendChild(s),s.select();try{document.execCommand("copy"),e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}catch(e){console.error("Fallback failed:",e)}document.body.removeChild(s)})}</script><p>Add this line at the end (adjust the path accordingly):</p><style>.code-block-container{position:relative;margin:1em 0;border:1px solid #5e5e5e;border-radius:1px;overflow:hidden}.code-header{position:absolute;top:8px;right:8px;z-index:999}.copy-button{display:inline-flex;align-items:center;background:#2d2d2d;color:#fff;border:1px solid #404040;border-radius:4px;padding:4px 8px;font-size:.8em;cursor:pointer;transition:all .2s ease}.copy-button:hover{background:#404040}.copy-button svg{width:14px;height:14px;margin-right:4px}.tooltip{position:absolute;top:-30px;left:50%;transform:translateX(-50%);background:#000;color:#fff;padding:4px 8px;border-radius:4px;font-size:12px;display:none}.tooltip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#000}.copy-button.copied .tooltip{display:block}.code-content{margin:0;padding:0}.code-content pre{margin:0;padding:10px}</style><div class=code-block-container data-lang=bash><div class=code-header><button class=copy-button onclick=copyCodeBlock(this) aria-label="Copy code">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4v12a2 2 0 002 2h8a2 2 0 002-2V7.242a2 2 0 00-.602-1.43L16.083 2.57A2 2 0 0014.685 2H10A2 2 0 008 4z"/><path d="M16 18v2a2 2 0 01-2 2H6a2 2 0 01-2-2V9a2 2 0 012-2h2"/></svg>
-<span>Copy</span><div class=tooltip>Copied!</div></button></div><div class=code-content><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>/dev/sdb1  /home  ext4  defaults  <span style=color:#bd93f9>0</span>  <span style=color:#bd93f9>2</span></span></span></code></pre></div></div></div><script>function copyCodeBlock(e){const n=e.closest(".code-block-container"),s=n.querySelector(".code-content pre"),t=s.textContent;navigator.clipboard.writeText(t.trim()).then(()=>{e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}).catch(n=>{console.error("Failed to copy:",n);const s=document.createElement("textarea");s.value=t.trim(),document.body.appendChild(s),s.select();try{document.execCommand("copy"),e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}catch(e){console.error("Fallback failed:",e)}document.body.removeChild(s)})}</script><p>If you prefer using the UUID, first find it:</p><style>.code-block-container{position:relative;margin:1em 0;border:1px solid #5e5e5e;border-radius:1px;overflow:hidden}.code-header{position:absolute;top:8px;right:8px;z-index:999}.copy-button{display:inline-flex;align-items:center;background:#2d2d2d;color:#fff;border:1px solid #404040;border-radius:4px;padding:4px 8px;font-size:.8em;cursor:pointer;transition:all .2s ease}.copy-button:hover{background:#404040}.copy-button svg{width:14px;height:14px;margin-right:4px}.tooltip{position:absolute;top:-30px;left:50%;transform:translateX(-50%);background:#000;color:#fff;padding:4px 8px;border-radius:4px;font-size:12px;display:none}.tooltip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#000}.copy-button.copied .tooltip{display:block}.code-content{margin:0;padding:0}.code-content pre{margin:0;padding:10px}</style><div class=code-block-container data-lang=bash><div class=code-header><button class=copy-button onclick=copyCodeBlock(this) aria-label="Copy code">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4v12a2 2 0 002 2h8a2 2 0 002-2V7.242a2 2 0 00-.602-1.43L16.083 2.57A2 2 0 0014.685 2H10A2 2 0 008 4z"/><path d="M16 18v2a2 2 0 01-2 2H6a2 2 0 01-2-2V9a2 2 0 012-2h2"/></svg>
-<span>Copy</span><div class=tooltip>Copied!</div></button></div><div class=code-content><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo blkid</span></span></code></pre></div></div></div><script>function copyCodeBlock(e){const n=e.closest(".code-block-container"),s=n.querySelector(".code-content pre"),t=s.textContent;navigator.clipboard.writeText(t.trim()).then(()=>{e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}).catch(n=>{console.error("Failed to copy:",n);const s=document.createElement("textarea");s.value=t.trim(),document.body.appendChild(s),s.select();try{document.execCommand("copy"),e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}catch(e){console.error("Fallback failed:",e)}document.body.removeChild(s)})}</script><p>Then, add this line instead:</p><style>.code-block-container{position:relative;margin:1em 0;border:1px solid #5e5e5e;border-radius:1px;overflow:hidden}.code-header{position:absolute;top:8px;right:8px;z-index:999}.copy-button{display:inline-flex;align-items:center;background:#2d2d2d;color:#fff;border:1px solid #404040;border-radius:4px;padding:4px 8px;font-size:.8em;cursor:pointer;transition:all .2s ease}.copy-button:hover{background:#404040}.copy-button svg{width:14px;height:14px;margin-right:4px}.tooltip{position:absolute;top:-30px;left:50%;transform:translateX(-50%);background:#000;color:#fff;padding:4px 8px;border-radius:4px;font-size:12px;display:none}.tooltip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#000}.copy-button.copied .tooltip{display:block}.code-content{margin:0;padding:0}.code-content pre{margin:0;padding:10px}</style><div class=code-block-container data-lang=arduino><div class=code-header><button class=copy-button onclick=copyCodeBlock(this) aria-label="Copy code">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4v12a2 2 0 002 2h8a2 2 0 002-2V7.242a2 2 0 00-.602-1.43L16.083 2.57A2 2 0 0014.685 2H10A2 2 0 008 4z"/><path d="M16 18v2a2 2 0 01-2 2H6a2 2 0 01-2-2V9a2 2 0 012-2h2"/></svg>
-<span>Copy</span><div class=tooltip>Copied!</div></button></div><div class=code-content><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-arduino data-lang=arduino><span style=display:flex><span>UUID<span style=color:#ff79c6>=</span>your<span style=color:#ff79c6>-</span>uuid <span style=color:#ff79c6>/</span><span style=color:#50fa7b>home</span> ext4 defaults <span style=color:#bd93f9>0</span> <span style=color:#bd93f9>2</span></span></span></code></pre></div></div></div><script>function copyCodeBlock(e){const n=e.closest(".code-block-container"),s=n.querySelector(".code-content pre"),t=s.textContent;navigator.clipboard.writeText(t.trim()).then(()=>{e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}).catch(n=>{console.error("Failed to copy:",n);const s=document.createElement("textarea");s.value=t.trim(),document.body.appendChild(s),s.select();try{document.execCommand("copy"),e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}catch(e){console.error("Fallback failed:",e)}document.body.removeChild(s)})}</script><hr><h2 id=5-unmount-old-home-and-mount-new-one><strong>5. Unmount Old Home and Mount New One</strong></h2><p>Switch to a different session (e.g., TTY):</p><style>.code-block-container{position:relative;margin:1em 0;border:1px solid #5e5e5e;border-radius:1px;overflow:hidden}.code-header{position:absolute;top:8px;right:8px;z-index:999}.copy-button{display:inline-flex;align-items:center;background:#2d2d2d;color:#fff;border:1px solid #404040;border-radius:4px;padding:4px 8px;font-size:.8em;cursor:pointer;transition:all .2s ease}.copy-button:hover{background:#404040}.copy-button svg{width:14px;height:14px;margin-right:4px}.tooltip{position:absolute;top:-30px;left:50%;transform:translateX(-50%);background:#000;color:#fff;padding:4px 8px;border-radius:4px;font-size:12px;display:none}.tooltip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#000}.copy-button.copied .tooltip{display:block}.code-content{margin:0;padding:0}.code-content pre{margin:0;padding:10px}</style><div class=code-block-container data-lang=bash><div class=code-header><button class=copy-button onclick=copyCodeBlock(this) aria-label="Copy code">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4v12a2 2 0 002 2h8a2 2 0 002-2V7.242a2 2 0 00-.602-1.43L16.083 2.57A2 2 0 0014.685 2H10A2 2 0 008 4z"/><path d="M16 18v2a2 2 0 01-2 2H6a2 2 0 01-2-2V9a2 2 0 012-2h2"/></svg>
-<span>Copy</span><div class=tooltip>Copied!</div></button></div><div class=code-content><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>Ctrl + Alt + F3</span></span></code></pre></div></div></div><script>function copyCodeBlock(e){const n=e.closest(".code-block-container"),s=n.querySelector(".code-content pre"),t=s.textContent;navigator.clipboard.writeText(t.trim()).then(()=>{e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}).catch(n=>{console.error("Failed to copy:",n);const s=document.createElement("textarea");s.value=t.trim(),document.body.appendChild(s),s.select();try{document.execCommand("copy"),e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}catch(e){console.error("Fallback failed:",e)}document.body.removeChild(s)})}</script><p>Log in and stop processes using <code>/home</code>:</p><style>.code-block-container{position:relative;margin:1em 0;border:1px solid #5e5e5e;border-radius:1px;overflow:hidden}.code-header{position:absolute;top:8px;right:8px;z-index:999}.copy-button{display:inline-flex;align-items:center;background:#2d2d2d;color:#fff;border:1px solid #404040;border-radius:4px;padding:4px 8px;font-size:.8em;cursor:pointer;transition:all .2s ease}.copy-button:hover{background:#404040}.copy-button svg{width:14px;height:14px;margin-right:4px}.tooltip{position:absolute;top:-30px;left:50%;transform:translateX(-50%);background:#000;color:#fff;padding:4px 8px;border-radius:4px;font-size:12px;display:none}.tooltip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#000}.copy-button.copied .tooltip{display:block}.code-content{margin:0;padding:0}.code-content pre{margin:0;padding:10px}</style><div class=code-block-container data-lang=bash><div class=code-header><button class=copy-button onclick=copyCodeBlock(this) aria-label="Copy code">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4v12a2 2 0 002 2h8a2 2 0 002-2V7.242a2 2 0 00-.602-1.43L16.083 2.57A2 2 0 0014.685 2H10A2 2 0 008 4z"/><path d="M16 18v2a2 2 0 01-2 2H6a2 2 0 01-2-2V9a2 2 0 012-2h2"/></svg>
-<span>Copy</span><div class=tooltip>Copied!</div></button></div><div class=code-content><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo systemctl stop gdm  <span style=color:#6272a4># For GNOME (or use sddm/lightdm if applicable)</span></span></span></code></pre></div></div></div><script>function copyCodeBlock(e){const n=e.closest(".code-block-container"),s=n.querySelector(".code-content pre"),t=s.textContent;navigator.clipboard.writeText(t.trim()).then(()=>{e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}).catch(n=>{console.error("Failed to copy:",n);const s=document.createElement("textarea");s.value=t.trim(),document.body.appendChild(s),s.select();try{document.execCommand("copy"),e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}catch(e){console.error("Fallback failed:",e)}document.body.removeChild(s)})}</script><p>Unmount and remount:</p><style>.code-block-container{position:relative;margin:1em 0;border:1px solid #5e5e5e;border-radius:1px;overflow:hidden}.code-header{position:absolute;top:8px;right:8px;z-index:999}.copy-button{display:inline-flex;align-items:center;background:#2d2d2d;color:#fff;border:1px solid #404040;border-radius:4px;padding:4px 8px;font-size:.8em;cursor:pointer;transition:all .2s ease}.copy-button:hover{background:#404040}.copy-button svg{width:14px;height:14px;margin-right:4px}.tooltip{position:absolute;top:-30px;left:50%;transform:translateX(-50%);background:#000;color:#fff;padding:4px 8px;border-radius:4px;font-size:12px;display:none}.tooltip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#000}.copy-button.copied .tooltip{display:block}.code-content{margin:0;padding:0}.code-content pre{margin:0;padding:10px}</style><div class=code-block-container data-lang=bash><div class=code-header><button class=copy-button onclick=copyCodeBlock(this) aria-label="Copy code">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4v12a2 2 0 002 2h8a2 2 0 002-2V7.242a2 2 0 00-.602-1.43L16.083 2.57A2 2 0 0014.685 2H10A2 2 0 008 4z"/><path d="M16 18v2a2 2 0 01-2 2H6a2 2 0 01-2-2V9a2 2 0 012-2h2"/></svg>
-<span>Copy</span><div class=tooltip>Copied!</div></button></div><div class=code-content><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo umount /home
-</span></span><span style=display:flex><span>sudo mount /home</span></span></code></pre></div></div></div><script>function copyCodeBlock(e){const n=e.closest(".code-block-container"),s=n.querySelector(".code-content pre"),t=s.textContent;navigator.clipboard.writeText(t.trim()).then(()=>{e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}).catch(n=>{console.error("Failed to copy:",n);const s=document.createElement("textarea");s.value=t.trim(),document.body.appendChild(s),s.select();try{document.execCommand("copy"),e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}catch(e){console.error("Fallback failed:",e)}document.body.removeChild(s)})}</script><hr><h2 id=6-verify-and-reboot><strong>6. Verify and Reboot</strong></h2><p>Check that everything is in place:</p><style>.code-block-container{position:relative;margin:1em 0;border:1px solid #5e5e5e;border-radius:1px;overflow:hidden}.code-header{position:absolute;top:8px;right:8px;z-index:999}.copy-button{display:inline-flex;align-items:center;background:#2d2d2d;color:#fff;border:1px solid #404040;border-radius:4px;padding:4px 8px;font-size:.8em;cursor:pointer;transition:all .2s ease}.copy-button:hover{background:#404040}.copy-button svg{width:14px;height:14px;margin-right:4px}.tooltip{position:absolute;top:-30px;left:50%;transform:translateX(-50%);background:#000;color:#fff;padding:4px 8px;border-radius:4px;font-size:12px;display:none}.tooltip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#000}.copy-button.copied .tooltip{display:block}.code-content{margin:0;padding:0}.code-content pre{margin:0;padding:10px}</style><div class=code-block-container data-lang=bash><div class=code-header><button class=copy-button onclick=copyCodeBlock(this) aria-label="Copy code">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4v12a2 2 0 002 2h8a2 2 0 002-2V7.242a2 2 0 00-.602-1.43L16.083 2.57A2 2 0 0014.685 2H10A2 2 0 008 4z"/><path d="M16 18v2a2 2 0 01-2 2H6a2 2 0 01-2-2V9a2 2 0 012-2h2"/></svg>
-<span>Copy</span><div class=tooltip>Copied!</div></button></div><div class=code-content><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>ls /home</span></span></code></pre></div></div></div><script>function copyCodeBlock(e){const n=e.closest(".code-block-container"),s=n.querySelector(".code-content pre"),t=s.textContent;navigator.clipboard.writeText(t.trim()).then(()=>{e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}).catch(n=>{console.error("Failed to copy:",n);const s=document.createElement("textarea");s.value=t.trim(),document.body.appendChild(s),s.select();try{document.execCommand("copy"),e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}catch(e){console.error("Fallback failed:",e)}document.body.removeChild(s)})}</script><p>If everything looks good, reboot:</p><style>.code-block-container{position:relative;margin:1em 0;border:1px solid #5e5e5e;border-radius:1px;overflow:hidden}.code-header{position:absolute;top:8px;right:8px;z-index:999}.copy-button{display:inline-flex;align-items:center;background:#2d2d2d;color:#fff;border:1px solid #404040;border-radius:4px;padding:4px 8px;font-size:.8em;cursor:pointer;transition:all .2s ease}.copy-button:hover{background:#404040}.copy-button svg{width:14px;height:14px;margin-right:4px}.tooltip{position:absolute;top:-30px;left:50%;transform:translateX(-50%);background:#000;color:#fff;padding:4px 8px;border-radius:4px;font-size:12px;display:none}.tooltip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#000}.copy-button.copied .tooltip{display:block}.code-content{margin:0;padding:0}.code-content pre{margin:0;padding:10px}</style><div class=code-block-container data-lang=bash><div class=code-header><button class=copy-button onclick=copyCodeBlock(this) aria-label="Copy code">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4v12a2 2 0 002 2h8a2 2 0 002-2V7.242a2 2 0 00-.602-1.43L16.083 2.57A2 2 0 0014.685 2H10A2 2 0 008 4z"/><path d="M16 18v2a2 2 0 01-2 2H6a2 2 0 01-2-2V9a2 2 0 012-2h2"/></svg>
-<span>Copy</span><div class=tooltip>Copied!</div></button></div><div class=code-content><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo reboot</span></span></code></pre></div></div></div><script>function copyCodeBlock(e){const n=e.closest(".code-block-container"),s=n.querySelector(".code-content pre"),t=s.textContent;navigator.clipboard.writeText(t.trim()).then(()=>{e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}).catch(n=>{console.error("Failed to copy:",n);const s=document.createElement("textarea");s.value=t.trim(),document.body.appendChild(s),s.select();try{document.execCommand("copy"),e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}catch(e){console.error("Fallback failed:",e)}document.body.removeChild(s)})}</script><hr><h1 id=things-to-keep-in-mind>Things to Keep in Mind</h1><ul><li><p>If you&rsquo;re logged in as a regular user, switch to a root shell (sudo -i) or use a temporary user with administrative privileges.</p></li><li><p>If you face permission issues, you might need to reapply ownership:</p></li></ul><style>.code-block-container{position:relative;margin:1em 0;border:1px solid #5e5e5e;border-radius:1px;overflow:hidden}.code-header{position:absolute;top:8px;right:8px;z-index:999}.copy-button{display:inline-flex;align-items:center;background:#2d2d2d;color:#fff;border:1px solid #404040;border-radius:4px;padding:4px 8px;font-size:.8em;cursor:pointer;transition:all .2s ease}.copy-button:hover{background:#404040}.copy-button svg{width:14px;height:14px;margin-right:4px}.tooltip{position:absolute;top:-30px;left:50%;transform:translateX(-50%);background:#000;color:#fff;padding:4px 8px;border-radius:4px;font-size:12px;display:none}.tooltip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#000}.copy-button.copied .tooltip{display:block}.code-content{margin:0;padding:0}.code-content pre{margin:0;padding:10px}</style><div class=code-block-container data-lang=bash><div class=code-header><button class=copy-button onclick=copyCodeBlock(this) aria-label="Copy code">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4v12a2 2 0 002 2h8a2 2 0 002-2V7.242a2 2 0 00-.602-1.43L16.083 2.57A2 2 0 0014.685 2H10A2 2 0 008 4z"/><path d="M16 18v2a2 2 0 01-2 2H6a2 2 0 01-2-2V9a2 2 0 012-2h2"/></svg>
-<span>Copy</span><div class=tooltip>Copied!</div></button></div><div class=code-content><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo chown -R username:username /home/username</span></span></code></pre></div></div></div><script>function copyCodeBlock(e){const n=e.closest(".code-block-container"),s=n.querySelector(".code-content pre"),t=s.textContent;navigator.clipboard.writeText(t.trim()).then(()=>{e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}).catch(n=>{console.error("Failed to copy:",n);const s=document.createElement("textarea");s.value=t.trim(),document.body.appendChild(s),s.select();try{document.execCommand("copy"),e.classList.add("copied"),setTimeout(()=>{e.classList.remove("copied")},2e3)}catch(e){console.error("Fallback failed:",e)}document.body.removeChild(s)})}</script></div></div></main></div><footer class=footer><span>CC 2025, Built with <a href=https://gohugo.io class=footerLink>Hugo</a> | Analytics by <a href=https://umami.codeskraps.com/ class=footerLink>Self-hosted Umami</a></span></footer></div></body></html>
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <title>
+Move /home Folder | codeskraps
+</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Mobile development blog by Carles Sentis, sharing expertise in Android, iOS, and Kotlin Multiplatform development">
+
+<meta name="generator" content="Hugo 0.145.0">
+
+
+<link rel="canonical" href="http://localhost:1313/posts/2025/move_home_folder/" >
+
+
+
+
+<link href="/css/style.min.ef8e99489b0b85e34523800e588426b1b4c05e27adcb9d7193952cef205afe6d.css" rel="stylesheet">
+
+<script defer src="https://umami.codeskraps.com/script.js" data-website-id="a80a52da-0b7d-4faf-9dfc-ee6ca5a8421f" data-do-not-track="true"></script>
+
+
+<link rel="stylesheet" href="/css/code-copy.css">
+<script defer src="/js/code-copy.js"></script> 
+
+
+</head>
+
+<body>
+
+    <div class="flexWrapper">
+        <header class="headerWrapper">
+    <div class="header">
+        <div>
+            <a class="terminal" href="http://localhost:1313/">
+                <span>me@codeskraps.com ~ $</span>
+            </a>
+        </div>
+        <input class="side-menu" type="checkbox" id="side-menu">
+        <label class="hamb" for="side-menu"><span class="hamb-line"></span></label>
+        <nav class="headerLinks">
+            <ul>
+                
+                <li>
+                    <a href="http://localhost:1313/posts/" title="" >
+                        ~/posts</a>
+                </li>
+                
+                <li>
+                    <a href="http://localhost:1313/projects/" title="" >
+                        ~/projects</a>
+                </li>
+                
+                <li>
+                    <a href="http://localhost:1313/about/" title="" >
+                        ~/about</a>
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="content">
+            <main class="main">
+                
+<div class="postWrapper">
+    <h1>Move /home Folder</h1>
+    
+    
+    <section class="postMetadata">
+        <dl>
+            
+                
+<dt>tags</dt>
+<dd><span></span>
+    <a href="/tags/linux/">#Linux</a></dd>
+            
+            
+            
+            
+                <dt>published</dt>
+                
+                <dd><time datetime="2025-01-29">January 29, 2025</time></dd>
+            
+            
+                <dt>reading time</dt>
+                <dd>2 minutes</dd>
+            
+        </dl>
+    </section>
+    
+    <div>
+        <p>You can move the <code>/home</code> folder on Ubuntu, but you must do it carefully to avoid breaking your system. Below are the steps to safely move <code>/home</code> to a new location.</p>
+<hr>
+<h2 id="1-create-a-backup-recommended"><strong>1. Create a Backup (Recommended)</strong></h2>
+<p>Before proceeding, create a backup of your home folder in case anything goes wrong.</p>
+
+<style>
+.code-block-container {
+    position: relative;
+    margin: 1em 0;
+    border: 1px solid #5E5E5E;
+    border-radius: 1px;
+    overflow: hidden;
+}
+
+.code-header {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 999;
+}
+
+.copy-button {
+    display: inline-flex;
+    align-items: center;
+    background: #2d2d2d;
+    color: white;
+    border: 1px solid #404040;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+    background: #404040;
+}
+
+.copy-button svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+}
+
+.tooltip {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: black;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: none;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: black;
+}
+
+.copy-button.copied .tooltip {
+    display: block;
+}
+
+.code-content {
+    margin: 0;
+    padding: 0;
+}
+
+.code-content pre {
+    margin: 0;
+    padding: 10px;
+}
+</style>
+
+<div class="code-block-container" data-lang="bash">
+    <div class="code-header">
+        <button class="copy-button" onclick="copyCodeBlock(this)" aria-label="Copy code">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 4v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7.242a2 2 0 0 0-.602-1.43L16.083 2.57A2 2 0 0 0 14.685 2H10a2 2 0 0 0-2 2z"/>
+                <path d="M16 18v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2"/>
+            </svg>
+            <span>Copy</span>
+            <div class="tooltip">Copied!</div>
+        </button>
+    </div>
+    <div class="code-content">
+        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo tar -czvf /home_backup.tar.gz /home</span></span></code></pre></div>
+    </div>
+</div>
+
+<script>
+function copyCodeBlock(button) {
+    const container = button.closest('.code-block-container');
+    const codeContent = container.querySelector('.code-content pre');
+    const code = codeContent.textContent;
+    
+    navigator.clipboard.writeText(code.trim()).then(() => {
+        button.classList.add('copied');
+        setTimeout(() => {
+            button.classList.remove('copied');
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+        
+        const textarea = document.createElement('textarea');
+        textarea.value = code.trim();
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand('copy');
+            button.classList.add('copied');
+            setTimeout(() => {
+                button.classList.remove('copied');
+            }, 2000);
+        } catch (e) {
+            console.error('Fallback failed:', e);
+        }
+        document.body.removeChild(textarea);
+    });
+}
+</script> 
+<h2 id="2-create-a-new-partition-or-mount-point-if-needed"><strong>2. Create a New Partition or Mount Point (If Needed)</strong></h2>
+<p>If you&rsquo;re moving /home to a different partition or disk, make sure it&rsquo;s properly formatted and mounted.</p>
+<p>For example, if you want to use a new disk (e.g., <code>/dev/sdb1</code>):</p>
+
+<style>
+.code-block-container {
+    position: relative;
+    margin: 1em 0;
+    border: 1px solid #5E5E5E;
+    border-radius: 1px;
+    overflow: hidden;
+}
+
+.code-header {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 999;
+}
+
+.copy-button {
+    display: inline-flex;
+    align-items: center;
+    background: #2d2d2d;
+    color: white;
+    border: 1px solid #404040;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+    background: #404040;
+}
+
+.copy-button svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+}
+
+.tooltip {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: black;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: none;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: black;
+}
+
+.copy-button.copied .tooltip {
+    display: block;
+}
+
+.code-content {
+    margin: 0;
+    padding: 0;
+}
+
+.code-content pre {
+    margin: 0;
+    padding: 10px;
+}
+</style>
+
+<div class="code-block-container" data-lang="bash">
+    <div class="code-header">
+        <button class="copy-button" onclick="copyCodeBlock(this)" aria-label="Copy code">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 4v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7.242a2 2 0 0 0-.602-1.43L16.083 2.57A2 2 0 0 0 14.685 2H10a2 2 0 0 0-2 2z"/>
+                <path d="M16 18v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2"/>
+            </svg>
+            <span>Copy</span>
+            <div class="tooltip">Copied!</div>
+        </button>
+    </div>
+    <div class="code-content">
+        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo mkfs.ext4 /dev/sdb1
+</span></span><span style="display:flex;"><span>sudo mkdir /mnt/newhome
+</span></span><span style="display:flex;"><span>sudo mount /dev/sdb1 /mnt/newhome</span></span></code></pre></div>
+    </div>
+</div>
+
+<script>
+function copyCodeBlock(button) {
+    const container = button.closest('.code-block-container');
+    const codeContent = container.querySelector('.code-content pre');
+    const code = codeContent.textContent;
+    
+    navigator.clipboard.writeText(code.trim()).then(() => {
+        button.classList.add('copied');
+        setTimeout(() => {
+            button.classList.remove('copied');
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+        
+        const textarea = document.createElement('textarea');
+        textarea.value = code.trim();
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand('copy');
+            button.classList.add('copied');
+            setTimeout(() => {
+                button.classList.remove('copied');
+            }, 2000);
+        } catch (e) {
+            console.error('Fallback failed:', e);
+        }
+        document.body.removeChild(textarea);
+    });
+}
+</script> 
+<h2 id="3-copy-the-home-folder"><strong>3. Copy the Home Folder</strong></h2>
+<p>Copy all user data to the new location while preserving permissions:</p>
+
+<style>
+.code-block-container {
+    position: relative;
+    margin: 1em 0;
+    border: 1px solid #5E5E5E;
+    border-radius: 1px;
+    overflow: hidden;
+}
+
+.code-header {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 999;
+}
+
+.copy-button {
+    display: inline-flex;
+    align-items: center;
+    background: #2d2d2d;
+    color: white;
+    border: 1px solid #404040;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+    background: #404040;
+}
+
+.copy-button svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+}
+
+.tooltip {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: black;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: none;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: black;
+}
+
+.copy-button.copied .tooltip {
+    display: block;
+}
+
+.code-content {
+    margin: 0;
+    padding: 0;
+}
+
+.code-content pre {
+    margin: 0;
+    padding: 10px;
+}
+</style>
+
+<div class="code-block-container" data-lang="bash">
+    <div class="code-header">
+        <button class="copy-button" onclick="copyCodeBlock(this)" aria-label="Copy code">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 4v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7.242a2 2 0 0 0-.602-1.43L16.083 2.57A2 2 0 0 0 14.685 2H10a2 2 0 0 0-2 2z"/>
+                <path d="M16 18v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2"/>
+            </svg>
+            <span>Copy</span>
+            <div class="tooltip">Copied!</div>
+        </button>
+    </div>
+    <div class="code-content">
+        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo rsync -aXS /home/ /mnt/newhome/</span></span></code></pre></div>
+    </div>
+</div>
+
+<script>
+function copyCodeBlock(button) {
+    const container = button.closest('.code-block-container');
+    const codeContent = container.querySelector('.code-content pre');
+    const code = codeContent.textContent;
+    
+    navigator.clipboard.writeText(code.trim()).then(() => {
+        button.classList.add('copied');
+        setTimeout(() => {
+            button.classList.remove('copied');
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+        
+        const textarea = document.createElement('textarea');
+        textarea.value = code.trim();
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand('copy');
+            button.classList.add('copied');
+            setTimeout(() => {
+                button.classList.remove('copied');
+            }, 2000);
+        } catch (e) {
+            console.error('Fallback failed:', e);
+        }
+        document.body.removeChild(textarea);
+    });
+}
+</script> 
+<hr>
+<h2 id="4-update-fstab"><strong>4. Update fstab</strong></h2>
+<p>Edit /etc/fstab to mount the new home directory at boot.</p>
+
+<style>
+.code-block-container {
+    position: relative;
+    margin: 1em 0;
+    border: 1px solid #5E5E5E;
+    border-radius: 1px;
+    overflow: hidden;
+}
+
+.code-header {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 999;
+}
+
+.copy-button {
+    display: inline-flex;
+    align-items: center;
+    background: #2d2d2d;
+    color: white;
+    border: 1px solid #404040;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+    background: #404040;
+}
+
+.copy-button svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+}
+
+.tooltip {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: black;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: none;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: black;
+}
+
+.copy-button.copied .tooltip {
+    display: block;
+}
+
+.code-content {
+    margin: 0;
+    padding: 0;
+}
+
+.code-content pre {
+    margin: 0;
+    padding: 10px;
+}
+</style>
+
+<div class="code-block-container" data-lang="bash">
+    <div class="code-header">
+        <button class="copy-button" onclick="copyCodeBlock(this)" aria-label="Copy code">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 4v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7.242a2 2 0 0 0-.602-1.43L16.083 2.57A2 2 0 0 0 14.685 2H10a2 2 0 0 0-2 2z"/>
+                <path d="M16 18v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2"/>
+            </svg>
+            <span>Copy</span>
+            <div class="tooltip">Copied!</div>
+        </button>
+    </div>
+    <div class="code-content">
+        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo nano /etc/fstab</span></span></code></pre></div>
+    </div>
+</div>
+
+<script>
+function copyCodeBlock(button) {
+    const container = button.closest('.code-block-container');
+    const codeContent = container.querySelector('.code-content pre');
+    const code = codeContent.textContent;
+    
+    navigator.clipboard.writeText(code.trim()).then(() => {
+        button.classList.add('copied');
+        setTimeout(() => {
+            button.classList.remove('copied');
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+        
+        const textarea = document.createElement('textarea');
+        textarea.value = code.trim();
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand('copy');
+            button.classList.add('copied');
+            setTimeout(() => {
+                button.classList.remove('copied');
+            }, 2000);
+        } catch (e) {
+            console.error('Fallback failed:', e);
+        }
+        document.body.removeChild(textarea);
+    });
+}
+</script> 
+<p>Add this line at the end (adjust the path accordingly):</p>
+
+<style>
+.code-block-container {
+    position: relative;
+    margin: 1em 0;
+    border: 1px solid #5E5E5E;
+    border-radius: 1px;
+    overflow: hidden;
+}
+
+.code-header {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 999;
+}
+
+.copy-button {
+    display: inline-flex;
+    align-items: center;
+    background: #2d2d2d;
+    color: white;
+    border: 1px solid #404040;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+    background: #404040;
+}
+
+.copy-button svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+}
+
+.tooltip {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: black;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: none;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: black;
+}
+
+.copy-button.copied .tooltip {
+    display: block;
+}
+
+.code-content {
+    margin: 0;
+    padding: 0;
+}
+
+.code-content pre {
+    margin: 0;
+    padding: 10px;
+}
+</style>
+
+<div class="code-block-container" data-lang="bash">
+    <div class="code-header">
+        <button class="copy-button" onclick="copyCodeBlock(this)" aria-label="Copy code">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 4v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7.242a2 2 0 0 0-.602-1.43L16.083 2.57A2 2 0 0 0 14.685 2H10a2 2 0 0 0-2 2z"/>
+                <path d="M16 18v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2"/>
+            </svg>
+            <span>Copy</span>
+            <div class="tooltip">Copied!</div>
+        </button>
+    </div>
+    <div class="code-content">
+        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/dev/sdb1  /home  ext4  defaults  <span style="color:#bd93f9">0</span>  <span style="color:#bd93f9">2</span></span></span></code></pre></div>
+    </div>
+</div>
+
+<script>
+function copyCodeBlock(button) {
+    const container = button.closest('.code-block-container');
+    const codeContent = container.querySelector('.code-content pre');
+    const code = codeContent.textContent;
+    
+    navigator.clipboard.writeText(code.trim()).then(() => {
+        button.classList.add('copied');
+        setTimeout(() => {
+            button.classList.remove('copied');
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+        
+        const textarea = document.createElement('textarea');
+        textarea.value = code.trim();
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand('copy');
+            button.classList.add('copied');
+            setTimeout(() => {
+                button.classList.remove('copied');
+            }, 2000);
+        } catch (e) {
+            console.error('Fallback failed:', e);
+        }
+        document.body.removeChild(textarea);
+    });
+}
+</script> 
+<p>If you prefer using the UUID, first find it:</p>
+
+<style>
+.code-block-container {
+    position: relative;
+    margin: 1em 0;
+    border: 1px solid #5E5E5E;
+    border-radius: 1px;
+    overflow: hidden;
+}
+
+.code-header {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 999;
+}
+
+.copy-button {
+    display: inline-flex;
+    align-items: center;
+    background: #2d2d2d;
+    color: white;
+    border: 1px solid #404040;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+    background: #404040;
+}
+
+.copy-button svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+}
+
+.tooltip {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: black;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: none;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: black;
+}
+
+.copy-button.copied .tooltip {
+    display: block;
+}
+
+.code-content {
+    margin: 0;
+    padding: 0;
+}
+
+.code-content pre {
+    margin: 0;
+    padding: 10px;
+}
+</style>
+
+<div class="code-block-container" data-lang="bash">
+    <div class="code-header">
+        <button class="copy-button" onclick="copyCodeBlock(this)" aria-label="Copy code">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 4v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7.242a2 2 0 0 0-.602-1.43L16.083 2.57A2 2 0 0 0 14.685 2H10a2 2 0 0 0-2 2z"/>
+                <path d="M16 18v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2"/>
+            </svg>
+            <span>Copy</span>
+            <div class="tooltip">Copied!</div>
+        </button>
+    </div>
+    <div class="code-content">
+        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo blkid</span></span></code></pre></div>
+    </div>
+</div>
+
+<script>
+function copyCodeBlock(button) {
+    const container = button.closest('.code-block-container');
+    const codeContent = container.querySelector('.code-content pre');
+    const code = codeContent.textContent;
+    
+    navigator.clipboard.writeText(code.trim()).then(() => {
+        button.classList.add('copied');
+        setTimeout(() => {
+            button.classList.remove('copied');
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+        
+        const textarea = document.createElement('textarea');
+        textarea.value = code.trim();
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand('copy');
+            button.classList.add('copied');
+            setTimeout(() => {
+                button.classList.remove('copied');
+            }, 2000);
+        } catch (e) {
+            console.error('Fallback failed:', e);
+        }
+        document.body.removeChild(textarea);
+    });
+}
+</script> 
+<p>Then, add this line instead:</p>
+
+<style>
+.code-block-container {
+    position: relative;
+    margin: 1em 0;
+    border: 1px solid #5E5E5E;
+    border-radius: 1px;
+    overflow: hidden;
+}
+
+.code-header {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 999;
+}
+
+.copy-button {
+    display: inline-flex;
+    align-items: center;
+    background: #2d2d2d;
+    color: white;
+    border: 1px solid #404040;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+    background: #404040;
+}
+
+.copy-button svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+}
+
+.tooltip {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: black;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: none;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: black;
+}
+
+.copy-button.copied .tooltip {
+    display: block;
+}
+
+.code-content {
+    margin: 0;
+    padding: 0;
+}
+
+.code-content pre {
+    margin: 0;
+    padding: 10px;
+}
+</style>
+
+<div class="code-block-container" data-lang="arduino">
+    <div class="code-header">
+        <button class="copy-button" onclick="copyCodeBlock(this)" aria-label="Copy code">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 4v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7.242a2 2 0 0 0-.602-1.43L16.083 2.57A2 2 0 0 0 14.685 2H10a2 2 0 0 0-2 2z"/>
+                <path d="M16 18v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2"/>
+            </svg>
+            <span>Copy</span>
+            <div class="tooltip">Copied!</div>
+        </button>
+    </div>
+    <div class="code-content">
+        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-arduino" data-lang="arduino"><span style="display:flex;"><span>UUID<span style="color:#ff79c6">=</span>your<span style="color:#ff79c6">-</span>uuid <span style="color:#ff79c6">/</span><span style="color:#50fa7b">home</span> ext4 defaults <span style="color:#bd93f9">0</span> <span style="color:#bd93f9">2</span></span></span></code></pre></div>
+    </div>
+</div>
+
+<script>
+function copyCodeBlock(button) {
+    const container = button.closest('.code-block-container');
+    const codeContent = container.querySelector('.code-content pre');
+    const code = codeContent.textContent;
+    
+    navigator.clipboard.writeText(code.trim()).then(() => {
+        button.classList.add('copied');
+        setTimeout(() => {
+            button.classList.remove('copied');
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+        
+        const textarea = document.createElement('textarea');
+        textarea.value = code.trim();
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand('copy');
+            button.classList.add('copied');
+            setTimeout(() => {
+                button.classList.remove('copied');
+            }, 2000);
+        } catch (e) {
+            console.error('Fallback failed:', e);
+        }
+        document.body.removeChild(textarea);
+    });
+}
+</script> 
+<hr>
+<h2 id="5-unmount-old-home-and-mount-new-one"><strong>5. Unmount Old Home and Mount New One</strong></h2>
+<p>Switch to a different session (e.g., TTY):</p>
+
+<style>
+.code-block-container {
+    position: relative;
+    margin: 1em 0;
+    border: 1px solid #5E5E5E;
+    border-radius: 1px;
+    overflow: hidden;
+}
+
+.code-header {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 999;
+}
+
+.copy-button {
+    display: inline-flex;
+    align-items: center;
+    background: #2d2d2d;
+    color: white;
+    border: 1px solid #404040;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+    background: #404040;
+}
+
+.copy-button svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+}
+
+.tooltip {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: black;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: none;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: black;
+}
+
+.copy-button.copied .tooltip {
+    display: block;
+}
+
+.code-content {
+    margin: 0;
+    padding: 0;
+}
+
+.code-content pre {
+    margin: 0;
+    padding: 10px;
+}
+</style>
+
+<div class="code-block-container" data-lang="bash">
+    <div class="code-header">
+        <button class="copy-button" onclick="copyCodeBlock(this)" aria-label="Copy code">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 4v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7.242a2 2 0 0 0-.602-1.43L16.083 2.57A2 2 0 0 0 14.685 2H10a2 2 0 0 0-2 2z"/>
+                <path d="M16 18v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2"/>
+            </svg>
+            <span>Copy</span>
+            <div class="tooltip">Copied!</div>
+        </button>
+    </div>
+    <div class="code-content">
+        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Ctrl + Alt + F3</span></span></code></pre></div>
+    </div>
+</div>
+
+<script>
+function copyCodeBlock(button) {
+    const container = button.closest('.code-block-container');
+    const codeContent = container.querySelector('.code-content pre');
+    const code = codeContent.textContent;
+    
+    navigator.clipboard.writeText(code.trim()).then(() => {
+        button.classList.add('copied');
+        setTimeout(() => {
+            button.classList.remove('copied');
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+        
+        const textarea = document.createElement('textarea');
+        textarea.value = code.trim();
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand('copy');
+            button.classList.add('copied');
+            setTimeout(() => {
+                button.classList.remove('copied');
+            }, 2000);
+        } catch (e) {
+            console.error('Fallback failed:', e);
+        }
+        document.body.removeChild(textarea);
+    });
+}
+</script> 
+<p>Log in and stop processes using <code>/home</code>:</p>
+
+<style>
+.code-block-container {
+    position: relative;
+    margin: 1em 0;
+    border: 1px solid #5E5E5E;
+    border-radius: 1px;
+    overflow: hidden;
+}
+
+.code-header {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 999;
+}
+
+.copy-button {
+    display: inline-flex;
+    align-items: center;
+    background: #2d2d2d;
+    color: white;
+    border: 1px solid #404040;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+    background: #404040;
+}
+
+.copy-button svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+}
+
+.tooltip {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: black;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: none;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: black;
+}
+
+.copy-button.copied .tooltip {
+    display: block;
+}
+
+.code-content {
+    margin: 0;
+    padding: 0;
+}
+
+.code-content pre {
+    margin: 0;
+    padding: 10px;
+}
+</style>
+
+<div class="code-block-container" data-lang="bash">
+    <div class="code-header">
+        <button class="copy-button" onclick="copyCodeBlock(this)" aria-label="Copy code">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 4v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7.242a2 2 0 0 0-.602-1.43L16.083 2.57A2 2 0 0 0 14.685 2H10a2 2 0 0 0-2 2z"/>
+                <path d="M16 18v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2"/>
+            </svg>
+            <span>Copy</span>
+            <div class="tooltip">Copied!</div>
+        </button>
+    </div>
+    <div class="code-content">
+        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl stop gdm  <span style="color:#6272a4"># For GNOME (or use sddm/lightdm if applicable)</span></span></span></code></pre></div>
+    </div>
+</div>
+
+<script>
+function copyCodeBlock(button) {
+    const container = button.closest('.code-block-container');
+    const codeContent = container.querySelector('.code-content pre');
+    const code = codeContent.textContent;
+    
+    navigator.clipboard.writeText(code.trim()).then(() => {
+        button.classList.add('copied');
+        setTimeout(() => {
+            button.classList.remove('copied');
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+        
+        const textarea = document.createElement('textarea');
+        textarea.value = code.trim();
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand('copy');
+            button.classList.add('copied');
+            setTimeout(() => {
+                button.classList.remove('copied');
+            }, 2000);
+        } catch (e) {
+            console.error('Fallback failed:', e);
+        }
+        document.body.removeChild(textarea);
+    });
+}
+</script> 
+<p>Unmount and remount:</p>
+
+<style>
+.code-block-container {
+    position: relative;
+    margin: 1em 0;
+    border: 1px solid #5E5E5E;
+    border-radius: 1px;
+    overflow: hidden;
+}
+
+.code-header {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 999;
+}
+
+.copy-button {
+    display: inline-flex;
+    align-items: center;
+    background: #2d2d2d;
+    color: white;
+    border: 1px solid #404040;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+    background: #404040;
+}
+
+.copy-button svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+}
+
+.tooltip {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: black;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: none;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: black;
+}
+
+.copy-button.copied .tooltip {
+    display: block;
+}
+
+.code-content {
+    margin: 0;
+    padding: 0;
+}
+
+.code-content pre {
+    margin: 0;
+    padding: 10px;
+}
+</style>
+
+<div class="code-block-container" data-lang="bash">
+    <div class="code-header">
+        <button class="copy-button" onclick="copyCodeBlock(this)" aria-label="Copy code">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 4v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7.242a2 2 0 0 0-.602-1.43L16.083 2.57A2 2 0 0 0 14.685 2H10a2 2 0 0 0-2 2z"/>
+                <path d="M16 18v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2"/>
+            </svg>
+            <span>Copy</span>
+            <div class="tooltip">Copied!</div>
+        </button>
+    </div>
+    <div class="code-content">
+        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo umount /home
+</span></span><span style="display:flex;"><span>sudo mount /home</span></span></code></pre></div>
+    </div>
+</div>
+
+<script>
+function copyCodeBlock(button) {
+    const container = button.closest('.code-block-container');
+    const codeContent = container.querySelector('.code-content pre');
+    const code = codeContent.textContent;
+    
+    navigator.clipboard.writeText(code.trim()).then(() => {
+        button.classList.add('copied');
+        setTimeout(() => {
+            button.classList.remove('copied');
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+        
+        const textarea = document.createElement('textarea');
+        textarea.value = code.trim();
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand('copy');
+            button.classList.add('copied');
+            setTimeout(() => {
+                button.classList.remove('copied');
+            }, 2000);
+        } catch (e) {
+            console.error('Fallback failed:', e);
+        }
+        document.body.removeChild(textarea);
+    });
+}
+</script> 
+<hr>
+<h2 id="6-verify-and-reboot"><strong>6. Verify and Reboot</strong></h2>
+<p>Check that everything is in place:</p>
+
+<style>
+.code-block-container {
+    position: relative;
+    margin: 1em 0;
+    border: 1px solid #5E5E5E;
+    border-radius: 1px;
+    overflow: hidden;
+}
+
+.code-header {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 999;
+}
+
+.copy-button {
+    display: inline-flex;
+    align-items: center;
+    background: #2d2d2d;
+    color: white;
+    border: 1px solid #404040;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+    background: #404040;
+}
+
+.copy-button svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+}
+
+.tooltip {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: black;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: none;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: black;
+}
+
+.copy-button.copied .tooltip {
+    display: block;
+}
+
+.code-content {
+    margin: 0;
+    padding: 0;
+}
+
+.code-content pre {
+    margin: 0;
+    padding: 10px;
+}
+</style>
+
+<div class="code-block-container" data-lang="bash">
+    <div class="code-header">
+        <button class="copy-button" onclick="copyCodeBlock(this)" aria-label="Copy code">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 4v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7.242a2 2 0 0 0-.602-1.43L16.083 2.57A2 2 0 0 0 14.685 2H10a2 2 0 0 0-2 2z"/>
+                <path d="M16 18v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2"/>
+            </svg>
+            <span>Copy</span>
+            <div class="tooltip">Copied!</div>
+        </button>
+    </div>
+    <div class="code-content">
+        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ls /home</span></span></code></pre></div>
+    </div>
+</div>
+
+<script>
+function copyCodeBlock(button) {
+    const container = button.closest('.code-block-container');
+    const codeContent = container.querySelector('.code-content pre');
+    const code = codeContent.textContent;
+    
+    navigator.clipboard.writeText(code.trim()).then(() => {
+        button.classList.add('copied');
+        setTimeout(() => {
+            button.classList.remove('copied');
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+        
+        const textarea = document.createElement('textarea');
+        textarea.value = code.trim();
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand('copy');
+            button.classList.add('copied');
+            setTimeout(() => {
+                button.classList.remove('copied');
+            }, 2000);
+        } catch (e) {
+            console.error('Fallback failed:', e);
+        }
+        document.body.removeChild(textarea);
+    });
+}
+</script> 
+<p>If everything looks good, reboot:</p>
+
+<style>
+.code-block-container {
+    position: relative;
+    margin: 1em 0;
+    border: 1px solid #5E5E5E;
+    border-radius: 1px;
+    overflow: hidden;
+}
+
+.code-header {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 999;
+}
+
+.copy-button {
+    display: inline-flex;
+    align-items: center;
+    background: #2d2d2d;
+    color: white;
+    border: 1px solid #404040;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+    background: #404040;
+}
+
+.copy-button svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+}
+
+.tooltip {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: black;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: none;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: black;
+}
+
+.copy-button.copied .tooltip {
+    display: block;
+}
+
+.code-content {
+    margin: 0;
+    padding: 0;
+}
+
+.code-content pre {
+    margin: 0;
+    padding: 10px;
+}
+</style>
+
+<div class="code-block-container" data-lang="bash">
+    <div class="code-header">
+        <button class="copy-button" onclick="copyCodeBlock(this)" aria-label="Copy code">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 4v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7.242a2 2 0 0 0-.602-1.43L16.083 2.57A2 2 0 0 0 14.685 2H10a2 2 0 0 0-2 2z"/>
+                <path d="M16 18v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2"/>
+            </svg>
+            <span>Copy</span>
+            <div class="tooltip">Copied!</div>
+        </button>
+    </div>
+    <div class="code-content">
+        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo reboot</span></span></code></pre></div>
+    </div>
+</div>
+
+<script>
+function copyCodeBlock(button) {
+    const container = button.closest('.code-block-container');
+    const codeContent = container.querySelector('.code-content pre');
+    const code = codeContent.textContent;
+    
+    navigator.clipboard.writeText(code.trim()).then(() => {
+        button.classList.add('copied');
+        setTimeout(() => {
+            button.classList.remove('copied');
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+        
+        const textarea = document.createElement('textarea');
+        textarea.value = code.trim();
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand('copy');
+            button.classList.add('copied');
+            setTimeout(() => {
+                button.classList.remove('copied');
+            }, 2000);
+        } catch (e) {
+            console.error('Fallback failed:', e);
+        }
+        document.body.removeChild(textarea);
+    });
+}
+</script> 
+<hr>
+<h1 id="things-to-keep-in-mind">Things to Keep in Mind</h1>
+<ul>
+<li>
+<p>If you&rsquo;re logged in as a regular user, switch to a root shell (sudo -i) or use a temporary user with administrative privileges.</p>
+</li>
+<li>
+<p>If you face permission issues, you might need to reapply ownership:</p>
+</li>
+</ul>
+
+<style>
+.code-block-container {
+    position: relative;
+    margin: 1em 0;
+    border: 1px solid #5E5E5E;
+    border-radius: 1px;
+    overflow: hidden;
+}
+
+.code-header {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 999;
+}
+
+.copy-button {
+    display: inline-flex;
+    align-items: center;
+    background: #2d2d2d;
+    color: white;
+    border: 1px solid #404040;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+    background: #404040;
+}
+
+.copy-button svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+}
+
+.tooltip {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: black;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: none;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: black;
+}
+
+.copy-button.copied .tooltip {
+    display: block;
+}
+
+.code-content {
+    margin: 0;
+    padding: 0;
+}
+
+.code-content pre {
+    margin: 0;
+    padding: 10px;
+}
+</style>
+
+<div class="code-block-container" data-lang="bash">
+    <div class="code-header">
+        <button class="copy-button" onclick="copyCodeBlock(this)" aria-label="Copy code">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 4v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7.242a2 2 0 0 0-.602-1.43L16.083 2.57A2 2 0 0 0 14.685 2H10a2 2 0 0 0-2 2z"/>
+                <path d="M16 18v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2"/>
+            </svg>
+            <span>Copy</span>
+            <div class="tooltip">Copied!</div>
+        </button>
+    </div>
+    <div class="code-content">
+        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo chown -R username:username /home/username</span></span></code></pre></div>
+    </div>
+</div>
+
+<script>
+function copyCodeBlock(button) {
+    const container = button.closest('.code-block-container');
+    const codeContent = container.querySelector('.code-content pre');
+    const code = codeContent.textContent;
+    
+    navigator.clipboard.writeText(code.trim()).then(() => {
+        button.classList.add('copied');
+        setTimeout(() => {
+            button.classList.remove('copied');
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+        
+        const textarea = document.createElement('textarea');
+        textarea.value = code.trim();
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand('copy');
+            button.classList.add('copied');
+            setTimeout(() => {
+                button.classList.remove('copied');
+            }, 2000);
+        } catch (e) {
+            console.error('Fallback failed:', e);
+        }
+        document.body.removeChild(textarea);
+    });
+}
+</script>
+    </div>
+</div>
+
+            </main>
+        </div>
+
+
+        <footer class="footer">
+    
+        <span>CC 2025, Built with <a href="https://gohugo.io" class="footerLink">Hugo</a> | Analytics by <a href="https://umami.codeskraps.com/" class="footerLink">Self-hosted Umami</a></span>
+    
+</footer>
+    </div>
+
+</body>
+
+</html>

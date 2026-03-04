@@ -1,32 +1,21 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Weather on codeskraps</title><link>https://codeskraps.com/tags/weather/</link><description>Recent content in Weather on codeskraps</description><generator>Hugo</generator><language>en-us</language><managingEditor>me@codeskraps.com (codeskraps)</managingEditor><webMaster>me@codeskraps.com (codeskraps)</webMaster><lastBuildDate>Tue, 24 Feb 2026 10:00:00 +0100</lastBuildDate><atom:link href="https://codeskraps.com/tags/weather/index.xml" rel="self" type="application/rss+xml"/><item><title>Weekly Weather v3: Radar Maps, New Settings, and Landscape Support</title><link>https://codeskraps.com/posts/2026/weekly_weather_v3/</link><pubDate>Tue, 24 Feb 2026 10:00:00 +0100</pubDate><author>me@codeskraps.com (codeskraps)</author><guid>https://codeskraps.com/posts/2026/weekly_weather_v3/</guid><description>&lt;p>Version 3 of &lt;a href="https://git.codeskraps.com/codeskraps/Weekly-Weather">Weekly Weather&lt;/a> is out, and it&amp;rsquo;s a significant update. The headline addition is an interactive radar map with animated precipitation overlays, but there&amp;rsquo;s a lot more packed into this release.&lt;/p>
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
- 
- 
- 
- &lt;picture style="display: block; text-align: center; margin: 2rem auto;">
- &lt;source media="(max-width: 480px)" srcset="https://codeskraps.com/posts/2026/weekly_weather_v3/screenshot1_hu_339c9c5977770ba0.jpg">
- &lt;source media="(max-width: 800px)" srcset="https://codeskraps.com/posts/2026/weekly_weather_v3/screenshot1_hu_4f77ce9234d55bc1.jpg">
- &lt;source media="(min-width: 801px)" srcset="https://codeskraps.com/posts/2026/weekly_weather_v3/screenshot1_hu_86404b662431890a.jpg">
- &lt;img 
- src="https://codeskraps.com/posts/2026/weekly_weather_v3/screenshot1_hu_86404b662431890a.jpg" 
- alt="Weekly Weather forecast screen" 
- width="400" 
- height="898"
- style="max-width: 100%; height: auto; margin: 0 auto; display: block;"
- class="responsive-image"
- loading="lazy"
- >
- &lt;/picture></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Weather on codeskraps</title>
+    <link>http://localhost:1313/tags/weather/</link>
+    <description>Recent content in Weather on codeskraps</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <managingEditor>me@codeskraps.com (codeskraps)</managingEditor>
+    <webMaster>me@codeskraps.com (codeskraps)</webMaster>
+    <lastBuildDate>Tue, 24 Feb 2026 10:00:00 +0100</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/weather/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Weekly Weather v3: Radar Maps, New Settings, and Landscape Support</title>
+      <link>http://localhost:1313/posts/2026/weekly_weather_v3/</link>
+      <pubDate>Tue, 24 Feb 2026 10:00:00 +0100</pubDate><author>me@codeskraps.com (codeskraps)</author>
+      <guid>http://localhost:1313/posts/2026/weekly_weather_v3/</guid>
+      <description>&lt;p&gt;Version 3 of &lt;a href=&#34;https://git.codeskraps.com/codeskraps/Weekly-Weather&#34;&gt;Weekly Weather&lt;/a&gt; is out, and it&amp;rsquo;s a significant update. The headline addition is an interactive radar map with animated precipitation overlays, but there&amp;rsquo;s a lot more packed into this release.&lt;/p&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;  &#xA;  &#xA;  &#xA;  &#xA;  &lt;picture style=&#34;display: block; text-align: center; margin: 2rem auto;&#34;&gt;&#xA;    &lt;source media=&#34;(max-width: 480px)&#34; srcset=&#34;http://localhost:1313/posts/2026/weekly_weather_v3/screenshot1_hu_339c9c5977770ba0.jpg&#34;&gt;&#xA;    &lt;source media=&#34;(max-width: 800px)&#34; srcset=&#34;http://localhost:1313/posts/2026/weekly_weather_v3/screenshot1_hu_4f77ce9234d55bc1.jpg&#34;&gt;&#xA;    &lt;source media=&#34;(min-width: 801px)&#34; srcset=&#34;http://localhost:1313/posts/2026/weekly_weather_v3/screenshot1_hu_86404b662431890a.jpg&#34;&gt;&#xA;    &lt;img &#xA;      src=&#34;http://localhost:1313/posts/2026/weekly_weather_v3/screenshot1_hu_86404b662431890a.jpg&#34; &#xA;      alt=&#34;Weekly Weather forecast screen&#34; &#xA;      width=&#34;400&#34; &#xA;      height=&#34;898&#34;&#xA;      style=&#34;max-width: 100%; height: auto; margin: 0 auto; display: block;&#34;&#xA;      class=&#34;responsive-image&#34;&#xA;      loading=&#34;lazy&#34;&#xA;    &gt;&#xA;  &lt;/picture&gt;</description>
+    </item>
+  </channel>
+</rss>

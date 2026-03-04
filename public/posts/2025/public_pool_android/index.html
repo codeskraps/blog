@@ -1,8 +1,193 @@
-<!doctype html><html lang=en-us><head><title>Building PublicPoolAndroid in One Day with Cursor | codeskraps
-</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Mobile development blog by Carles Sentis, sharing expertise in Android, iOS, and Kotlin Multiplatform development"><meta name=generator content="Hugo 0.145.0"><link rel=canonical href=https://codeskraps.com/posts/2025/public_pool_android/><link href=/css/style.min.ef8e99489b0b85e34523800e588426b1b4c05e27adcb9d7193952cef205afe6d.css rel=stylesheet><script defer src=https://umami.codeskraps.com/script.js data-website-id=a80a52da-0b7d-4faf-9dfc-ee6ca5a8421f data-do-not-track=true></script><link rel=stylesheet href=/css/code-copy.css><script defer src=/js/code-copy.js></script></head><body><div class=flexWrapper><header class=headerWrapper><div class=header><div><a class=terminal href=https://codeskraps.com/><span>me@codeskraps.com ~ $</span></a></div><input class=side-menu type=checkbox id=side-menu>
-<label class=hamb for=side-menu><span class=hamb-line></span></label><nav class=headerLinks><ul><li><a href=https://codeskraps.com/posts/ title>~/posts</a></li><li><a href=https://codeskraps.com/projects/ title>~/projects</a></li><li><a href=https://codeskraps.com/about/ title>~/about</a></li></ul></nav></div></header><div class=content><main class=main><div class=postWrapper><h1>Building PublicPoolAndroid in One Day with Cursor</h1><section class=postMetadata><dl><dt>tags</dt><dd><span></span>
-<a href=/tags/android/>#Android</a><span></span>
-<a href=/tags/cryptocurrency/>#Cryptocurrency</a><span></span>
-<a href=/tags/mining/>#Mining</a><span></span>
-<a href=/tags/cursor/>#Cursor</a><span></span>
-<a href=/tags/development/>#Development</a></dd><dt>published</dt><dd><time datetime=2025-04-05>April 5, 2025</time></dd><dt>reading time</dt><dd>2 minutes</dd></dl></section><div><p>Today I want to share how I built a complete cryptocurrency mining monitoring app in just one day, from initial concept to Google Play Store submission, using Cursor as my IDE.</p><picture style="display:block;text-align:center;margin:2rem auto"><source media="(max-width: 480px)" srcset=/posts/2025/public_pool_android/feature_graphic_hu_b07fb17dbb2a4697.jpg><source media="(max-width: 800px)" srcset=/posts/2025/public_pool_android/feature_graphic_hu_40801fc72754b39c.jpg><source media="(min-width: 801px)" srcset=/posts/2025/public_pool_android/feature_graphic_hu_cc0a414e721049d1.jpg><img src=/posts/2025/public_pool_android/feature_graphic_hu_cc0a414e721049d1.jpg alt="Public Pool Android App" width=800 height=391 style="max-width:100%;height:auto;margin:0 auto;display:block" class=responsive-image loading=lazy></picture><h2 id=the-app-public-pool-android>The App: Public Pool Android</h2><p><a href=https://git.codeskraps.com/codeskraps/PublicPoolAndroid>Public Pool Android</a> is a mobile application that lets cryptocurrency miners monitor their mining activities directly from their Android devices. The app provides real-time tracking of hash rates, worker status, and wallet details while on the go.</p><h2 id=key-features>Key Features</h2><ul><li><strong>Dashboard:</strong> View comprehensive mining statistics including best difficulty, network difficulty, network hash rate, and block height</li><li><strong>Workers Monitoring:</strong> Keep track of individual mining workers with details on hash rate, difficulty, and last seen time</li><li><strong>Wallet Management:</strong> Access wallet balance and transaction history with current price information</li><li><strong>Real-time Updates:</strong> Receive timely notifications about your mining operations</li></ul><h2 id=from-concept-to-store-in-one-day>From Concept to Store in One Day</h2><p>The entire development process took just one workday (9 AM to 6 PM), during which I:</p><ul><li>Created the initial project structure and repository</li><li>Built the network communication layer</li><li>Implemented data models, repositories, and use cases</li><li>Developed the UI components including dashboard, workers, and wallet screens</li><li>Added theming, localization support, and settings</li><li>Performed testing and submitted to Google Play Store for review</li></ul><h2 id=bitaxe-and-lottomining>Bitaxe and LottoMining</h2><p>One of the most interesting features of the app is its support for Bitaxe miners using the LottoMining approach. LottoMining is essentially a solo mining strategy where:</p><ul><li>Miners work independently to find blocks rather than contributing to a pool</li><li>Each miner receives the full block reward when they successfully mine a block</li><li>The reward frequency is less consistent but potentially more profitable</li><li>Perfect for Bitaxe devices which are optimized for efficient solo mining</li></ul><p>The app provides specialized monitoring for Bitaxe solo miners, displaying:</p><ul><li>Current network difficulty and your hashrate</li><li>Estimated time to find a block</li><li>Block discovery notifications</li><li>Complete mining statistics to optimize your setup</li></ul><h2 id=the-power-of-cursor>The Power of Cursor</h2><p>I couldn&rsquo;t have completed this project so quickly without <a href=https://cursor.sh/>Cursor</a>, an AI-powered IDE that supercharged my development workflow:</p><ul><li>AI-assisted code generation saved hours of boilerplate writing</li><li>Intelligent refactoring suggestions helped maintain clean architecture</li><li>Context-aware completion significantly reduced development time</li><li>Built-in code review capabilities caught potential issues early</li></ul></div></div></main></div><footer class=footer><span>CC 2025, Built with <a href=https://gohugo.io class=footerLink>Hugo</a> | Analytics by <a href=https://umami.codeskraps.com/ class=footerLink>Self-hosted Umami</a></span></footer></div></body></html>
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <title>
+Building PublicPoolAndroid in One Day with Cursor | codeskraps
+</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Mobile development blog by Carles Sentis, sharing expertise in Android, iOS, and Kotlin Multiplatform development">
+
+<meta name="generator" content="Hugo 0.145.0">
+
+
+<link rel="canonical" href="http://localhost:1313/posts/2025/public_pool_android/" >
+
+
+
+
+<link href="/css/style.min.ef8e99489b0b85e34523800e588426b1b4c05e27adcb9d7193952cef205afe6d.css" rel="stylesheet">
+
+<script defer src="https://umami.codeskraps.com/script.js" data-website-id="a80a52da-0b7d-4faf-9dfc-ee6ca5a8421f" data-do-not-track="true"></script>
+
+
+<link rel="stylesheet" href="/css/code-copy.css">
+<script defer src="/js/code-copy.js"></script> 
+
+
+</head>
+
+<body>
+
+    <div class="flexWrapper">
+        <header class="headerWrapper">
+    <div class="header">
+        <div>
+            <a class="terminal" href="http://localhost:1313/">
+                <span>me@codeskraps.com ~ $</span>
+            </a>
+        </div>
+        <input class="side-menu" type="checkbox" id="side-menu">
+        <label class="hamb" for="side-menu"><span class="hamb-line"></span></label>
+        <nav class="headerLinks">
+            <ul>
+                
+                <li>
+                    <a href="http://localhost:1313/posts/" title="" >
+                        ~/posts</a>
+                </li>
+                
+                <li>
+                    <a href="http://localhost:1313/projects/" title="" >
+                        ~/projects</a>
+                </li>
+                
+                <li>
+                    <a href="http://localhost:1313/about/" title="" >
+                        ~/about</a>
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="content">
+            <main class="main">
+                
+<div class="postWrapper">
+    <h1>Building PublicPoolAndroid in One Day with Cursor</h1>
+    
+    
+    <section class="postMetadata">
+        <dl>
+            
+                
+<dt>tags</dt>
+<dd><span></span>
+    <a href="/tags/android/">#Android</a><span></span>
+    <a href="/tags/cryptocurrency/">#Cryptocurrency</a><span></span>
+    <a href="/tags/mining/">#Mining</a><span></span>
+    <a href="/tags/cursor/">#Cursor</a><span></span>
+    <a href="/tags/development/">#Development</a></dd>
+            
+            
+            
+            
+                <dt>published</dt>
+                
+                <dd><time datetime="2025-04-05">April 5, 2025</time></dd>
+            
+            
+                <dt>reading time</dt>
+                <dd>2 minutes</dd>
+            
+        </dl>
+    </section>
+    
+    <div>
+        <p>Today I want to share how I built a complete cryptocurrency mining monitoring app in just one day, from initial concept to Google Play Store submission, using Cursor as my IDE.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  <picture style="display: block; text-align: center; margin: 2rem auto;">
+    <source media="(max-width: 480px)" srcset="/posts/2025/public_pool_android/feature_graphic_hu_b07fb17dbb2a4697.jpg">
+    <source media="(max-width: 800px)" srcset="/posts/2025/public_pool_android/feature_graphic_hu_40801fc72754b39c.jpg">
+    <source media="(min-width: 801px)" srcset="/posts/2025/public_pool_android/feature_graphic_hu_cc0a414e721049d1.jpg">
+    <img 
+      src="/posts/2025/public_pool_android/feature_graphic_hu_cc0a414e721049d1.jpg" 
+      alt="Public Pool Android App" 
+      width="800" 
+      height="391"
+      style="max-width: 100%; height: auto; margin: 0 auto; display: block;"
+      class="responsive-image"
+      loading="lazy"
+    >
+  </picture>
+  
+<h2 id="the-app-public-pool-android">The App: Public Pool Android</h2>
+<p><a href="https://git.codeskraps.com/codeskraps/PublicPoolAndroid">Public Pool Android</a> is a mobile application that lets cryptocurrency miners monitor their mining activities directly from their Android devices. The app provides real-time tracking of hash rates, worker status, and wallet details while on the go.</p>
+<h2 id="key-features">Key Features</h2>
+<ul>
+<li><strong>Dashboard:</strong> View comprehensive mining statistics including best difficulty, network difficulty, network hash rate, and block height</li>
+<li><strong>Workers Monitoring:</strong> Keep track of individual mining workers with details on hash rate, difficulty, and last seen time</li>
+<li><strong>Wallet Management:</strong> Access wallet balance and transaction history with current price information</li>
+<li><strong>Real-time Updates:</strong> Receive timely notifications about your mining operations</li>
+</ul>
+<h2 id="from-concept-to-store-in-one-day">From Concept to Store in One Day</h2>
+<p>The entire development process took just one workday (9 AM to 6 PM), during which I:</p>
+<ul>
+<li>Created the initial project structure and repository</li>
+<li>Built the network communication layer</li>
+<li>Implemented data models, repositories, and use cases</li>
+<li>Developed the UI components including dashboard, workers, and wallet screens</li>
+<li>Added theming, localization support, and settings</li>
+<li>Performed testing and submitted to Google Play Store for review</li>
+</ul>
+<h2 id="bitaxe-and-lottomining">Bitaxe and LottoMining</h2>
+<p>One of the most interesting features of the app is its support for Bitaxe miners using the LottoMining approach. LottoMining is essentially a solo mining strategy where:</p>
+<ul>
+<li>Miners work independently to find blocks rather than contributing to a pool</li>
+<li>Each miner receives the full block reward when they successfully mine a block</li>
+<li>The reward frequency is less consistent but potentially more profitable</li>
+<li>Perfect for Bitaxe devices which are optimized for efficient solo mining</li>
+</ul>
+<p>The app provides specialized monitoring for Bitaxe solo miners, displaying:</p>
+<ul>
+<li>Current network difficulty and your hashrate</li>
+<li>Estimated time to find a block</li>
+<li>Block discovery notifications</li>
+<li>Complete mining statistics to optimize your setup</li>
+</ul>
+<h2 id="the-power-of-cursor">The Power of Cursor</h2>
+<p>I couldn&rsquo;t have completed this project so quickly without <a href="https://cursor.sh/">Cursor</a>, an AI-powered IDE that supercharged my development workflow:</p>
+<ul>
+<li>AI-assisted code generation saved hours of boilerplate writing</li>
+<li>Intelligent refactoring suggestions helped maintain clean architecture</li>
+<li>Context-aware completion significantly reduced development time</li>
+<li>Built-in code review capabilities caught potential issues early</li>
+</ul>
+    </div>
+</div>
+
+            </main>
+        </div>
+
+
+        <footer class="footer">
+    
+        <span>CC 2025, Built with <a href="https://gohugo.io" class="footerLink">Hugo</a> | Analytics by <a href="https://umami.codeskraps.com/" class="footerLink">Self-hosted Umami</a></span>
+    
+</footer>
+    </div>
+
+</body>
+
+</html>

@@ -1,7 +1,271 @@
-<!doctype html><html lang=en-us><head><title>Weekly Weather v3: Radar Maps, New Settings, and Landscape Support | codeskraps
-</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Mobile development blog by Carles Sentis, sharing expertise in Android, iOS, and Kotlin Multiplatform development"><meta name=generator content="Hugo 0.145.0"><link rel=canonical href=https://codeskraps.com/posts/2026/weekly_weather_v3/><link href=/css/style.min.ef8e99489b0b85e34523800e588426b1b4c05e27adcb9d7193952cef205afe6d.css rel=stylesheet><script defer src=https://umami.codeskraps.com/script.js data-website-id=a80a52da-0b7d-4faf-9dfc-ee6ca5a8421f data-do-not-track=true></script><link rel=stylesheet href=/css/code-copy.css><script defer src=/js/code-copy.js></script></head><body><div class=flexWrapper><header class=headerWrapper><div class=header><div><a class=terminal href=https://codeskraps.com/><span>me@codeskraps.com ~ $</span></a></div><input class=side-menu type=checkbox id=side-menu>
-<label class=hamb for=side-menu><span class=hamb-line></span></label><nav class=headerLinks><ul><li><a href=https://codeskraps.com/posts/ title>~/posts</a></li><li><a href=https://codeskraps.com/projects/ title>~/projects</a></li><li><a href=https://codeskraps.com/about/ title>~/about</a></li></ul></nav></div></header><div class=content><main class=main><div class=postWrapper><h1>Weekly Weather v3: Radar Maps, New Settings, and Landscape Support</h1><section class=postMetadata><dl><dt>tags</dt><dd><span></span>
-<a href=/tags/android/>#Android</a><span></span>
-<a href=/tags/weather/>#Weather</a><span></span>
-<a href=/tags/open-source/>#Open-Source</a><span></span>
-<a href=/tags/development/>#Development</a></dd><dt>published</dt><dd><time datetime=2026-02-24>February 24, 2026</time></dd><dt>reading time</dt><dd>2 minutes</dd></dl></section><div><p>Version 3 of <a href=https://git.codeskraps.com/codeskraps/Weekly-Weather>Weekly Weather</a> is out, and it&rsquo;s a significant update. The headline addition is an interactive radar map with animated precipitation overlays, but there&rsquo;s a lot more packed into this release.</p><picture style="display:block;text-align:center;margin:2rem auto"><source media="(max-width: 480px)" srcset=/posts/2026/weekly_weather_v3/screenshot1_hu_339c9c5977770ba0.jpg><source media="(max-width: 800px)" srcset=/posts/2026/weekly_weather_v3/screenshot1_hu_4f77ce9234d55bc1.jpg><source media="(min-width: 801px)" srcset=/posts/2026/weekly_weather_v3/screenshot1_hu_86404b662431890a.jpg><img src=/posts/2026/weekly_weather_v3/screenshot1_hu_86404b662431890a.jpg alt="Weekly Weather forecast screen" width=400 height=898 style="max-width:100%;height:auto;margin:0 auto;display:block" class=responsive-image loading=lazy></picture><h2 id=radar-map-with-animated-precipitation>Radar Map with Animated Precipitation</h2><p>The biggest new feature is the radar screen. You can now pull up an interactive map and watch precipitation move across the region in real time. The animation shows a time scrubber so you can step through frames manually or let it play on its own.</p><p>The radar overlay uses live precipitation tile data layered on top of a standard Google Maps view, so you get full map interactivity — zoom, pan, and switch between radar mode and a clean map view.</p><picture style="display:block;text-align:center;margin:2rem auto"><source media="(max-width: 480px)" srcset=/posts/2026/weekly_weather_v3/screenshot3_hu_48a4d7509cba8526.jpg><source media="(max-width: 800px)" srcset=/posts/2026/weekly_weather_v3/screenshot3_hu_34b45c970eccccaf.jpg><source media="(min-width: 801px)" srcset=/posts/2026/weekly_weather_v3/screenshot3_hu_8502ab0171909cbd.jpg><img src=/posts/2026/weekly_weather_v3/screenshot3_hu_8502ab0171909cbd.jpg alt="Radar screen showing animated precipitation overlay" width=400 height=898 style="max-width:100%;height:auto;margin:0 auto;display:block" class=responsive-image loading=lazy></picture><p>A few things worth noting about the radar implementation:</p><ul><li><strong>Tile caching</strong> has been improved, so switching between frames is smoother</li><li><strong>Zoom level is preserved</strong> when toggling radar mode on and off — no more jumping back to the default zoom</li><li>The map no longer shows Null Island (0°, 0°) when navigating from the weather screen, which was a bug introduced earlier</li></ul><h2 id=map-screen>Map Screen</h2><p>Alongside the radar, there&rsquo;s a dedicated map screen for viewing your current location and saved places. It shares the same navigation structure as the weather screen, so jumping between your saved locations is quick.</p><picture style="display:block;text-align:center;margin:2rem auto"><source media="(max-width: 480px)" srcset=/posts/2026/weekly_weather_v3/screenshot2_hu_1e9e33b6fbeef052.jpg><source media="(max-width: 800px)" srcset=/posts/2026/weekly_weather_v3/screenshot2_hu_2f3c92814a83a16d.jpg><source media="(min-width: 801px)" srcset=/posts/2026/weekly_weather_v3/screenshot2_hu_9d134a42a0a51fd2.jpg><img src=/posts/2026/weekly_weather_v3/screenshot2_hu_9d134a42a0a51fd2.jpg alt="Map screen showing location" width=400 height=898 style="max-width:100%;height:auto;margin:0 auto;display:block" class=responsive-image loading=lazy></picture><h2 id=settings-units-theme-and-radar-speed>Settings: Units, Theme, and Radar Speed</h2><p>A proper settings screen is new in v3. Previously there were no user-configurable options — now you can set:</p><ul><li><strong>Units</strong> — Metric (°C, km/h) or Imperial (°F, mph)</li><li><strong>Theme</strong> — System default, Light, or Dark</li><li><strong>Radar speed</strong> — Normal (x1) or Fast (x2)</li></ul><picture style="display:block;text-align:center;margin:2rem auto"><source media="(max-width: 480px)" srcset=/posts/2026/weekly_weather_v3/screenshot4_hu_b8ddc65077c5e245.jpg><source media="(max-width: 800px)" srcset=/posts/2026/weekly_weather_v3/screenshot4_hu_e843f4b544d9c2d8.jpg><source media="(min-width: 801px)" srcset=/posts/2026/weekly_weather_v3/screenshot4_hu_a47cbddfd25551de.jpg><img src=/posts/2026/weekly_weather_v3/screenshot4_hu_a47cbddfd25551de.jpg alt="Settings screen" width=400 height=898 style="max-width:100%;height:auto;margin:0 auto;display:block" class=responsive-image loading=lazy></picture><h2 id=landscape-layout-support>Landscape Layout Support</h2><p>All three main screens — weather, map, and settings — now have proper landscape layouts. Previously the app was portrait-only. If you use it on a tablet or just rotate your phone, it adapts correctly.</p><h2 id=adaptive-navigation>Adaptive Navigation</h2><p>The navigation structure has been updated to be adaptive. On smaller screens you get a bottom nav bar; on larger screens the layout adjusts accordingly. This was part of a broader cleanup that also consolidated several modules and fixed edge-to-edge display issues.</p><h2 id=under-the-hood>Under the Hood</h2><p>On the dependency injection side, the app moved from Dagger Hilt to <a href=https://insert-koin.io/>Koin</a> in v2.6.2, which simplified the setup considerably. v3 builds on that foundation with the new features above.</p><p>The app remains open source under MIT licence — the source is on <a href=https://git.codeskraps.com/codeskraps/Weekly-Weather>Gitea</a> and the app is available on <a href="https://play.google.com/store/apps/details?id=com.arklan.weather">Google Play</a>. Weather data is provided by <a href=https://open-meteo.com/>Open-Meteo</a>.</p></div></div></main></div><footer class=footer><span>CC 2025, Built with <a href=https://gohugo.io class=footerLink>Hugo</a> | Analytics by <a href=https://umami.codeskraps.com/ class=footerLink>Self-hosted Umami</a></span></footer></div></body></html>
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <title>
+Weekly Weather v3: Radar Maps, New Settings, and Landscape Support | codeskraps
+</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Mobile development blog by Carles Sentis, sharing expertise in Android, iOS, and Kotlin Multiplatform development">
+
+<meta name="generator" content="Hugo 0.145.0">
+
+
+<link rel="canonical" href="http://localhost:1313/posts/2026/weekly_weather_v3/" >
+
+
+
+
+<link href="/css/style.min.ef8e99489b0b85e34523800e588426b1b4c05e27adcb9d7193952cef205afe6d.css" rel="stylesheet">
+
+<script defer src="https://umami.codeskraps.com/script.js" data-website-id="a80a52da-0b7d-4faf-9dfc-ee6ca5a8421f" data-do-not-track="true"></script>
+
+
+<link rel="stylesheet" href="/css/code-copy.css">
+<script defer src="/js/code-copy.js"></script> 
+
+
+</head>
+
+<body>
+
+    <div class="flexWrapper">
+        <header class="headerWrapper">
+    <div class="header">
+        <div>
+            <a class="terminal" href="http://localhost:1313/">
+                <span>me@codeskraps.com ~ $</span>
+            </a>
+        </div>
+        <input class="side-menu" type="checkbox" id="side-menu">
+        <label class="hamb" for="side-menu"><span class="hamb-line"></span></label>
+        <nav class="headerLinks">
+            <ul>
+                
+                <li>
+                    <a href="http://localhost:1313/posts/" title="" >
+                        ~/posts</a>
+                </li>
+                
+                <li>
+                    <a href="http://localhost:1313/projects/" title="" >
+                        ~/projects</a>
+                </li>
+                
+                <li>
+                    <a href="http://localhost:1313/about/" title="" >
+                        ~/about</a>
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="content">
+            <main class="main">
+                
+<div class="postWrapper">
+    <h1>Weekly Weather v3: Radar Maps, New Settings, and Landscape Support</h1>
+    
+    
+    <section class="postMetadata">
+        <dl>
+            
+                
+<dt>tags</dt>
+<dd><span></span>
+    <a href="/tags/android/">#Android</a><span></span>
+    <a href="/tags/weather/">#Weather</a><span></span>
+    <a href="/tags/open-source/">#Open-Source</a><span></span>
+    <a href="/tags/development/">#Development</a></dd>
+            
+            
+            
+            
+                <dt>published</dt>
+                
+                <dd><time datetime="2026-02-24">February 24, 2026</time></dd>
+            
+            
+                <dt>reading time</dt>
+                <dd>2 minutes</dd>
+            
+        </dl>
+    </section>
+    
+    <div>
+        <p>Version 3 of <a href="https://git.codeskraps.com/codeskraps/Weekly-Weather">Weekly Weather</a> is out, and it&rsquo;s a significant update. The headline addition is an interactive radar map with animated precipitation overlays, but there&rsquo;s a lot more packed into this release.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  <picture style="display: block; text-align: center; margin: 2rem auto;">
+    <source media="(max-width: 480px)" srcset="/posts/2026/weekly_weather_v3/screenshot1_hu_339c9c5977770ba0.jpg">
+    <source media="(max-width: 800px)" srcset="/posts/2026/weekly_weather_v3/screenshot1_hu_4f77ce9234d55bc1.jpg">
+    <source media="(min-width: 801px)" srcset="/posts/2026/weekly_weather_v3/screenshot1_hu_86404b662431890a.jpg">
+    <img 
+      src="/posts/2026/weekly_weather_v3/screenshot1_hu_86404b662431890a.jpg" 
+      alt="Weekly Weather forecast screen" 
+      width="400" 
+      height="898"
+      style="max-width: 100%; height: auto; margin: 0 auto; display: block;"
+      class="responsive-image"
+      loading="lazy"
+    >
+  </picture>
+  
+<h2 id="radar-map-with-animated-precipitation">Radar Map with Animated Precipitation</h2>
+<p>The biggest new feature is the radar screen. You can now pull up an interactive map and watch precipitation move across the region in real time. The animation shows a time scrubber so you can step through frames manually or let it play on its own.</p>
+<p>The radar overlay uses live precipitation tile data layered on top of a standard Google Maps view, so you get full map interactivity — zoom, pan, and switch between radar mode and a clean map view.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  <picture style="display: block; text-align: center; margin: 2rem auto;">
+    <source media="(max-width: 480px)" srcset="/posts/2026/weekly_weather_v3/screenshot3_hu_48a4d7509cba8526.jpg">
+    <source media="(max-width: 800px)" srcset="/posts/2026/weekly_weather_v3/screenshot3_hu_34b45c970eccccaf.jpg">
+    <source media="(min-width: 801px)" srcset="/posts/2026/weekly_weather_v3/screenshot3_hu_8502ab0171909cbd.jpg">
+    <img 
+      src="/posts/2026/weekly_weather_v3/screenshot3_hu_8502ab0171909cbd.jpg" 
+      alt="Radar screen showing animated precipitation overlay" 
+      width="400" 
+      height="898"
+      style="max-width: 100%; height: auto; margin: 0 auto; display: block;"
+      class="responsive-image"
+      loading="lazy"
+    >
+  </picture>
+  
+<p>A few things worth noting about the radar implementation:</p>
+<ul>
+<li><strong>Tile caching</strong> has been improved, so switching between frames is smoother</li>
+<li><strong>Zoom level is preserved</strong> when toggling radar mode on and off — no more jumping back to the default zoom</li>
+<li>The map no longer shows Null Island (0°, 0°) when navigating from the weather screen, which was a bug introduced earlier</li>
+</ul>
+<h2 id="map-screen">Map Screen</h2>
+<p>Alongside the radar, there&rsquo;s a dedicated map screen for viewing your current location and saved places. It shares the same navigation structure as the weather screen, so jumping between your saved locations is quick.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  <picture style="display: block; text-align: center; margin: 2rem auto;">
+    <source media="(max-width: 480px)" srcset="/posts/2026/weekly_weather_v3/screenshot2_hu_1e9e33b6fbeef052.jpg">
+    <source media="(max-width: 800px)" srcset="/posts/2026/weekly_weather_v3/screenshot2_hu_2f3c92814a83a16d.jpg">
+    <source media="(min-width: 801px)" srcset="/posts/2026/weekly_weather_v3/screenshot2_hu_9d134a42a0a51fd2.jpg">
+    <img 
+      src="/posts/2026/weekly_weather_v3/screenshot2_hu_9d134a42a0a51fd2.jpg" 
+      alt="Map screen showing location" 
+      width="400" 
+      height="898"
+      style="max-width: 100%; height: auto; margin: 0 auto; display: block;"
+      class="responsive-image"
+      loading="lazy"
+    >
+  </picture>
+  
+<h2 id="settings-units-theme-and-radar-speed">Settings: Units, Theme, and Radar Speed</h2>
+<p>A proper settings screen is new in v3. Previously there were no user-configurable options — now you can set:</p>
+<ul>
+<li><strong>Units</strong> — Metric (°C, km/h) or Imperial (°F, mph)</li>
+<li><strong>Theme</strong> — System default, Light, or Dark</li>
+<li><strong>Radar speed</strong> — Normal (x1) or Fast (x2)</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  <picture style="display: block; text-align: center; margin: 2rem auto;">
+    <source media="(max-width: 480px)" srcset="/posts/2026/weekly_weather_v3/screenshot4_hu_b8ddc65077c5e245.jpg">
+    <source media="(max-width: 800px)" srcset="/posts/2026/weekly_weather_v3/screenshot4_hu_e843f4b544d9c2d8.jpg">
+    <source media="(min-width: 801px)" srcset="/posts/2026/weekly_weather_v3/screenshot4_hu_a47cbddfd25551de.jpg">
+    <img 
+      src="/posts/2026/weekly_weather_v3/screenshot4_hu_a47cbddfd25551de.jpg" 
+      alt="Settings screen" 
+      width="400" 
+      height="898"
+      style="max-width: 100%; height: auto; margin: 0 auto; display: block;"
+      class="responsive-image"
+      loading="lazy"
+    >
+  </picture>
+  
+<h2 id="landscape-layout-support">Landscape Layout Support</h2>
+<p>All three main screens — weather, map, and settings — now have proper landscape layouts. Previously the app was portrait-only. If you use it on a tablet or just rotate your phone, it adapts correctly.</p>
+<h2 id="adaptive-navigation">Adaptive Navigation</h2>
+<p>The navigation structure has been updated to be adaptive. On smaller screens you get a bottom nav bar; on larger screens the layout adjusts accordingly. This was part of a broader cleanup that also consolidated several modules and fixed edge-to-edge display issues.</p>
+<h2 id="under-the-hood">Under the Hood</h2>
+<p>On the dependency injection side, the app moved from Dagger Hilt to <a href="https://insert-koin.io/">Koin</a> in v2.6.2, which simplified the setup considerably. v3 builds on that foundation with the new features above.</p>
+<p>The app remains open source under MIT licence — the source is on <a href="https://git.codeskraps.com/codeskraps/Weekly-Weather">Gitea</a> and the app is available on <a href="https://play.google.com/store/apps/details?id=com.arklan.weather">Google Play</a>. Weather data is provided by <a href="https://open-meteo.com/">Open-Meteo</a>.</p>
+    </div>
+</div>
+
+            </main>
+        </div>
+
+
+        <footer class="footer">
+    
+        <span>CC 2025, Built with <a href="https://gohugo.io" class="footerLink">Hugo</a> | Analytics by <a href="https://umami.codeskraps.com/" class="footerLink">Self-hosted Umami</a></span>
+    
+</footer>
+    </div>
+
+</body>
+
+</html>
