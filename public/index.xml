@@ -8,7 +8,7 @@
     <language>en-us</language>
     <managingEditor>me@codeskraps.com (codeskraps)</managingEditor>
     <webMaster>me@codeskraps.com (codeskraps)</webMaster>
-    <lastBuildDate>Wed, 04 Mar 2026 10:00:00 +0100</lastBuildDate>
+    <lastBuildDate>Thu, 05 Mar 2026 12:00:00 +0100</lastBuildDate>
     <atom:link href="https://codeskraps.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About Me</title>
@@ -16,6 +16,13 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><author>me@codeskraps.com (codeskraps)</author>
       <guid>https://codeskraps.com/about/</guid>
       <description>&lt;p&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;  &#xA;  &#xA;  &#xA;      &#xA;      &#xA;  &lt;picture&gt;&#xA;  &lt;img class=&#34;img-fluid&#34; src=&#34;https://codeskraps.com/images/me_codeskraps.gif?v=9df9e0930034eb1e10990a99d3ef1056&#34; alt=&#34;me&#34; loading=&#34;lazy&#34; height=&#34;107&#34; width=&#34;150&#34; /&gt;&#xA;&lt;/picture&gt;&#xA;&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;m a passionate and highly motivated software engineer with a deep-rooted love for technology that dates back to my first computer, an Amstrad 8256. From those early days of programming as a hobby, I&amp;rsquo;ve turned my passion into a successful career, specializing in cross-platform mobile development with expertise in both Android and iOS ecosystems.&lt;/p&gt;&#xA;&lt;br&gt;&#xA;&lt;h2 id=&#34;professional-journey&#34;&gt;Professional Journey&lt;/h2&gt;&#xA;&lt;p&gt;Currently, I&amp;rsquo;m a professional at Trifork Smart Enterprise, where I leverage my extensive experience in mobile development to deliver high-quality solutions. My career spans various domains, including:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>FreqDroid 1.2: Rich Exit Notifications and Notification History</title>
+      <link>https://codeskraps.com/posts/2026/freqdroid_notifications/</link>
+      <pubDate>Thu, 05 Mar 2026 12:00:00 +0100</pubDate><author>me@codeskraps.com (codeskraps)</author>
+      <guid>https://codeskraps.com/posts/2026/freqdroid_notifications/</guid>
+      <description>&lt;p&gt;FreqDroid 1.2 is out with two notification upgrades: a new in-app notification history screen and support for rich exit notifications via FreqTrade&amp;rsquo;s strategy callback — giving you Telegram-style trade alerts without Telegram.&lt;/p&gt;</description>
     </item>
     <item>
       <title>FreqDroid: Manage Your FreqTrade Bots From Your Phone</title>
@@ -50,7 +57,7 @@
       <link>https://codeskraps.com/posts/2025/evolution_software_development_ai/</link>
       <pubDate>Wed, 02 Apr 2025 00:00:00 +0100</pubDate><author>me@codeskraps.com (codeskraps)</author>
       <guid>https://codeskraps.com/posts/2025/evolution_software_development_ai/</guid>
-      <description>&lt;p&gt;When ChatGPT was released on November 30, 2022, few of us understood how dramatically it would transform the software development landscape. As someone who&amp;rsquo;s worked through this transition, I&amp;rsquo;ve witnessed firsthand the remarkable shift in how we approach coding and problem-solving.&lt;/p&gt;&#xA;&lt;p&gt;{{ $image := .Resources.GetMatch &amp;ldquo;header.png&amp;rdquo; }}&#xA;{{ with $image }}&#xA;{{ $resized := .Resize &amp;ldquo;600x&amp;rdquo; }}&#xA;&lt;img src=&#34;{{ $resized.RelPermalink }}&#34; alt=&#34;The Evolution of Software Development in the AI Era&#34; width=&#34;{{ $resized.Width }}&#34; height=&#34;{{ $resized.Height }}&#34;&gt;&#xA;{{ end }}&lt;/p&gt;</description>
+      <description>&lt;p&gt;When ChatGPT was released on November 30, 2022, few of us understood how dramatically it would transform the software development landscape. As someone who&amp;rsquo;s worked through this transition, I&amp;rsquo;ve witnessed firsthand the remarkable shift in how we approach coding and problem-solving.&lt;/p&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;  &#xA;  &#xA;  &#xA;  &#xA;  &lt;picture style=&#34;display: block; text-align: center; margin: 2rem auto;&#34;&gt;&#xA;    &lt;source media=&#34;(max-width: 480px)&#34; srcset=&#34;https://codeskraps.com/posts/2025/evolution_software_development_ai/header_hu_6f3939eea610ecff.jpg&#34;&gt;&#xA;    &lt;source media=&#34;(max-width: 800px)&#34; srcset=&#34;https://codeskraps.com/posts/2025/evolution_software_development_ai/header_hu_88733619c784d65a.jpg&#34;&gt;&#xA;    &lt;source media=&#34;(min-width: 801px)&#34; srcset=&#34;https://codeskraps.com/posts/2025/evolution_software_development_ai/header_hu_3ad9a43b3c96546.jpg&#34;&gt;&#xA;    &lt;img &#xA;      src=&#34;https://codeskraps.com/posts/2025/evolution_software_development_ai/header_hu_3ad9a43b3c96546.jpg&#34; &#xA;      alt=&#34;The Evolution of Software Development in the AI Era&#34; &#xA;      width=&#34;600&#34; &#xA;      height=&#34;344&#34;&#xA;      style=&#34;max-width: 100%; height: auto; margin: 0 auto; display: block;&#34;&#xA;      class=&#34;responsive-image&#34;&#xA;      loading=&#34;lazy&#34;&#xA;    &gt;&#xA;  &lt;/picture&gt;</description>
     </item>
     <item>
       <title>Move /home Folder</title>

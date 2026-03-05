@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Notifications on codeskraps</title>
+    <link>https://codeskraps.com/tags/notifications/</link>
+    <description>Recent content in Notifications on codeskraps</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <managingEditor>me@codeskraps.com (codeskraps)</managingEditor>
+    <webMaster>me@codeskraps.com (codeskraps)</webMaster>
+    <lastBuildDate>Thu, 05 Mar 2026 12:00:00 +0100</lastBuildDate>
+    <atom:link href="https://codeskraps.com/tags/notifications/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>FreqDroid 1.2: Rich Exit Notifications and Notification History</title>
+      <link>https://codeskraps.com/posts/2026/freqdroid_notifications/</link>
+      <pubDate>Thu, 05 Mar 2026 12:00:00 +0100</pubDate><author>me@codeskraps.com (codeskraps)</author>
+      <guid>https://codeskraps.com/posts/2026/freqdroid_notifications/</guid>
+      <description>&lt;p&gt;FreqDroid 1.2 is out with two notification upgrades: a new in-app notification history screen and support for rich exit notifications via FreqTrade&amp;rsquo;s strategy callback — giving you Telegram-style trade alerts without Telegram.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
