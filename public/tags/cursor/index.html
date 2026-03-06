@@ -22,7 +22,7 @@ Cursor | codeskraps
 
 <link href="/css/style.min.ef8e99489b0b85e34523800e588426b1b4c05e27adcb9d7193952cef205afe6d.css" rel="stylesheet">
 
-<script defer src="https://umami.codeskraps.com/script.js" data-website-id="a80a52da-0b7d-4faf-9dfc-ee6ca5a8421f" data-do-not-track="true"></script>
+<script defer src="https://umami.codeskraps.com/script.js" data-website-id="4e8b6a67-9381-4d11-88d1-f9b70933c836" data-do-not-track="true"></script>
 
 
 <link rel="stylesheet" href="/css/code-copy.css">
@@ -91,37 +91,11 @@ Cursor | codeskraps
                 </div>
                 <div class="postExcerpt">
                     <p><p>Today I want to share how I built a complete cryptocurrency mining monitoring app in just one day, from initial concept to Google Play Store submission, using Cursor as my IDE.</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-  
-  <picture style="display: block; text-align: center; margin: 2rem auto;">
-    <source media="(max-width: 480px)" srcset="/posts/2025/public_pool_android/feature_graphic_hu_b07fb17dbb2a4697.jpg">
-    <source media="(max-width: 800px)" srcset="/posts/2025/public_pool_android/feature_graphic_hu_40801fc72754b39c.jpg">
-    <source media="(min-width: 801px)" srcset="/posts/2025/public_pool_android/feature_graphic_hu_cc0a414e721049d1.jpg">
-    <img 
-      src="/posts/2025/public_pool_android/feature_graphic_hu_cc0a414e721049d1.jpg" 
-      alt="Public Pool Android App" 
-      width="800" 
-      height="391"
-      style="max-width: 100%; height: auto; margin: 0 auto; display: block;"
-      class="responsive-image"
-      loading="lazy"
-    >
-  </picture></p>
+<p>{{ $image := .Resources.GetMatch &ldquo;feature_graphic.png&rdquo; }}
+{{ with $image }}
+{{ $resized := .Resize &ldquo;800x&rdquo; }}
+<img src="{{ $resized.RelPermalink }}" alt="Public Pool Android App" width="{{ $resized.Width }}" height="{{ $resized.Height }}">
+{{ end }}</p></p>
                 </div>
             </div>
         </a>
