@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <title>
+Umami Analytics for Mobile Apps Without a WebView | codeskraps
+</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Mobile development blog by Carles Sentis, sharing expertise in Android, iOS, and Kotlin Multiplatform development">
+
+<meta name="generator" content="Hugo 0.145.0">
+
+
+<link rel="canonical" href="https://codeskraps.com/posts/2026/umami_mobile_analytics/" >
+
+
+
+
+<link href="/css/style.min.ef8e99489b0b85e34523800e588426b1b4c05e27adcb9d7193952cef205afe6d.css" rel="stylesheet">
+
+<script defer src="https://umami.codeskraps.com/script.js" data-website-id="4e8b6a67-9381-4d11-88d1-f9b70933c836" data-do-not-track="true"></script>
+
+
+<link rel="stylesheet" href="/css/code-copy.css">
+<script defer src="/js/code-copy.js"></script> 
+
+
+</head>
+
+<body>
+
+    <div class="flexWrapper">
+        <header class="headerWrapper">
+    <div class="header">
+        <div>
+            <a class="terminal" href="https://codeskraps.com/">
+                <span>me@codeskraps.com ~ $</span>
+            </a>
+        </div>
+        <input class="side-menu" type="checkbox" id="side-menu">
+        <label class="hamb" for="side-menu"><span class="hamb-line"></span></label>
+        <nav class="headerLinks">
+            <ul>
+                
+                <li>
+                    <a href="https://codeskraps.com/posts/" title="" >
+                        ~/posts</a>
+                </li>
+                
+                <li>
+                    <a href="https://codeskraps.com/projects/" title="" >
+                        ~/projects</a>
+                </li>
+                
+                <li>
+                    <a href="https://codeskraps.com/about/" title="" >
+                        ~/about</a>
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="content">
+            <main class="main">
+                
+<div class="postWrapper">
+    <h1>Umami Analytics for Mobile Apps Without a WebView</h1>
+    
+    
+    <section class="postMetadata">
+        <dl>
+            
+                
+<dt>tags</dt>
+<dd><span></span>
+    <a href="/tags/android/">#Android</a><span></span>
+    <a href="/tags/kotlin/">#Kotlin</a><span></span>
+    <a href="/tags/analytics/">#Analytics</a><span></span>
+    <a href="/tags/umami/">#Umami</a><span></span>
+    <a href="/tags/open-source/">#Open-Source</a></dd>
+            
+            
+            
+            
+                <dt>published</dt>
+                
+                <dd><time datetime="2026-03-09">March 9, 2026</time></dd>
+            
+            
+                <dt>reading time</dt>
+                <dd>6 minutes</dd>
+            
+        </dl>
+    </section>
+    
+    <div>
+        <p>Umami is a great privacy-focused, self-hosted alternative to Google Analytics. But its documentation assumes you&rsquo;re tracking a website. If you want to use it in a mobile app, the docs point you toward embedding a WebView — which is clunky, adds overhead, and feels wrong for native apps. There&rsquo;s a better way: hit the Umami API directly.</p>
+<h2 id="the-problem">The Problem</h2>
+<p>Umami&rsquo;s tracking script works by injecting JavaScript into web pages. The &ldquo;official&rdquo; mobile approach is loading that script in a hidden WebView. This means bundling a browser engine just to send analytics events, dealing with WebView lifecycle quirks, and hoping the JavaScript executes reliably in the background.</p>
+<p>For a native Android app, you already have HTTP clients and coroutines. You don&rsquo;t need a WebView to send a POST request.</p>
+<h2 id="the-umami-send-api">The Umami Send API</h2>
+<p>Umami exposes a <code>/api/send</code> endpoint that accepts event data directly. No authentication token is required — but you <strong>must</strong> send a valid <code>User-Agent</code> header or your request will be silently ignored.</p>
+<p>The endpoint accepts a JSON body with two top-level fields:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;type&#34;</span>: <span style="color:#f1fa8c">&#34;event&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;payload&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;website&#34;</span>: <span style="color:#f1fa8c">&#34;your-website-id&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;url&#34;</span>: <span style="color:#f1fa8c">&#34;/screen-name&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;title&#34;</span>: <span style="color:#f1fa8c">&#34;Screen Name&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;name&#34;</span>: <span style="color:#f1fa8c">&#34;event_name&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;data&#34;</span>: { <span style="color:#ff79c6">&#34;key&#34;</span>: <span style="color:#f1fa8c">&#34;value&#34;</span> }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The <code>type</code> field is always <code>&quot;event&quot;</code>. The <code>payload</code> fields vary depending on what you&rsquo;re tracking — page views use <code>url</code> and <code>title</code>, custom events use <code>name</code> and optionally <code>data</code>.</p>
+<h2 id="setting-up-the-module">Setting Up the Module</h2>
+<p>I structured the analytics as a standalone module in <a href="https://play.google.com/store/apps/details?id=com.codeskraps.weather">Weekly Weather</a> using clean architecture — a domain interface, a data source that handles the HTTP calls, and a repository that wires it together.</p>
+<h3 id="the-domain-interface">The Domain Interface</h3>
+<p>Keep it simple. The rest of the app only sees this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">interface</span> <span style="color:#50fa7b">AnalyticsRepository</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">suspend</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">initialize</span>()
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">suspend</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">trackPageView</span>(pageName: String)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">suspend</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">trackEvent</span>(
+</span></span><span style="display:flex;"><span>        eventName: String,
+</span></span><span style="display:flex;"><span>        eventData: Map&lt;String, String&gt; = emptyMap()
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">suspend</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">identifyUser</span>(userId: String?)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="the-data-source">The Data Source</h3>
+<p>This is where the actual API calls happen. No Retrofit, no Ktor — just <code>HttpURLConnection</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">internal</span> <span style="color:#ff79c6">data</span> <span style="color:#ff79c6">class</span> <span style="color:#50fa7b">UmamiConfig</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">val</span> websiteId: String,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">val</span> baseUrl: String
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">internal</span> <span style="color:#ff79c6">class</span> <span style="color:#50fa7b">UmamiAnalyticsDataSource</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">private</span> <span style="color:#ff79c6">val</span> context: Context,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">private</span> <span style="color:#ff79c6">val</span> config: UmamiConfig
+</span></span><span style="display:flex;"><span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">private</span> <span style="color:#ff79c6">var</span> isInitialized = <span style="color:#ff79c6">false</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">private</span> <span style="color:#ff79c6">val</span> userAgent: String <span style="color:#ff79c6">by</span> lazy { buildUserAgent() }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">suspend</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">initialize</span>() {
+</span></span><span style="display:flex;"><span>        isInitialized = <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">suspend</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">trackPageView</span>(pageName: String) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!is</span>Initialized) <span style="color:#ff79c6">return</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">val</span> url = <span style="color:#ff79c6">if</span> (pageName.startsWith(<span style="color:#f1fa8c">&#34;/&#34;</span>)) pageName
+</span></span><span style="display:flex;"><span>                  <span style="color:#ff79c6">else</span> <span style="color:#f1fa8c">&#34;/</span><span style="color:#f1fa8c">$pageName</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">val</span> title = pageName
+</span></span><span style="display:flex;"><span>            .replace(<span style="color:#f1fa8c">&#34;-&#34;</span>, <span style="color:#f1fa8c">&#34; &#34;</span>)
+</span></span><span style="display:flex;"><span>            .replaceFirstChar { <span style="color:#ff79c6">it</span>.uppercase() }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">val</span> payload = JSONObject().apply {
+</span></span><span style="display:flex;"><span>            put(<span style="color:#f1fa8c">&#34;website&#34;</span>, config.websiteId)
+</span></span><span style="display:flex;"><span>            put(<span style="color:#f1fa8c">&#34;url&#34;</span>, url)
+</span></span><span style="display:flex;"><span>            put(<span style="color:#f1fa8c">&#34;title&#34;</span>, title)
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        sendEvent(<span style="color:#f1fa8c">&#34;event&#34;</span>, payload)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">suspend</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">trackEvent</span>(
+</span></span><span style="display:flex;"><span>        eventName: String,
+</span></span><span style="display:flex;"><span>        eventData: Map&lt;String, String&gt; = emptyMap()
+</span></span><span style="display:flex;"><span>    ) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!is</span>Initialized) <span style="color:#ff79c6">return</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">val</span> payload = JSONObject().apply {
+</span></span><span style="display:flex;"><span>            put(<span style="color:#f1fa8c">&#34;website&#34;</span>, config.websiteId)
+</span></span><span style="display:flex;"><span>            put(<span style="color:#f1fa8c">&#34;name&#34;</span>, eventName)
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (eventData.isNotEmpty()) {
+</span></span><span style="display:flex;"><span>                put(<span style="color:#f1fa8c">&#34;data&#34;</span>, JSONObject(eventData <span style="color:#ff79c6">as</span> Map&lt;*, *&gt;))
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        sendEvent(<span style="color:#f1fa8c">&#34;event&#34;</span>, payload)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">private</span> <span style="color:#ff79c6">suspend</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">sendEvent</span>(
+</span></span><span style="display:flex;"><span>        type: String,
+</span></span><span style="display:flex;"><span>        payload: JSONObject
+</span></span><span style="display:flex;"><span>    ) = withContext(<span style="color:#50fa7b">Dispatchers</span>.IO) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">val</span> body = JSONObject().apply {
+</span></span><span style="display:flex;"><span>                put(<span style="color:#f1fa8c">&#34;type&#34;</span>, type)
+</span></span><span style="display:flex;"><span>                put(<span style="color:#f1fa8c">&#34;payload&#34;</span>, payload)
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">val</span> connection = URL(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">${config.baseUrl}</span><span style="color:#f1fa8c">/api/send&#34;</span>)
+</span></span><span style="display:flex;"><span>                .openConnection() <span style="color:#ff79c6">as</span> HttpURLConnection
+</span></span><span style="display:flex;"><span>            connection.apply {
+</span></span><span style="display:flex;"><span>                requestMethod = <span style="color:#f1fa8c">&#34;POST&#34;</span>
+</span></span><span style="display:flex;"><span>                setRequestProperty(<span style="color:#f1fa8c">&#34;Content-Type&#34;</span>, <span style="color:#f1fa8c">&#34;application/json&#34;</span>)
+</span></span><span style="display:flex;"><span>                setRequestProperty(<span style="color:#f1fa8c">&#34;User-Agent&#34;</span>, userAgent)
+</span></span><span style="display:flex;"><span>                connectTimeout = <span style="color:#bd93f9">5000</span>
+</span></span><span style="display:flex;"><span>                readTimeout = <span style="color:#bd93f9">5000</span>
+</span></span><span style="display:flex;"><span>                doOutput = <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            OutputStreamWriter(connection.outputStream).use { writer <span style="color:#ff79c6">-&gt;</span>
+</span></span><span style="display:flex;"><span>                writer.write(body.toString())
+</span></span><span style="display:flex;"><span>                writer.flush()
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">val</span> responseCode = connection.responseCode
+</span></span><span style="display:flex;"><span>            connection.disconnect()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (responseCode <span style="color:#ff79c6">!in</span> <span style="color:#bd93f9">200.</span>.<span style="color:#bd93f9">299</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#50fa7b">Log</span>.w(TAG, <span style="color:#f1fa8c">&#34;Umami API returned </span><span style="color:#f1fa8c">$responseCode</span><span style="color:#f1fa8c"> for </span><span style="color:#f1fa8c">$type</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        } <span style="color:#ff79c6">catch</span> (e: Exception) {
+</span></span><span style="display:flex;"><span>            <span style="color:#50fa7b">Log</span>.w(TAG, <span style="color:#f1fa8c">&#34;Failed to send </span><span style="color:#f1fa8c">$type</span><span style="color:#f1fa8c"> event&#34;</span>, e)
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">private</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">buildUserAgent</span>(): String {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">val</span> appVersion = <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">val</span> packageInfo = context.packageManager
+</span></span><span style="display:flex;"><span>                .getPackageInfo(context.packageName, <span style="color:#bd93f9">0</span>)
+</span></span><span style="display:flex;"><span>            packageInfo.versionName <span style="color:#ff79c6">?:</span> <span style="color:#f1fa8c">&#34;unknown&#34;</span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#ff79c6">catch</span> (_: Exception) {
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#34;unknown&#34;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#f1fa8c">&#34;MyApp/</span><span style="color:#f1fa8c">$appVersion</span><span style="color:#f1fa8c"> (Android </span><span style="color:#f1fa8c">${Build.VERSION.RELEASE}</span><span style="color:#f1fa8c">; &#34;</span> +
+</span></span><span style="display:flex;"><span>               <span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">${Build.MODEL}</span><span style="color:#f1fa8c">; </span><span style="color:#f1fa8c">${Locale.getDefault().language}</span><span style="color:#f1fa8c">)&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">companion</span> <span style="color:#ff79c6">object</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">private</span> <span style="color:#ff79c6">const</span> <span style="color:#ff79c6">val</span> TAG = <span style="color:#f1fa8c">&#34;UmamiAnalytics&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>A few things worth noting:</p>
+<ul>
+<li><strong>User-Agent is mandatory.</strong> Umami silently drops requests without one. Building a descriptive agent string also gives you useful device info in your dashboard.</li>
+<li><strong>No third-party HTTP library needed.</strong> <code>HttpURLConnection</code> works fine for fire-and-forget analytics. No need to pull in Retrofit or Ktor just for this.</li>
+<li><strong><code>Dispatchers.IO</code></strong> keeps network calls off the main thread.</li>
+<li><strong>5-second timeouts</strong> prevent analytics from blocking your app if the server is slow.</li>
+<li><strong>Failures are non-fatal.</strong> Log a warning and move on — analytics should never crash your app.</li>
+</ul>
+<h3 id="the-user-agent-gotcha">The User-Agent Gotcha</h3>
+<p>This is the thing that will trip you up. Umami&rsquo;s docs mention it in passing, but it&rsquo;s easy to miss: if you don&rsquo;t send a <code>User-Agent</code> header, your events will be accepted (you&rsquo;ll get a 200 response) but <strong>silently discarded</strong>. They won&rsquo;t show up in your dashboard. No error, no warning. The request just vanishes.</p>
+<p>Build a descriptive user agent string with your app name, version, OS, and device model. This also shows up in your Umami dashboard as the &ldquo;browser&rdquo; field, which gives you a quick view of which devices and app versions your users are on.</p>
+<h2 id="device-identification">Device Identification</h2>
+<p>For session tracking without relying on cookies (which don&rsquo;t exist in a native app), generate a UUID on first launch and persist it:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">DeviceIdRepositoryImpl</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">private</span> <span style="color:#ff79c6">val</span> application: Application
+</span></span><span style="display:flex;"><span>) : DeviceIdRepository {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">private</span> <span style="color:#ff79c6">val</span> prefs: SharedPreferences = application
+</span></span><span style="display:flex;"><span>        .getSharedPreferences(PREFS_NAME, <span style="color:#50fa7b">Context</span>.MODE_PRIVATE)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">override</span> <span style="color:#ff79c6">suspend</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">getOrCreateDeviceId</span>(): String {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> prefs.getString(KEY_DEVICE_ID, <span style="color:#ff79c6">null</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">?:</span> generateAndSaveDeviceId()
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">private</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">generateAndSaveDeviceId</span>(): String {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">val</span> deviceId = <span style="color:#50fa7b">UUID</span>.randomUUID().toString()
+</span></span><span style="display:flex;"><span>        prefs.edit().putString(KEY_DEVICE_ID, deviceId).apply()
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> deviceId
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">companion</span> <span style="color:#ff79c6">object</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">private</span> <span style="color:#ff79c6">const</span> <span style="color:#ff79c6">val</span> PREFS_NAME = <span style="color:#f1fa8c">&#34;app_device_prefs&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">private</span> <span style="color:#ff79c6">const</span> <span style="color:#ff79c6">val</span> KEY_DEVICE_ID = <span style="color:#f1fa8c">&#34;device_id&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The repository initializes analytics and immediately identifies the device:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">internal</span> <span style="color:#ff79c6">class</span> <span style="color:#50fa7b">AnalyticsRepositoryImpl</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">private</span> <span style="color:#ff79c6">val</span> application: Application,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">private</span> <span style="color:#ff79c6">val</span> deviceIdRepository: DeviceIdRepository
+</span></span><span style="display:flex;"><span>) : AnalyticsRepository {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">private</span> <span style="color:#ff79c6">val</span> analyticsDataSource = UmamiAnalyticsDataSource(
+</span></span><span style="display:flex;"><span>        context = application,
+</span></span><span style="display:flex;"><span>        config = UmamiConfig(
+</span></span><span style="display:flex;"><span>            websiteId = <span style="color:#f1fa8c">&#34;your-website-id-here&#34;</span>,
+</span></span><span style="display:flex;"><span>            baseUrl = <span style="color:#f1fa8c">&#34;https://your-umami-instance.com&#34;</span>
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">override</span> <span style="color:#ff79c6">suspend</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">initialize</span>() {
+</span></span><span style="display:flex;"><span>        analyticsDataSource.initialize()
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">val</span> deviceId = deviceIdRepository.getOrCreateDeviceId()
+</span></span><span style="display:flex;"><span>        identifyUser(deviceId)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// ... delegate other calls to analyticsDataSource
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>}
+</span></span></code></pre></div><h2 id="dependency-injection">Dependency Injection</h2>
+<p>Wire it up with Koin (or whichever DI framework you use):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">val</span> umamiModule = module {
+</span></span><span style="display:flex;"><span>    single&lt;DeviceIdRepository&gt; {
+</span></span><span style="display:flex;"><span>        DeviceIdRepositoryImpl(androidApplication())
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    single&lt;AnalyticsRepository&gt; {
+</span></span><span style="display:flex;"><span>        AnalyticsRepositoryImpl(androidApplication(), <span style="color:#ff79c6">get</span>())
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="using-it-in-your-app">Using It in Your App</h2>
+<p>Initialize in your <code>MainActivity</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">MainActivity</span> : ComponentActivity() {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">private</span> <span style="color:#ff79c6">val</span> analyticsRepository: AnalyticsRepository <span style="color:#ff79c6">by</span> inject()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">override</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">onCreate</span>(savedInstanceState: Bundle?) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">super</span>.onCreate(savedInstanceState)
+</span></span><span style="display:flex;"><span>        lifecycleScope.launch {
+</span></span><span style="display:flex;"><span>            analyticsRepository.initialize()
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Then track events from your ViewModels:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">WeatherViewModel</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">private</span> <span style="color:#ff79c6">val</span> analyticsRepository: AnalyticsRepository
+</span></span><span style="display:flex;"><span>) : ViewModel() {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">onScreenVisible</span>() {
+</span></span><span style="display:flex;"><span>        viewModelScope.launch {
+</span></span><span style="display:flex;"><span>            analyticsRepository.trackPageView(<span style="color:#f1fa8c">&#34;weather&#34;</span>)
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">onLocationLoaded</span>(location: String) {
+</span></span><span style="display:flex;"><span>        viewModelScope.launch {
+</span></span><span style="display:flex;"><span>            analyticsRepository.trackEvent(
+</span></span><span style="display:flex;"><span>                <span style="color:#f1fa8c">&#34;weather_load&#34;</span>,
+</span></span><span style="display:flex;"><span>                mapOf(<span style="color:#f1fa8c">&#34;location&#34;</span> to location)
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">onError</span>(message: String) {
+</span></span><span style="display:flex;"><span>        viewModelScope.launch {
+</span></span><span style="display:flex;"><span>            analyticsRepository.trackEvent(
+</span></span><span style="display:flex;"><span>                <span style="color:#f1fa8c">&#34;weather_error&#34;</span>,
+</span></span><span style="display:flex;"><span>                mapOf(<span style="color:#f1fa8c">&#34;error_message&#34;</span> to message)
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Page views map to screens in Umami&rsquo;s dashboard as if they were web pages — <code>/weather</code>, <code>/settings</code>, <code>/map</code>. Custom events show up in the events tab with their associated data.</p>
+<h2 id="umami-dashboard-setup">Umami Dashboard Setup</h2>
+<p>On the Umami side, there&rsquo;s nothing special to configure. Create a new website in your Umami dashboard and grab the website ID. The same <code>/api/send</code> endpoint handles both web and API-sourced events. Your mobile events will appear alongside web traffic if you use the same website ID, or you can create a separate website entry to keep them isolated.</p>
+<h2 id="why-not-just-use-firebase">Why Not Just Use Firebase?</h2>
+<p>Firebase Analytics works well, but it comes with Google&rsquo;s data collection policies, requires Google Play Services, and its dashboard is designed around Google&rsquo;s advertising ecosystem. If you&rsquo;re already self-hosting Umami for your website and want a unified, privacy-respecting analytics view across web and mobile, this approach gets you there with minimal code and zero additional dependencies.</p>
+<p>The entire implementation is about 120 lines of Kotlin with no third-party libraries beyond what Android provides out of the box.</p>
+    </div>
+</div>
+
+            </main>
+        </div>
+
+
+        <footer class="footer">
+    
+        <span>CC 2025, Built with <a href="https://gohugo.io" class="footerLink">Hugo</a> | Analytics by <a href="https://umami.codeskraps.com/" class="footerLink">Self-hosted Umami</a></span>
+    
+</footer>
+    </div>
+
+</body>
+
+</html>

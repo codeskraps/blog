@@ -100,11 +100,38 @@ Building PublicPoolAndroid in One Day with Cursor | codeskraps
     
     <div>
         <p>Today I want to share how I built a complete cryptocurrency mining monitoring app in just one day, from initial concept to Google Play Store submission, using Cursor as my IDE.</p>
-<p>{{ $image := .Resources.GetMatch &ldquo;feature_graphic.png&rdquo; }}
-{{ with $image }}
-{{ $resized := .Resize &ldquo;800x&rdquo; }}
-<img src="{{ $resized.RelPermalink }}" alt="Public Pool Android App" width="{{ $resized.Width }}" height="{{ $resized.Height }}">
-{{ end }}</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  <picture style="display: block; text-align: center; margin: 2rem auto;">
+    <source media="(max-width: 480px)" srcset="/posts/2025/public_pool_android/feature_graphic_hu_b07fb17dbb2a4697.jpg">
+    <source media="(max-width: 800px)" srcset="/posts/2025/public_pool_android/feature_graphic_hu_40801fc72754b39c.jpg">
+    <source media="(min-width: 801px)" srcset="/posts/2025/public_pool_android/feature_graphic_hu_cc0a414e721049d1.jpg">
+    <img 
+      src="/posts/2025/public_pool_android/feature_graphic_hu_cc0a414e721049d1.jpg" 
+      alt="Public Pool Android App" 
+      width="800" 
+      height="391"
+      style="max-width: 100%; height: auto; margin: 0 auto; display: block;"
+      class="responsive-image"
+      loading="lazy"
+    >
+  </picture>
+  
 <h2 id="the-app-public-pool-android">The App: Public Pool Android</h2>
 <p><a href="https://git.codeskraps.com/codeskraps/PublicPoolAndroid">Public Pool Android</a> is a mobile application that lets cryptocurrency miners monitor their mining activities directly from their Android devices. The app provides real-time tracking of hash rates, worker status, and wallet details while on the go.</p>
 <h2 id="key-features">Key Features</h2>
