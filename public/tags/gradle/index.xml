@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gradle on codeskraps</title>
+    <link>https://codeskraps.com/tags/gradle/</link>
+    <description>Recent content in Gradle on codeskraps</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <managingEditor>me@codeskraps.com (codeskraps)</managingEditor>
+    <webMaster>me@codeskraps.com (codeskraps)</webMaster>
+    <lastBuildDate>Tue, 10 Mar 2026 10:00:00 +0100</lastBuildDate>
+    <atom:link href="https://codeskraps.com/tags/gradle/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Using a Self-Hosted Git Repository as a Maven Repository</title>
+      <link>https://codeskraps.com/posts/2026/selfhosted_maven_repo/</link>
+      <pubDate>Tue, 10 Mar 2026 10:00:00 +0100</pubDate><author>me@codeskraps.com (codeskraps)</author>
+      <guid>https://codeskraps.com/posts/2026/selfhosted_maven_repo/</guid>
+      <description>&lt;p&gt;If you maintain shared libraries across multiple Android or Kotlin Multiplatform projects, you&amp;rsquo;ve probably considered publishing them to a Maven repository. Maven Central works, but the publishing process is heavy — GPG signing, Sonatype staging, approval delays. For private or small-scale libraries, that&amp;rsquo;s overkill. If you already self-host a Git server like &lt;a href=&#34;https://about.gitea.com/&#34;&gt;Gitea&lt;/a&gt; or &lt;a href=&#34;https://gogs.io/&#34;&gt;Gogs&lt;/a&gt;, you can use it as a Maven repository with zero additional infrastructure.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <title>
+Using a Self-Hosted Git Repository as a Maven Repository | codeskraps
+</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Mobile development blog by Carles Sentis, sharing expertise in Android, iOS, and Kotlin Multiplatform development">
+
+<meta name="generator" content="Hugo 0.145.0">
+
+
+<link rel="canonical" href="https://codeskraps.com/posts/2026/selfhosted_maven_repo/" >
+
+
+
+
+<link href="/css/style.min.ef8e99489b0b85e34523800e588426b1b4c05e27adcb9d7193952cef205afe6d.css" rel="stylesheet">
+
+<script defer src="https://umami.codeskraps.com/script.js" data-website-id="4e8b6a67-9381-4d11-88d1-f9b70933c836" data-do-not-track="true"></script>
+
+
+<link rel="stylesheet" href="/css/code-copy.css">
+<script defer src="/js/code-copy.js"></script> 
+
+
+</head>
+
+<body>
+
+    <div class="flexWrapper">
+        <header class="headerWrapper">
+    <div class="header">
+        <div>
+            <a class="terminal" href="https://codeskraps.com/">
+                <span>me@codeskraps.com ~ $</span>
+            </a>
+        </div>
+        <input class="side-menu" type="checkbox" id="side-menu">
+        <label class="hamb" for="side-menu"><span class="hamb-line"></span></label>
+        <nav class="headerLinks">
+            <ul>
+                
+                <li>
+                    <a href="https://codeskraps.com/posts/" title="" >
+                        ~/posts</a>
+                </li>
+                
+                <li>
+                    <a href="https://codeskraps.com/projects/" title="" >
+                        ~/projects</a>
+                </li>
+                
+                <li>
+                    <a href="https://codeskraps.com/about/" title="" >
+                        ~/about</a>
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="content">
+            <main class="main">
+                
+<div class="postWrapper">
+    <h1>Using a Self-Hosted Git Repository as a Maven Repository</h1>
+    
+    
+    <section class="postMetadata">
+        <dl>
+            
+                
+<dt>tags</dt>
+<dd><span></span>
+    <a href="/tags/android/">#Android</a><span></span>
+    <a href="/tags/kotlin/">#Kotlin</a><span></span>
+    <a href="/tags/gradle/">#Gradle</a><span></span>
+    <a href="/tags/maven/">#Maven</a><span></span>
+    <a href="/tags/self-hosted/">#Self-Hosted</a><span></span>
+    <a href="/tags/open-source/">#Open-Source</a></dd>
+            
+            
+            
+            
+                <dt>published</dt>
+                
+                <dd><time datetime="2026-03-10">March 10, 2026</time></dd>
+            
+            
+                <dt>reading time</dt>
+                <dd>5 minutes</dd>
+            
+        </dl>
+    </section>
+    
+    <div>
+        <p>If you maintain shared libraries across multiple Android or Kotlin Multiplatform projects, you&rsquo;ve probably considered publishing them to a Maven repository. Maven Central works, but the publishing process is heavy — GPG signing, Sonatype staging, approval delays. For private or small-scale libraries, that&rsquo;s overkill. If you already self-host a Git server like <a href="https://about.gitea.com/">Gitea</a> or <a href="https://gogs.io/">Gogs</a>, you can use it as a Maven repository with zero additional infrastructure.</p>
+<h2 id="how-it-works">How It Works</h2>
+<p>A Maven repository is just a directory structure served over HTTP. When Gradle resolves a dependency like <code>com.example:mylib:1.0.0</code>, it looks for files at a predictable path:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>com/example/mylib/1.0.0/mylib-1.0.0.aar
+</span></span><span style="display:flex;"><span>com/example/mylib/1.0.0/mylib-1.0.0.pom
+</span></span><span style="display:flex;"><span>com/example/mylib/1.0.0/mylib-1.0.0.module
+</span></span></code></pre></div><p>Git hosting platforms like Gitea and Gogs can serve raw file content from a repository via URL. If you push those Maven artifacts into a Git repo, the raw file URLs become a perfectly valid Maven repository endpoint. No Nexus, no Artifactory, no S3 bucket.</p>
+<h2 id="setting-up-the-maven-repository">Setting Up the Maven Repository</h2>
+<p>Create a Git repository on your server. I use Gogs, so my repo lives at <code>git.codeskraps.com/codeskraps/MavenRepo</code>. Clone it locally:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone git@git.codeskraps.com:codeskraps/MavenRepo.git ~/maven-repo
+</span></span></code></pre></div><p>That&rsquo;s your Maven repository. Artifacts will be committed and pushed here.</p>
+<h2 id="configuring-your-library-to-publish">Configuring Your Library to Publish</h2>
+<p>I&rsquo;ll use <a href="https://git.codeskraps.com/codeskraps/UmamiLIb">UmamiLib</a> as an example — a Kotlin Multiplatform analytics library that I publish this way. The same approach works for plain Android libraries.</p>
+<p>In your library&rsquo;s <code>build.gradle.kts</code>, add the <code>maven-publish</code> plugin and configure a local repository output directory:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>plugins {
+</span></span><span style="display:flex;"><span>    alias(libs.plugins.kotlinMultiplatform)
+</span></span><span style="display:flex;"><span>    alias(libs.plugins.androidKmpLibrary)
+</span></span><span style="display:flex;"><span>    id(<span style="color:#f1fa8c">&#34;maven-publish&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>group = <span style="color:#f1fa8c">&#34;com.codeskraps.umamilib&#34;</span>
+</span></span><span style="display:flex;"><span>version = <span style="color:#f1fa8c">&#34;0.4.0&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>kotlin {
+</span></span><span style="display:flex;"><span>    android {
+</span></span><span style="display:flex;"><span>        namespace = <span style="color:#f1fa8c">&#34;com.codeskraps.umamilib&#34;</span>
+</span></span><span style="display:flex;"><span>        compileSdk = <span style="color:#bd93f9">36</span>
+</span></span><span style="display:flex;"><span>        minSdk = <span style="color:#bd93f9">24</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    iosArm64()
+</span></span><span style="display:flex;"><span>    iosSimulatorArm64()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    sourceSets {
+</span></span><span style="display:flex;"><span>        commonMain.dependencies {
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// your dependencies
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>publishing {
+</span></span><span style="display:flex;"><span>    repositories {
+</span></span><span style="display:flex;"><span>        maven {
+</span></span><span style="display:flex;"><span>            name = <span style="color:#f1fa8c">&#34;local&#34;</span>
+</span></span><span style="display:flex;"><span>            url = uri(layout.buildDirectory.dir(<span style="color:#f1fa8c">&#34;maven-repo&#34;</span>))
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The key part is the <code>publishing</code> block. Instead of publishing directly to a remote server, we publish to a local directory inside the build folder. This gives us the complete Maven directory structure that we&rsquo;ll then commit to our Git-based repository.</p>
+<p>For a standard Android library (non-KMP), the setup is similar but uses the <code>android.library</code> plugin and requires explicit publishing configuration:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>plugins {
+</span></span><span style="display:flex;"><span>    alias(libs.plugins.android.library)
+</span></span><span style="display:flex;"><span>    id(<span style="color:#f1fa8c">&#34;maven-publish&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>group = <span style="color:#f1fa8c">&#34;com.example.mylib&#34;</span>
+</span></span><span style="display:flex;"><span>version = <span style="color:#f1fa8c">&#34;1.0.0&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>android {
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    publishing {
+</span></span><span style="display:flex;"><span>        singleVariant(<span style="color:#f1fa8c">&#34;release&#34;</span>) {
+</span></span><span style="display:flex;"><span>            withSourcesJar()
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>afterEvaluate {
+</span></span><span style="display:flex;"><span>    publishing {
+</span></span><span style="display:flex;"><span>        publications {
+</span></span><span style="display:flex;"><span>            create&lt;MavenPublication&gt;(<span style="color:#f1fa8c">&#34;release&#34;</span>) {
+</span></span><span style="display:flex;"><span>                from(components[<span style="color:#f1fa8c">&#34;release&#34;</span>])
+</span></span><span style="display:flex;"><span>                groupId = <span style="color:#f1fa8c">&#34;com.example.mylib&#34;</span>
+</span></span><span style="display:flex;"><span>                artifactId = <span style="color:#f1fa8c">&#34;mylib&#34;</span>
+</span></span><span style="display:flex;"><span>                version = project.version.toString()
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        repositories {
+</span></span><span style="display:flex;"><span>            maven {
+</span></span><span style="display:flex;"><span>                name = <span style="color:#f1fa8c">&#34;local&#34;</span>
+</span></span><span style="display:flex;"><span>                url = uri(layout.buildDirectory.dir(<span style="color:#f1fa8c">&#34;maven-repo&#34;</span>))
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="the-publish-script">The Publish Script</h2>
+<p>A simple shell script handles the build-copy-push cycle:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6"></span><span style="color:#8be9fd;font-style:italic">set</span> -e
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">SCRIPT_DIR</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;</span><span style="color:#ff79c6">$(</span><span style="color:#8be9fd;font-style:italic">cd</span> <span style="color:#f1fa8c">&#34;</span><span style="color:#ff79c6">$(</span>dirname <span style="color:#f1fa8c">&#34;</span><span style="color:#8be9fd;font-style:italic">$0</span><span style="color:#f1fa8c">&#34;</span><span style="color:#ff79c6">)</span><span style="color:#f1fa8c">&#34;</span> <span style="color:#ff79c6">&amp;&amp;</span> <span style="color:#8be9fd;font-style:italic">pwd</span><span style="color:#ff79c6">)</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">MAVEN_REPO_DIR</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;</span><span style="color:#8be9fd;font-style:italic">$HOME</span><span style="color:#f1fa8c">/maven-repo&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">echo</span> <span style="color:#f1fa8c">&#34;==&gt; Building and publishing...&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">cd</span> <span style="color:#f1fa8c">&#34;</span><span style="color:#8be9fd;font-style:italic">$SCRIPT_DIR</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span>./gradlew :umamilib:publish
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">echo</span> <span style="color:#f1fa8c">&#34;==&gt; Copying artifacts to maven-repo...&#34;</span>
+</span></span><span style="display:flex;"><span>mkdir -p <span style="color:#f1fa8c">&#34;</span><span style="color:#8be9fd;font-style:italic">$MAVEN_REPO_DIR</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span>cp -r <span style="color:#f1fa8c">&#34;</span><span style="color:#8be9fd;font-style:italic">$SCRIPT_DIR</span><span style="color:#f1fa8c">/umamilib/build/maven-repo/&#34;</span>* <span style="color:#f1fa8c">&#34;</span><span style="color:#8be9fd;font-style:italic">$MAVEN_REPO_DIR</span><span style="color:#f1fa8c">/&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">echo</span> <span style="color:#f1fa8c">&#34;==&gt; Publishing to mavenLocal for immediate use...&#34;</span>
+</span></span><span style="display:flex;"><span>./gradlew :umamilib:publishToMavenLocal
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">echo</span> <span style="color:#f1fa8c">&#34;==&gt; Pushing to Git...&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">cd</span> <span style="color:#f1fa8c">&#34;</span><span style="color:#8be9fd;font-style:italic">$MAVEN_REPO_DIR</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span>git add -A
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#f1fa8c">&#34;Publish umamilib </span><span style="color:#ff79c6">$(</span>grep <span style="color:#f1fa8c">&#39;^version&#39;</span> <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>    <span style="color:#f1fa8c">&#34;</span><span style="color:#8be9fd;font-style:italic">$SCRIPT_DIR</span><span style="color:#f1fa8c">/umamilib/build.gradle.kts&#34;</span> | head -1 | <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>    sed <span style="color:#f1fa8c">&#39;s/.*&#34;\(.*\)&#34;.*/\1/&#39;</span><span style="color:#ff79c6">)</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span>git push
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">echo</span> <span style="color:#f1fa8c">&#34;==&gt; Done!&#34;</span>
+</span></span></code></pre></div><p>This does three things:</p>
+<ol>
+<li><strong><code>./gradlew :umamilib:publish</code></strong> — Builds the library and writes artifacts to <code>build/maven-repo/</code></li>
+<li><strong>Copies to the Git-backed Maven repo</strong> — The directory structure is ready to serve</li>
+<li><strong><code>publishToMavenLocal</code></strong> — Also publishes to <code>~/.m2</code> so local projects can resolve it immediately without waiting for the Git push</li>
+</ol>
+<p>After the push, the artifacts are available at the raw file URL.</p>
+<h2 id="consuming-the-library">Consuming the Library</h2>
+<p>On the consumer side, add the raw file URL as a Maven repository in <code>settings.gradle.kts</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>dependencyResolutionManagement {
+</span></span><span style="display:flex;"><span>    repositories {
+</span></span><span style="display:flex;"><span>        google()
+</span></span><span style="display:flex;"><span>        mavenCentral()
+</span></span><span style="display:flex;"><span>        maven {
+</span></span><span style="display:flex;"><span>            url = uri(<span style="color:#f1fa8c">&#34;https://git.codeskraps.com/codeskraps/MavenRepo/raw/main&#34;</span>)
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The <code>/raw/main</code> path tells Gogs (or Gitea) to serve the file contents directly from the <code>main</code> branch — exactly what Gradle needs.</p>
+<p>Then add the dependency as you would any other:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>implementation(<span style="color:#f1fa8c">&#34;com.codeskraps.umamilib:umamilib:0.4.0&#34;</span>)
+</span></span></code></pre></div><p>Or with a version catalog:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>[versions]
+</span></span><span style="display:flex;"><span>umamilib = <span style="color:#f1fa8c">&#34;0.4.0&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[libraries]
+</span></span><span style="display:flex;"><span>umamilib = { module = <span style="color:#f1fa8c">&#34;com.codeskraps.umamilib:umamilib&#34;</span>, version.ref = <span style="color:#f1fa8c">&#34;umamilib&#34;</span> }
+</span></span></code></pre></div><p>Gradle resolves the <code>.module</code> file from the raw URL, finds the platform-specific artifact (AAR for Android, klib for iOS), downloads it, and you&rsquo;re done. No difference from using Maven Central, just a different repository URL.</p>
+<h2 id="multiple-libraries-one-repository">Multiple Libraries, One Repository</h2>
+<p>The Maven directory structure naturally supports multiple libraries in the same repository. Each library gets its own path under the group ID:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>com/codeskraps/chartlib/chartlib/0.1.0/...
+</span></span><span style="display:flex;"><span>com/codeskraps/umamilib/umamilib/0.4.0/...
+</span></span><span style="display:flex;"><span>com/codeskraps/umamilib/umamilib-android/0.4.0/...
+</span></span><span style="display:flex;"><span>com/codeskraps/umamilib/umamilib-iosarm64/0.4.0/...
+</span></span></code></pre></div><p>Each library has its own <code>publish.sh</code> that copies into the same shared repository directory. One Git repo, one URL, multiple artifacts.</p>
+<h2 id="kmp-considerations">KMP Considerations</h2>
+<p>For Kotlin Multiplatform libraries, the <code>maven-publish</code> plugin automatically creates separate publications for each target. A KMP library with Android and iOS targets publishes:</p>
+<ul>
+<li><code>umamilib</code> — The metadata module (Gradle uses this to resolve the correct platform artifact)</li>
+<li><code>umamilib-android</code> — The Android AAR</li>
+<li><code>umamilib-iosarm64</code> — The iOS arm64 klib</li>
+<li><code>umamilib-iossimulatorarm64</code> — The iOS simulator klib</li>
+</ul>
+<p>Consumers just depend on the base module (<code>com.codeskraps.umamilib:umamilib:0.4.0</code>), and Gradle&rsquo;s metadata resolution picks the right artifact for the platform.</p>
+<h2 id="versioning-and-old-versions">Versioning and Old Versions</h2>
+<p>Since it&rsquo;s a Git repository, every version you publish stays in the history. You can host multiple versions simultaneously — Gradle will resolve whichever version the consumer specifies. If you need to remove an old version, just delete the directory and push.</p>
+<h2 id="trade-offs">Trade-offs</h2>
+<p>This approach has some clear advantages:</p>
+<ul>
+<li><strong>Zero infrastructure</strong> beyond what you already have — if you self-host Git, you&rsquo;re done</li>
+<li><strong>No account setup</strong>, no API keys, no staging/release workflows</li>
+<li><strong>Full control</strong> over your artifacts and availability</li>
+<li><strong>Works offline</strong> with <code>mavenLocal</code> during development</li>
+</ul>
+<p>But it&rsquo;s not for everything:</p>
+<ul>
+<li><strong>No authentication</strong> on the consumer side — anyone with the URL can resolve your artifacts (fine for public libraries, not ideal for proprietary ones)</li>
+<li><strong>Git repo size grows</strong> with each published version — binary artifacts (AARs, JARs) add up. For small libraries this is negligible; for large ones, consider periodic cleanup or Git LFS</li>
+<li><strong>No search or discovery</strong> — consumers need to know the URL and coordinates</li>
+</ul>
+<p>For personal libraries, small teams, or open-source projects where Maven Central&rsquo;s process feels disproportionate, this is a pragmatic solution that takes about ten minutes to set up.</p>
+<h2 id="links">Links</h2>
+<ul>
+<li><a href="https://git.codeskraps.com/codeskraps/UmamiLIb">UmamiLib</a> — The KMP analytics library used as an example</li>
+<li><a href="https://git.codeskraps.com/codeskraps/MavenRepo">MavenRepo</a> — The Git-backed Maven repository</li>
+<li><a href="https://gogs.io/">Gogs</a> / <a href="https://about.gitea.com/">Gitea</a> — Self-hosted Git platforms with raw file serving</li>
+</ul>
+    </div>
+</div>
+
+            </main>
+        </div>
+
+
+        <footer class="footer">
+    
+        <span>CC 2025, Built with <a href="https://gohugo.io" class="footerLink">Hugo</a> | Analytics by <a href="https://umami.codeskraps.com/" class="footerLink">Self-hosted Umami</a></span>
+    
+</footer>
+    </div>
+
+</body>
+
+</html>

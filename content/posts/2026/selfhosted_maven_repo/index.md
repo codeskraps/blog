@@ -1,6 +1,6 @@
 +++
 title = 'Using a Self-Hosted Git Repository as a Maven Repository'
-date = 2026-03-10T12:00:00+01:00
+date = 2026-03-10T10:00:00+01:00
 tags = ['android', 'kotlin', 'gradle', 'maven', 'self-hosted', 'open-source']
 draft = false
 +++
