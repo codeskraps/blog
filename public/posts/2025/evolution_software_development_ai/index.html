@@ -98,11 +98,38 @@ The Evolution of Software Development in the AI Era | codeskraps
     
     <div>
         <p>When ChatGPT was released on November 30, 2022, few of us understood how dramatically it would transform the software development landscape. As someone who&rsquo;s worked through this transition, I&rsquo;ve witnessed firsthand the remarkable shift in how we approach coding and problem-solving.</p>
-<p>{{ $image := .Resources.GetMatch &ldquo;header.png&rdquo; }}
-{{ with $image }}
-{{ $resized := .Resize &ldquo;600x&rdquo; }}
-<img src="{{ $resized.RelPermalink }}" alt="The Evolution of Software Development in the AI Era" width="{{ $resized.Width }}" height="{{ $resized.Height }}">
-{{ end }}</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  <picture style="display: block; text-align: center; margin: 2rem auto;">
+    <source media="(max-width: 480px)" srcset="/posts/2025/evolution_software_development_ai/header_hu_6f3939eea610ecff.jpg">
+    <source media="(max-width: 800px)" srcset="/posts/2025/evolution_software_development_ai/header_hu_88733619c784d65a.jpg">
+    <source media="(min-width: 801px)" srcset="/posts/2025/evolution_software_development_ai/header_hu_3ad9a43b3c96546.jpg">
+    <img 
+      src="/posts/2025/evolution_software_development_ai/header_hu_3ad9a43b3c96546.jpg" 
+      alt="The Evolution of Software Development in the AI Era" 
+      width="600" 
+      height="344"
+      style="max-width: 100%; height: auto; margin: 0 auto; display: block;"
+      class="responsive-image"
+      loading="lazy"
+    >
+  </picture>
+  
 <h2 id="the-early-days-a-promising-but-flawed-tool">The Early Days: A Promising but Flawed Tool</h2>
 <p>The initial release of ChatGPT (based on GPT-3.5) could handle approximately 4,096 tokens (roughly 3,000 words) of context. While impressive at the time, it was largely a novelty for serious development work. The model made frequent mistakes, generated code with obvious bugs, and was notorious for its hallucinations. Many developers, myself included, experimented with it but couldn&rsquo;t rely on it for production-grade work.</p>
 <h2 id="the-rapid-evolution">The Rapid Evolution</h2>
