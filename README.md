@@ -1,3 +1,7 @@
+> [!IMPORTANT]
+> **This repository has moved to [git.codeskraps.com/codeskraps/Blog](https://git.codeskraps.com/codeskraps/Blog).**
+> This GitHub copy is no longer maintained and will not receive updates.
+
 # My Portfolio Blog
 
 Welcome to the repository for my personal portfolio website and blog. This site serves as a comprehensive showcase of my professional journey, projects, and thoughts.
